@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>D:/OneDrive/Surface Pro Desktop/Essential/School/Year 2/Sem1/CSC207/course-project-minor-technologies/Project/src</OriginalElement>
+  <nodes>
+    <node x="2282.0" y="2794.0">Entities.Employer.IEmployer</node>
+    <node x="529.7794117647059" y="670.0">Entities.Employer.Employer</node>
+    <node x="1177.0" y="2794.0">UseCase.ListingsProcessing.ListingDateComparator</node>
+    <node x="1929.0294117647059" y="260.0">UseCase.User.UserDB</node>
+    <node x="1865.0" y="2492.0">Controllers.BackgroundOperations.BackgroundOperations</node>
+    <node x="978.0" y="2573.0">Controllers.BackgroundOperations.BackgroundUpdateListings</node>
+    <node x="1299.0" y="2492.0">Demo.DemoSource.DemoJobListingSource</node>
+    <node x="2903.0" y="2492.0">UseCase.Score_Calculator.handler_main</node>
+    <node x="1483.7794117647059" y="582.0">Entities.SearchQuery.SearchQuery</node>
+    <node x="808.7794117647059" y="604.0">Entities.User.Experience</node>
+    <node x="2097.779411764706" y="0.0">UseCase.IDatabase</node>
+    <node x="1451.0" y="2283.0">UseCase.ListingsProcessing.QuickProcessor</node>
+    <node x="2829.0" y="2794.0">Framework.UI.View.Interfaces.IViewListingPreviews</node>
+    <node x="2014.0000000000002" y="1901.0">UseCase.Score_Calculator.handler_3</node>
+    <node x="176.5" y="1681.5">UseCase.Factories.JobListingFactory.ICreateJobListing</node>
+    <node x="2382.0" y="1761.0">UseCase.Score_Calculator.handler_1</node>
+    <node x="3062.0" y="2794.0">Framework.UI.IUserInterface</node>
+    <node x="2227.0" y="1901.0">UseCase.Score_Calculator.handler_2</node>
+    <node x="1856.7794117647059" y="632.0">UseCase.User.UserDB.userDBHashWrapper</node>
+    <node x="138.77941176470586" y="417.0">Entities.Listing.JobListing</node>
+    <node x="0.0" y="1865.0">Demo.DemoSource.CreateDemoSourceJobListing</node>
+    <node x="2620.0" y="1465.0">Demo.JayWangDemoScratchClass</node>
+    <node x="2356.0" y="2492.0">UseCase.Security.Security</node>
+    <node x="2118.0" y="2492.0">Entities.Listing.ListingType</node>
+    <node x="0.0" y="1186.0">Demo.DemoSource.DemoSourceJobListing</node>
+    <node x="0.0" y="2125.0">UseCase.DisplayData.ListingDisplayData</node>
+    <node x="2072.0" y="1750.0">UseCase.Score_Calculator.handler_ext_work</node>
+    <node x="1573.5" y="2044.0">UseCase.ListingsProcessing.ListingsProcessor</node>
+    <node x="351.99999999999994" y="1208.0">Entities.Listing.CustomJobListing</node>
+    <node x="1015.0" y="2492.0">Controllers.BackgroundOperations.IBackgroundOperation</node>
+    <node x="1607.0" y="1681.0">UseCase.Factories.SearchQuery.CreateSearchQuery</node>
+    <node x="221.0" y="2794.0">Controllers.Search.Search</node>
+    <node x="1109.0" y="2044.0">Controllers.UserManagement.UserManagement</node>
+    <node x="1455.0" y="2794.0">UseCase.ListingsProcessing.AlphabeticalComparator</node>
+    <node x="102.5" y="2044.0">UseCase.DisplayData.IDisplayData</node>
+    <node x="2351.279411764706" y="271.0">UseCase.Listing.JobListingDB</node>
+    <node x="1920.0" y="2283.0">UseCase.ListingsProcessing.DefaultProcessor</node>
+    <node x="0.0" y="2794.0">Entities.Listing.JobType</node>
+    <node x="1733.0" y="2794.0">UseCase.ListingsProcessing.SalaryComparator</node>
+    <node x="2606.0" y="2794.0">UseCase.DisplayData.ListingPreviewData</node>
+    <node x="2011.0" y="2794.0">UseCase.FileIO.MalformedDataException</node>
+    <node x="2317.779411764706" y="643.0">UseCase.Listing.JobListingDB.JobListingDBIterator</node>
+    <node x="1087.7794117647059" y="439.0">Entities.User.User</node>
+    <node x="2638.0" y="2492.0">Framework.UI.View.Interfaces.IViewListing</node>
+    <node x="2638.0" y="2598.0">Framework.UI.View.ViewListingConsole</node>
+    <node x="2256.75" y="1465.0">UseCase.Score_Calculator.handler</node>
+    <node x="748.0" y="2044.0">Demo.TotalDemo</node>
+    <node x="500.25" y="2620.0">UseCase.FileIO.JSONSerializer</node>
+    <node x="649.0" y="2503.0">UseCase.FileIO.IEntryDeserializer</node>
+    <node x="798.0" y="2794.0">Controllers.DataProcessing.DataFormat</node>
+    <node x="2414.0" y="2044.0">UseCase.Factories.EntryDataMapTypeCaster</node>
+    <node x="358.0" y="2492.0">UseCase.FileIO.IEntrySerializer</node>
+    <node x="382.0" y="1865.0">UseCase.Factories.JobListingFactory.CreateCustomJobListing</node>
+    <node x="2076.779411764706" y="643.0">UseCase.User.UserDB.UserDBIterator</node>
+    <node x="764.0" y="1832.0">UseCase.Factories.UserFactory.CreateUser</node>
+    <node x="814.0" y="1681.5">UseCase.Factories.UserFactory.ICreateUser</node>
+    <node x="1225.0" y="1681.0">UseCase.Factories.UserFactory.CreateExperience</node>
+    <node x="387.0" y="2044.0">Main.Main</node>
+    <node x="803.5" y="1465.0">UseCase.Factories.ICreateEntry</node>
+    <node x="697.75" y="0.0">Entities.Entry</node>
+    <node x="2791.0" y="2044.0">Framework.FileIO.FileIO</node>
+    <node x="0.0" y="2492.0">Controllers.LocalCache.LocalCache</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="Demo.DemoSource.DemoSourceJobListing" target="Entities.Listing.JobListing" relationship="GENERALIZATION">
+      <point x="0.0" y="-117.0" />
+      <point x="166.0" y="1161.0" />
+      <point x="324.27941176470586" y="1161.0" />
+      <point x="0.0" y="359.5" />
+    </edge>
+    <edge source="UseCase.DisplayData.ListingDisplayData" target="UseCase.DisplayData.IDisplayData" relationship="REALIZATION">
+      <point x="0.0" y="-161.0" />
+      <point x="0.0" y="15.5" />
+    </edge>
+    <edge source="Entities.Employer.Employer" target="Entities.Entry" relationship="GENERALIZATION">
+      <point x="0.0" y="-106.5" />
+      <point x="659.2794117647059" y="392.0" />
+      <point x="939.75" y="392.0" />
+      <point x="0.0" y="183.5" />
+    </edge>
+    <edge source="UseCase.Listing.JobListingDB.JobListingDBIterator" target="UseCase.Listing.JobListingDB" relationship="INNER_CLASS">
+      <point x="0.0" y="-62.0" />
+      <point x="0.0" y="150.0" />
+    </edge>
+    <edge source="UseCase.User.UserDB" target="UseCase.IDatabase" relationship="REALIZATION">
+      <point x="0.0" y="-161.0" />
+      <point x="2072.029411764706" y="235.0" />
+      <point x="2240.779411764706" y="235.0" />
+      <point x="0.0" y="105.0" />
+    </edge>
+    <edge source="UseCase.Factories.UserFactory.CreateUser" target="UseCase.Factories.UserFactory.ICreateUser" relationship="REALIZATION">
+      <point x="0.0" y="-83.5" />
+      <point x="0.0" y="50.0" />
+    </edge>
+    <edge source="UseCase.Score_Calculator.handler_ext_work" target="UseCase.Score_Calculator.handler" relationship="GENERALIZATION">
+      <point x="0.0" y="-50.5" />
+      <point x="2217.0" y="1725.0" />
+      <point x="2347.75" y="1725.0" />
+      <point x="0.0" y="117.5" />
+    </edge>
+    <edge source="UseCase.Factories.UserFactory.CreateExperience" target="UseCase.Factories.ICreateEntry" relationship="REALIZATION">
+      <point x="0.0" y="-50.5" />
+      <point x="1406.0" y="1661.0" />
+      <point x="1597.0" y="1661.0" />
+      <point x="1597.0" y="1651.0" />
+      <point x="1075.0" y="1651.0" />
+      <point x="90.5" y="83.0" />
+    </edge>
+    <edge source="UseCase.Factories.SearchQuery.CreateSearchQuery" target="UseCase.Factories.ICreateEntry" relationship="REALIZATION">
+      <point x="0.0" y="-50.5" />
+      <point x="1788.0" y="1661.0" />
+      <point x="1597.0" y="1661.0" />
+      <point x="1597.0" y="1651.0" />
+      <point x="1075.0" y="1651.0" />
+      <point x="90.5" y="83.0" />
+    </edge>
+    <edge source="Entities.User.Experience" target="Entities.Entry" relationship="GENERALIZATION">
+      <point x="0.0" y="-172.5" />
+      <point x="938.2794117647059" y="392.0" />
+      <point x="939.75" y="392.0" />
+      <point x="0.0" y="183.5" />
+    </edge>
+    <edge source="UseCase.ListingsProcessing.DefaultProcessor" target="UseCase.ListingsProcessing.ListingsProcessor" relationship="GENERALIZATION">
+      <point x="0.0" y="-39.5" />
+      <point x="2144.5" y="2258.0" />
+      <point x="1910.0" y="2258.0" />
+      <point x="0.0" y="94.5" />
+    </edge>
+    <edge source="UseCase.FileIO.JSONSerializer" target="UseCase.FileIO.IEntryDeserializer" relationship="REALIZATION">
+      <point x="0.0" y="-61.5" />
+      <point x="642.25" y="2595.0" />
+      <point x="791.0" y="2595.0" />
+      <point x="0.0" y="28.0" />
+    </edge>
+    <edge source="Framework.UI.View.ViewListingConsole" target="Framework.UI.View.Interfaces.IViewListing" relationship="REALIZATION">
+      <point x="0.0" y="-39.5" />
+      <point x="0.0" y="28.0" />
+    </edge>
+    <edge source="UseCase.ListingsProcessing.QuickProcessor" target="UseCase.ListingsProcessing.ListingsProcessor" relationship="GENERALIZATION">
+      <point x="0.0" y="-39.5" />
+      <point x="1675.5" y="2258.0" />
+      <point x="1910.0" y="2258.0" />
+      <point x="0.0" y="94.5" />
+    </edge>
+    <edge source="UseCase.Score_Calculator.handler_3" target="UseCase.Score_Calculator.handler_ext_work" relationship="GENERALIZATION">
+      <point x="0.0" y="-39.5" />
+      <point x="2110.5" y="1876.0" />
+      <point x="2217.0" y="1876.0" />
+      <point x="0.0" y="50.5" />
+    </edge>
+    <edge source="Controllers.BackgroundOperations.BackgroundUpdateListings" target="Controllers.BackgroundOperations.IBackgroundOperation" relationship="REALIZATION">
+      <point x="0.0" y="-61.5" />
+      <point x="0.0" y="15.5" />
+    </edge>
+    <edge source="UseCase.Factories.JobListingFactory.CreateCustomJobListing" target="UseCase.Factories.JobListingFactory.ICreateJobListing" relationship="REALIZATION">
+      <point x="0.0" y="-50.5" />
+      <point x="563.0" y="1807.0" />
+      <point x="372.0" y="1807.0" />
+      <point x="0.0" y="50.0" />
+    </edge>
+    <edge source="UseCase.Score_Calculator.handler_2" target="UseCase.Score_Calculator.handler_ext_work" relationship="GENERALIZATION">
+      <point x="0.0" y="-39.5" />
+      <point x="2323.5" y="1876.0" />
+      <point x="2217.0" y="1876.0" />
+      <point x="0.0" y="50.5" />
+    </edge>
+    <edge source="Entities.User.User" target="Entities.Entry" relationship="GENERALIZATION">
+      <point x="0.0" y="-337.5" />
+      <point x="1275.7794117647059" y="392.0" />
+      <point x="939.75" y="392.0" />
+      <point x="0.0" y="183.5" />
+    </edge>
+    <edge source="Entities.Listing.CustomJobListing" target="Entities.Listing.JobListing" relationship="GENERALIZATION">
+      <point x="5.6843418860808015E-14" y="-95.0" />
+      <point x="485.5" y="1161.0" />
+      <point x="324.27941176470586" y="1161.0" />
+      <point x="0.0" y="359.5" />
+    </edge>
+    <edge source="UseCase.FileIO.JSONSerializer" target="UseCase.FileIO.IEntrySerializer" relationship="REALIZATION">
+      <point x="0.0" y="-61.5" />
+      <point x="642.25" y="2595.0" />
+      <point x="493.5" y="2595.0" />
+      <point x="0.0" y="39.0" />
+    </edge>
+    <edge source="Entities.SearchQuery.SearchQuery" target="Entities.Entry" relationship="GENERALIZATION">
+      <point x="0.0" y="-194.5" />
+      <point x="1647.7794117647059" y="392.0" />
+      <point x="939.75" y="392.0" />
+      <point x="0.0" y="183.5" />
+    </edge>
+    <edge source="Entities.Listing.JobListing" target="Entities.Entry" relationship="GENERALIZATION">
+      <point x="0.0" y="-359.5" />
+      <point x="324.27941176470586" y="392.0" />
+      <point x="939.75" y="392.0" />
+      <point x="0.0" y="183.5" />
+    </edge>
+    <edge source="Demo.DemoSource.CreateDemoSourceJobListing" target="UseCase.Factories.JobListingFactory.ICreateJobListing" relationship="REALIZATION">
+      <point x="0.0" y="-50.5" />
+      <point x="181.0" y="1807.0" />
+      <point x="372.0" y="1807.0" />
+      <point x="0.0" y="50.0" />
+    </edge>
+    <edge source="UseCase.Listing.JobListingDB" target="UseCase.IDatabase" relationship="REALIZATION">
+      <point x="0.0" y="-150.0" />
+      <point x="2524.779411764706" y="235.0" />
+      <point x="2240.779411764706" y="235.0" />
+      <point x="0.0" y="105.0" />
+    </edge>
+    <edge source="UseCase.User.UserDB.UserDBIterator" target="UseCase.User.UserDB" relationship="INNER_CLASS">
+      <point x="0.0" y="-62.0" />
+      <point x="2187.279411764706" y="607.0" />
+      <point x="2072.029411764706" y="607.0" />
+      <point x="0.0" y="161.0" />
+    </edge>
+    <edge source="UseCase.Factories.JobListingFactory.ICreateJobListing" target="UseCase.Factories.ICreateEntry" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-50.0" />
+      <point x="372.0" y="1661.0" />
+      <point x="595.25" y="1661.0" />
+      <point x="595.25" y="1651.0" />
+      <point x="894.0" y="1651.0" />
+      <point x="-90.5" y="83.0" />
+    </edge>
+    <edge source="UseCase.User.UserDB.userDBHashWrapper" target="UseCase.User.UserDB" relationship="INNER_CLASS">
+      <point x="0.0" y="-73.0" />
+      <point x="1956.7794117647059" y="607.0" />
+      <point x="2072.029411764706" y="607.0" />
+      <point x="0.0" y="161.0" />
+    </edge>
+    <edge source="UseCase.Score_Calculator.handler_1" target="UseCase.Score_Calculator.handler" relationship="GENERALIZATION">
+      <point x="0.0" y="-39.5" />
+      <point x="2478.5" y="1725.0" />
+      <point x="2347.75" y="1725.0" />
+      <point x="0.0" y="117.5" />
+    </edge>
+    <edge source="UseCase.Factories.UserFactory.ICreateUser" target="UseCase.Factories.ICreateEntry" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-50.0" />
+      <point x="1009.5" y="1661.0" />
+      <point x="595.25" y="1661.0" />
+      <point x="595.25" y="1651.0" />
+      <point x="894.0" y="1651.0" />
+      <point x="-90.5" y="83.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="0.6733108108108106" showDependencies="false" x="1094.4299267790161" y="549.4821876567989" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Fields</Category>
+    <Category>Inner Classes</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

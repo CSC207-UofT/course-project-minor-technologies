@@ -23,7 +23,7 @@ Type "help" for commands.
 search
 
 Enter all search terms:
-Demo
+com.minortechnologies.workr.demo
 
 Enter location
 Toronto
@@ -41,15 +41,15 @@ Enter job type:
 1
 
 Relevant listings:
-{Demo Listing 1} in Toronto,
-{Demo Listing 2} in Toronto,
-{Demo Listing 3} in Toronto,
-{Demo Listing 4} in Toronto,
+{com.minortechnologies.workr.demo Listing 1} in Toronto,
+{com.minortechnologies.workr.demo Listing 2} in Toronto,
+{com.minortechnologies.workr.demo Listing 3} in Toronto,
+{com.minortechnologies.workr.demo Listing 4} in Toronto,
 Which listing would you like to see?
-1: Demo Listing 1
-2: Demo Listing 2
-3: Demo Listing 3
-4: Demo Listing 4
+1: com.minortechnologies.workr.demo Listing 1
+2: com.minortechnologies.workr.demo Listing 2
+3: com.minortechnologies.workr.demo Listing 3
+4: com.minortechnologies.workr.demo Listing 4
 5: Cancel
 5
 
@@ -76,18 +76,18 @@ Enter job type:
 1
 
 Relevant listings:
-{Demo Listing 4} in Toronto,
+{com.minortechnologies.workr.demo Listing 4} in Toronto,
 Which listing would you like to see?
-1: Demo Listing 4
+1: com.minortechnologies.workr.demo Listing 4
 2: Cancel
 1
 
-Listing Name: Demo Listing 4
+Listing Name: com.minortechnologies.workr.demo Listing 4
 Location: Toronto
 Job Type: FULL_TIME
 Pay: 27000
 Listing Date: 2021-10-14T23:25:19.294898600
-Listing Description: Vorp Some Placeholder Text for Demo Listing 4 Search Term
+Listing Description: Vorp Some Placeholder Text for com.minortechnologies.workr.demo Listing 4 Search Term
  This is a copypasta from Formula 1 in 2016 
 30 years ago,Gentlemen, a short view back to the past. Thirty years ago, Niki Lauda told us ‘take a monkey, 
 place him into the cockpit and he is able to drive the car.’ Thirty years later, Sebastian told us ‘I had to start 
@@ -111,16 +111,16 @@ Type "help" for commands.
 saved
 
 Which listing would you like to see?
-1: Demo Listing 4
+1: com.minortechnologies.workr.demo Listing 4
 2: Cancel
 1
 
-Listing Name: Demo Listing 4
+Listing Name: com.minortechnologies.workr.demo Listing 4
 Location: Toronto
 Job Type: FULL_TIME
 Pay: 27000
 Listing Date: 2021-10-14T23:25:19.294898600
-Listing Description: Vorp Some Placeholder Text for Demo Listing 4 Search Term
+Listing Description: Vorp Some Placeholder Text for com.minortechnologies.workr.demo Listing 4 Search Term
  This is a copypasta from Formula 1 in 2016 
 30 years ago,Gentlemen, a short view back to the past. Thirty years ago, Niki Lauda told us ‘take a monkey, 
 place him into the cockpit and he is able to drive the car.’ Thirty years later, Sebastian told us ‘I had to start 
@@ -141,16 +141,16 @@ saved
 // I wrote "[Here is some edits to the Listing]" behind the word "Vorp" in the listing description.
 
 Which listing would you like to see?
-1: Demo Listing 4
+1: com.minortechnologies.workr.demo Listing 4
 2: Cancel
 1
 
-Listing Name: Demo Listing 4
+Listing Name: com.minortechnologies.workr.demo Listing 4
 Location: Toronto
 Job Type: FULL_TIME
 Pay: 27000
 Listing Date: 2021-10-14T23:25:19.294898600
-Listing Description: Vorp [Here is some edits to the Listing] Some Placeholder Text for Demo Listing 4 Search Term
+Listing Description: Vorp [Here is some edits to the Listing] Some Placeholder Text for com.minortechnologies.workr.demo Listing 4 Search Term
  This is a copypasta from Formula 1 in 2016 
 30 years ago,Gentlemen, a short view back to the past. Thirty years ago, Niki Lauda told us ‘take a monkey, 
 place him into the cockpit and he is able to drive the car.’ Thirty years later, Sebastian told us ‘I had to start 

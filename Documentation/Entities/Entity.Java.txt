@@ -12,7 +12,7 @@ getData, setData, and updateData.
 getData(String key): 
 takes a string which represents the key, and returns the data associated with the key. If there is no assiciated key, it returns none.
 
-setData(String key, Object data): 
+addData(String key, Object data):
 adds data into the Entry. The key must be a string. Data could be of any type. However if there is already data (even if the data is null), data is not added. This method returns a boolean, representing whether the data has been added or not.
 
 updateData(String key, Object data): 
@@ -32,6 +32,10 @@ There are also 2 abstract methods, serialize and deserialize.
 serialize returns a HashMap that can be then used for serialization.
 deserialize takes a Map and sets entry data from the map.
 
+============================
+Unit Testing:
+
+If you need to create instances of Entries for unit tests, currently all of the subclasses that can be instantiated's base constructor (constructor with no parameters) creates a new instance with no data. You can then use the addData to add any data you need for the unit tests
 
 ============================
 Other Notes:
