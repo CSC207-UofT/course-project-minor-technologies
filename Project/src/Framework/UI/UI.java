@@ -66,7 +66,7 @@ public class UI {
     private void setup() {
         frame = new JFrame("Workr v0.2");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(500, 500);
+        frame.setSize(1000, 1000);
     }
 
     private JPanel loginScreen() {
