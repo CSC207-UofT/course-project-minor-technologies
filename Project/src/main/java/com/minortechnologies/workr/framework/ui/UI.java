@@ -1,7 +1,9 @@
-package Framework.UI;
+package com.minortechnologies.workr.framework.ui;
 
-import Controllers.LocalCache.LocalCache;
-import Entities.Listing.JobListing;
+import com.minortechnologies.workr.controllers.localcache.LocalCache;
+import com.minortechnologies.workr.entities.listing.JobListing;
+import com.minortechnologies.workr.entities.listing.JobType;
+import com.minortechnologies.workr.entities.user.User;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,7 +20,7 @@ import java.util.HashSet;
  */
 public class UI {
 
-    private Entities.User.User[] users;
+    private User[] users;
     private int numUsers = 0;
 
     private JFrame frame;
@@ -26,19 +28,19 @@ public class UI {
             accountPanel, listingsPanel, searchPanel,
             resultsPanel;
     private CardLayout cardLayout;
-    private Controllers.LocalCache.LocalCache cache;
+    private LocalCache cache;
 
     private final Font TITLE_FONT = new Font("Helvetica", Font.BOLD, 20);
     private final Font ERROR_FONT = new Font("Helvetica", Font.BOLD, 12);
 
-    private Entities.User.User currentUser;
+    private User currentUser;
 
     public UI() {
         //cache = new LocalCache();
         //cache.loadSavedListings();
 
         setup();
-        users = new Entities.User.User[100];
+        users = new User[100];
         cards = new JPanel(new CardLayout());
 
         loginPanel = loginScreen();
@@ -201,7 +203,7 @@ public class UI {
                 char[] newPassword = password.getPassword();
 
                 if (Arrays.equals(newPassword, confirmPassword.getPassword())) {
-                    Entities.User.User newUser = new Entities.User.User(newUsername);
+                    User newUser = new User(newUsername);
                     users[numUsers] = newUser;
                     numUsers++;
                     currentUser = newUser;
@@ -435,14 +437,14 @@ public class UI {
                         JOptionPane.showMessageDialog(null, "Please select a range!");
                 }
 
-                Entities.Listing.JobType jobType;
+                JobType jobType;
                 String selectedType = typeButtons.getSelection().getActionCommand();
 
                 switch (selectedType) {
                     case "Full time":
-                        jobType = Entities.Listing.JobType.FULL_TIME;
+                        jobType = JobType.FULL_TIME;
                     case "Part time":
-                        jobType = Entities.Listing.JobType.PART_TIME;
+                        jobType = JobType.PART_TIME;
                     default:
 
                 }

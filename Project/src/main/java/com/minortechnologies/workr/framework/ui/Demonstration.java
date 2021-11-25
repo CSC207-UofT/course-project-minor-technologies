@@ -1,9 +1,9 @@
-package Framework.UI;
+package com.minortechnologies.workr.framework.ui;
 
 public class Demonstration {
 
     public static void main(String[] args) {
 
-        new Framework.UI.UI();
+        new UI();
     }
 }
