@@ -116,7 +116,7 @@ This should be called on program launch, when the app is launched and a user is 
   <tr>
    <td>token
    </td>
-   <td>A AuthToken
+   <td>An AuthToken
    </td>
    <td>String
    </td>

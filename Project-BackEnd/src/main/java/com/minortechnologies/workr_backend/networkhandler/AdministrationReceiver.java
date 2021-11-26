@@ -19,6 +19,11 @@ public class AdministrationReceiver {
         return AdminHandler.GetAllTokens();
     }
 
+    @GetMapping("/Admin/GetAllAccounts")
+    public ArrayList<Map<String, Object>> getAllAccountData(){
+        return AdminHandler.GetAllAccountData();
+    }
+
     @GetMapping("/Admin/Shutdown")
     public void shutdown(){
         AdminHandler.Shutdown();

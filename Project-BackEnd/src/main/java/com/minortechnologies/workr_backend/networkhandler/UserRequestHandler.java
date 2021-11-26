@@ -22,9 +22,9 @@ public class UserRequestHandler {
      * authenticates a login and password. If there is a User Account with the matching
      * password and login, returns a token. Otherwise returns null.
      *
-     * @param login
-     * @param password
-     * @return
+     * @param login A user Login
+     * @param password A password to attempt to authenticate a user with
+     * @return String, representing the Authentication Token if the authentication was a success, otherwise returns null.
      */
     public static String authenticateSignIn(String login, String password){
         return Application.getUserManagement().signIn(login, password, true);
@@ -135,7 +135,7 @@ public class UserRequestHandler {
         }
         
         HashSet<JobListing> watchedListingsSet = user.getWatchedListings();
-        ArrayList<HashMap<String, Object>> watchedListings = new ArrayList<HashMap<String, Object>>();
+        ArrayList<HashMap<String, Object>> watchedListings = new ArrayList<>();
         for (JobListing jl:
              watchedListingsSet) {
             HashMap<String, Object> jlData = jl.serialize();
@@ -155,7 +155,7 @@ public class UserRequestHandler {
         }
 
         HashSet<JobListing> watchedListingsSet = user.getWatchedListings();
-        ArrayList<HashMap<String, Object>> customListings = new ArrayList<HashMap<String, Object>>();
+        ArrayList<HashMap<String, Object>> customListings = new ArrayList<>();
         for (JobListing jl:
                 watchedListingsSet) {
             if (jl.getListingType() == ListingType.CUSTOM){
@@ -168,7 +168,7 @@ public class UserRequestHandler {
         return finalMap;
     }
 
-    private static User authenticateAndGetUser(String login, String token){
+    public static User authenticateAndGetUser(String login, String token){
         if (!authenticateToken(login, token)){
             return null;
         }

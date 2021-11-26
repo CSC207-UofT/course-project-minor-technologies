@@ -22,6 +22,7 @@ public class NetworkResponseConstants {
     // Map related issues
     public static final int KEY_NOT_EXIST = 7;
     public static final int DATA_MALFORMED = 8;
+    public static final String DATA_MALFORMED_STRING = "error 8: map data malformed";
 
     //
 }

@@ -2,8 +2,12 @@ package com.minortechnologies.workr_backend.networkhandler;
 
 import com.minortechnologies.workr_backend.controllers.backgroundoperations.BackgroundOperations;
 import com.minortechnologies.workr_backend.controllers.usermanagement.AuthTokenController;
+import com.minortechnologies.workr_backend.controllers.usermanagement.UserManagement;
+import com.minortechnologies.workr_backend.entities.Entry;
 import com.minortechnologies.workr_backend.entities.security.AuthToken;
+import com.minortechnologies.workr_backend.entities.user.User;
 import com.minortechnologies.workr_backend.usecase.security.AuthTokenDB;
+import com.minortechnologies.workr_backend.usecase.user.UserDB;
 import org.springframework.boot.ExitCodeGenerator;
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.ApplicationContext;
@@ -43,18 +47,26 @@ public class AdminHandler {
         return tokens;
     }
 
+    public static ArrayList<Map<String, Object>> GetAllAccountData(){
+        UserManagement um = Application.getUserManagement();
+        UserDB udb = um.getUserDatabase();
+        ArrayList<Map<String, Object>> accounts = new ArrayList<>();
+
+        for (Entry user:
+             udb) {
+            accounts.add(user.serialize());
+        }
+
+        return accounts;
+    }
+
     public static void Shutdown() {
 
         System.out.println("Shutdown Command Received");
         //TODO: get this to actually shutdown. Doesnt seem to work.
         serializeAllData();
 
-        int exitCode = SpringApplication.exit(Application.getCtx(), new ExitCodeGenerator() {
-            @Override
-            public int getExitCode() {
-                return 0;
-            }
-        });
+        int exitCode = SpringApplication.exit(Application.getCtx(), () -> 0);
         System.exit(exitCode);
     }
 }

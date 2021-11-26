@@ -42,8 +42,13 @@ public class ListingRequestReceiver {
         throw new UnsupportedOperationException();
     }
 
-    @GetMapping("/JobListing/CreateCustom/{login}}")
+    @PostMapping("/JobListing/{login}/CreateCustom")
     public String createCustomListing(@RequestParam String token, @PathVariable String login, @RequestBody Map<String, Object> payload){
-        return null;
+        return ListingRequestHandler.createListing(token, login, payload);
+    }
+
+    @PostMapping("/JobListing/{login}/UpdateListing")
+    public int updateCustomListing(@RequestParam String token, @PathVariable String login, @RequestBody Map<String, Object> payload){
+        return ListingRequestHandler.updateListing(token, login, payload);
     }
 }
