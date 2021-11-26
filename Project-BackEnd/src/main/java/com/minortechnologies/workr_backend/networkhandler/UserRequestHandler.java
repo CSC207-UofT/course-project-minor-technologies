@@ -6,6 +6,7 @@ import com.minortechnologies.workr_backend.controllers.usermanagement.UserManage
 import com.minortechnologies.workr_backend.entities.Entry;
 import com.minortechnologies.workr_backend.entities.listing.JobListing;
 import com.minortechnologies.workr_backend.entities.listing.ListingType;
+import com.minortechnologies.workr_backend.entities.user.Experience;
 import com.minortechnologies.workr_backend.entities.user.User;
 import com.minortechnologies.workr_backend.usecase.factories.EntryDataMapTypeCaster;
 import com.minortechnologies.workr_backend.usecase.factories.ICreateEntry;
@@ -30,15 +31,23 @@ public class UserRequestHandler {
         return Application.getUserManagement().signIn(login, password, true);
     }
 
-
+    /**
+     * Gets all account data (except for hashed password and salt) for a specified token and login
+     *
+     * @param login The login to retrieve the account data
+     * @param token the token associated with the login
+     * @return A hashmap, containing the deserialized account data, or an error code if the operation failed.
+     */
     public static HashMap<String, Object> getAccountData(String login, String token){
-        if (authenticateToken(login, token)){
-            User user = Application.getUserManagement().getUserByLogin(login);
-            HashMap<String, Object> userData = user.serialize();
-            removePrivateData(userData);
-            return userData;
+        HashMap<String, Object> returnMap = new HashMap<>();
+        User user = authenticateAndGetUser(login, token);
+        if (user == null){
+            returnMap.put(NetworkResponseConstants.ERROR_KEY, NetworkResponseConstants.TOKEN_AUTH_FAIL_STRING);
+            return returnMap;
         }
-        return null;
+        returnMap = user.serialize();
+        removePrivateData(returnMap);
+        return returnMap;
     }
 
     /**
@@ -65,7 +74,15 @@ public class UserRequestHandler {
         return controller.Authenticate(login, token);
     }
 
-
+    /**
+     * Creates a new account.
+     *
+     * @param username The desired username
+     * @param email An email.
+     * @param login The desired login
+     * @param password A desired password
+     * @return response code on whether the operation was successful. 1 indicates operation success.
+     */
     public static int createUser(String username, String email, String login,
                                  String password){
         UserManagement um = Application.getUserManagement();
@@ -106,7 +123,7 @@ public class UserRequestHandler {
 
     public static int setUserData(String login, String token, Map<String, Object> dataMap){
         if (!authenticateToken(login, token)){
-            return 0;
+            return NetworkResponseConstants.TOKEN_AUTH_FAIL;
         }
         HashMap<String, Object> dataCopy = SerializationUtils.clone((HashMap<String, Object>)dataMap);
 
@@ -122,10 +139,15 @@ public class UserRequestHandler {
         User targetUser = um.getUserByLogin(login);
 
         targetUser.updateEntry(dataMap);
-        return 1;
+        return NetworkResponseConstants.OPERATION_SUCCESS;
     }
-    
-    
+
+    /**
+     * Gets the listings currently watched by the user.
+     * @param login the login to retrieve watched listings from
+     * @param token the token associated with the account
+     * @return A hashmap containing the list of watched listings, or an error code if the operation was not successful.
+     */
     public static HashMap<String, Object> getUserWatchedListings(String login, String token){
         HashMap<String, Object> finalMap = new HashMap<>();
         User user = authenticateAndGetUser(login, token);
@@ -146,6 +168,12 @@ public class UserRequestHandler {
         return finalMap;
     }
 
+    /**
+     * Gets the custom listings currently watched by the user.
+     * @param login the login to retrieve watched listings from
+     * @param token the token associated with the account
+     * @return A hashmap containing the list of watched listings, or an error code if the operation was not successful.
+     */
     public static HashMap<String, Object> getUserCustomListings(String login, String token){
         HashMap<String, Object> finalMap = new HashMap<>();
         User user = authenticateAndGetUser(login, token);
@@ -218,5 +246,73 @@ public class UserRequestHandler {
             return NetworkResponseConstants.OPERATION_SUCCESS;
         }
         return NetworkResponseConstants.TOKEN_AUTH_FAIL;
+    }
+
+    private static Map<String, Object> getExperiencePackage(String login, String token, Map<String, Object> payload){
+
+        HashMap<String, Object> expPackage = new HashMap<>();
+
+        User user = authenticateAndGetUser(login, token);
+        if (user == null){
+            expPackage.put(NetworkResponseConstants.ERROR_KEY, NetworkResponseConstants.TOKEN_AUTH_FAIL);
+            return expPackage;
+        }
+        Map<String, Object> experienceData = (Map<String, Object>) payload.get("payloadData");
+        Object experienceTypeObj = payload.remove("experienceType");
+        if (experienceTypeObj == null){
+            expPackage.put(NetworkResponseConstants.ERROR_KEY, NetworkResponseConstants.PAYLOAD_MALFORMED);
+            return expPackage;
+        }
+        try {
+            if (experienceTypeObj instanceof String){
+                String experienceType = (String) experienceTypeObj;
+                switch (experienceType){
+                    case User.REL_WORK_EXP:
+                    case User.UREL_WORK_EXP:
+                    case User.LEADERSHIP:
+                        Entry entry = ICreateEntry.createEntry(experienceData);
+                        if (!(entry instanceof Experience)){
+                            expPackage.put(NetworkResponseConstants.ERROR_KEY, NetworkResponseConstants.INCORRECT_KEYS);
+                            return expPackage;
+                        }
+                        ArrayList<Experience> experiences = (ArrayList<Experience>) user.getData(experienceType);
+                        expPackage.put("experiences", experiences);
+                        expPackage.put("entry", entry);
+                        return expPackage;
+                }
+            }
+        } catch (MalformedDataException e) {
+            e.printStackTrace();
+        } catch (ClassCastException e){
+            e.printStackTrace();
+            expPackage.put(NetworkResponseConstants.ERROR_KEY, NetworkResponseConstants.PAYLOAD_MALFORMED);
+            return expPackage;
+        }
+        expPackage.put(NetworkResponseConstants.ERROR_KEY, NetworkResponseConstants.DATA_MALFORMED);
+        return expPackage;
+    }
+
+    public static int addExperience(String login, String token, Map<String, Object> payload) {
+        Map<String, Object> processedPackage = getExperiencePackage(login, token, payload);
+
+        if (processedPackage.containsKey(NetworkResponseConstants.ERROR_KEY)){
+            return (int) processedPackage.get(NetworkResponseConstants.ERROR_KEY);
+        }
+        ArrayList<Experience> targetList = (ArrayList<Experience>) processedPackage.get("experiences");
+        Experience experienceEntry = (Experience) processedPackage.get("entry");
+        targetList.add(experienceEntry);
+        return NetworkResponseConstants.OPERATION_SUCCESS;
+    }
+
+    public static int removeExperience(String login, String token, Map<String, Object> payload){
+        Map<String, Object> processedPackage = getExperiencePackage(login, token, payload);
+
+        if (processedPackage.containsKey(NetworkResponseConstants.ERROR_KEY)){
+            return (int) processedPackage.get(NetworkResponseConstants.ERROR_KEY);
+        }
+        ArrayList<Experience> targetList = (ArrayList<Experience>) processedPackage.get("experiences");
+        Experience experienceEntry = (Experience) processedPackage.get("entry");
+        targetList.remove(experienceEntry);
+        return NetworkResponseConstants.OPERATION_SUCCESS;
     }
 }

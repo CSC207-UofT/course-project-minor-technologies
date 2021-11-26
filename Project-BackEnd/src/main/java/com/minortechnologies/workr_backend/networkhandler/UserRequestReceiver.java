@@ -75,4 +75,14 @@ public class UserRequestReceiver {
     public int changePassword(@PathVariable String login, @RequestParam String token, @RequestBody Map<String, String> payload){
         return UserRequestHandler.updatePassword(login, token, payload);
     }
+
+    @PostMapping("/User/{login}/Experience/Add")
+    public int addExperience(@PathVariable String login, @RequestParam String token, @RequestBody Map<String, Object> payload){
+        return UserRequestHandler.addExperience(login, token, payload);
+    }
+
+    @PostMapping("User/{login}/Experience/Remove")
+    public int removeExperience(@PathVariable String login, @RequestParam String token, @RequestBody Map<String, Object> payload){
+        return UserRequestHandler.removeExperience(login, token, payload);
+    }
 }

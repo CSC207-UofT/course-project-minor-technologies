@@ -23,6 +23,8 @@ public class NetworkResponseConstants {
     public static final int KEY_NOT_EXIST = 7;
     public static final int DATA_MALFORMED = 8;
     public static final String DATA_MALFORMED_STRING = "error 8: map data malformed";
+    public static final int INCORRECT_KEYS = 9;
+    public static final String INCORRECT_KEYS_STRING = "error 9: provided keys does not correspond to request type";
 
     //
 }
