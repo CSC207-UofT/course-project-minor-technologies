@@ -14,16 +14,22 @@ import com.minortechnologies.workr_frontend.usecase.fileio.MalformedDataExceptio
 public class BackgroundUpdateListings implements IBackgroundOperation{
     @Override
 
-    //TODO: set this up for frontend
 
     public void run() {
+        while (BackgroundOperations.isRunBackgroundOps()){
+            try {
+                updateListings();
+                Thread.sleep(BackgroundOperations.getUpdateInterval());
+            } catch (InterruptedException e) {
+                updateListings();
+            }
+        }
     }
 
+    /**
+     * Gets all locally saved listings, updates them (make an HTTP call with the UUIDs of each of them).
+     */
     private void updateListings(){
-
-    }
-
-    private void updateDemoSourceListing(JobListing listing){
 
     }
 }
