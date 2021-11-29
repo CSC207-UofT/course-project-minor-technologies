@@ -4,6 +4,7 @@ import com.minortechnologies.workr_backend.entities.Entry;
 import com.minortechnologies.workr_backend.entities.listing.JobListing;
 import com.minortechnologies.workr_backend.entities.searchquery.SearchQuery;
 import com.minortechnologies.workr_backend.main.Main;
+import com.minortechnologies.workr_backend.networkhandler.Application;
 import com.minortechnologies.workr_backend.usecase.fileio.MalformedDataException;
 import com.minortechnologies.workr_backend.usecase.security.Security;
 
@@ -105,7 +106,7 @@ public class User extends Entry {
 
         for (String uuid:
              uuids) {
-            JobListing listing = Main.getLocalCache().getListingFromUUID(uuid);
+            JobListing listing = Application.getLocalCache().getListingFromUUID(uuid);
             watchedListings.add(listing);
         }
 
@@ -204,7 +205,7 @@ public class User extends Entry {
         entryDataMap.remove(User.EMAIL);
         for (String key:
                 KEYS) {
-            if (!entryDataMap.containsKey(key) && entryDataMap.get(key) != null){
+            if (entryDataMap.containsKey(key) && entryDataMap.get(key) != null){
                 Object data = entryDataMap.get(key);
                 updateData(key, data);
             }
@@ -235,5 +236,13 @@ public class User extends Entry {
             uuids[i] = listing.getUUID();
         }
         return uuids;
+    }
+
+    public void changePassword(String password){
+        byte[] saltArr = Security.generateSalt();
+        String newSalt = Security.toHex(saltArr);
+        String newHashedPass = Security.toHex(Security.generateHash(password, saltArr));
+        this.updateData(SALT, newSalt);
+        this.updateData(HASHED_PASSWORD, newHashedPass);
     }
 }

@@ -28,6 +28,7 @@ public class AuthToken {
     private LocalDate expirationDate;
     private final User associatedUser;
 
+
     public User getAssociatedUser(){
         return associatedUser;
     }

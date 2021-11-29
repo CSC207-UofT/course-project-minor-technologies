@@ -1,9 +1,8 @@
-package com.minortechnologies.workr_frontend.demo.demosource;
+package com.minortechnologies.workr_frontend.usecase.factories.joblisting;
 
 import com.minortechnologies.workr_frontend.entities.listing.DemoSourceJobListing;
 import com.minortechnologies.workr_frontend.entities.listing.JobListing;
 import com.minortechnologies.workr_frontend.usecase.factories.ICreateEntry;
-import com.minortechnologies.workr_frontend.usecase.factories.joblisting.ICreateJobListing;
 import com.minortechnologies.workr_frontend.usecase.fileio.MalformedDataException;
 
 import java.util.ArrayList;

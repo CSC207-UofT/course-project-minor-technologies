@@ -210,10 +210,11 @@ public class TotalDemo {
             try{
                 int select = Integer.parseInt(input) - 1;
                 if (select < options.size() && select >= 0){
-                    options.remove(options.size() -1);
                     if (hasCancel && select == options.size() - 1){
+                        options.remove(options.size() -1);
                         return -1;
                     }
+                    options.remove(options.size() -1);
                     return select;
                 }
                 else{
@@ -245,22 +246,22 @@ public class TotalDemo {
         String input;
 
         System.out.println("Enter earliest posting date to be searched:");
-        System.out.println("1: 1 day ago");
-        System.out.println("2: 3 days ago");
-        System.out.println("3: 7 days ago");
-        System.out.println("4: 14 days ago");
+        System.out.println("1: 14 day ago");
+        System.out.println("2: 1 month");
+        System.out.println("3: 6 months");
+        System.out.println("4: 1 year");
 
         input = c.next();
 
         switch (input) {
             case "1":
-                return now.minusDays(1);
-            case "2":
-                return now.minusDays(3);
-            case "3":
-                return now.minusDays(7);
-            case "4":
                 return now.minusDays(14);
+            case "2":
+                return now.minusMonths(1);
+            case "3":
+                return now.minusMonths(6);
+            case "4":
+                return now.minusYears(1);
             default:
                 return dateTimeInput(c);
         }

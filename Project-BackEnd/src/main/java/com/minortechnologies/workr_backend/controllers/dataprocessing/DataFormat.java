@@ -10,6 +10,7 @@ import com.minortechnologies.workr_backend.usecase.factories.ICreateEntry;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class DataFormat {
 
@@ -33,6 +34,10 @@ public class DataFormat {
         HashMap<String, Object> deserializedData = deserializer.deserialize(dataString);
 
         return ICreateEntry.createEntry(deserializedData);
+    }
+
+    public static Entry createEntry(Map<String, Object> data) throws MalformedDataException {
+        return ICreateEntry.createEntry((data));
     }
 
     /**
@@ -68,8 +73,8 @@ public class DataFormat {
     /**
      * Loads all entry files from each directory in relDir.
      * TODO: finish Docstring
-     * @param relDir
-     * @return
+     * @param relDir the director relative to the root directory.
+     * @return An arraylist of Entries loaded from subdirectories in the directory.
      */
     public static ArrayList<Entry> loadEntiresFromDirectorySub(String relDir){
         ArrayList<String> directories = FileIO.getDirectoryNamesInDir(relDir);

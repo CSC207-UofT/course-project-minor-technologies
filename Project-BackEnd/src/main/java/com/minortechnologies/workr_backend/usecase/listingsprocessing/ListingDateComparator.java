@@ -2,6 +2,7 @@ package com.minortechnologies.workr_backend.usecase.listingsprocessing;
 
 import com.minortechnologies.workr_backend.entities.listing.JobListing;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Comparator;
 
@@ -21,8 +22,8 @@ public class ListingDateComparator implements Comparator<JobListing>{
      */
     @Override
     public int compare (JobListing l1, JobListing l2) {
-        LocalDateTime d1 = l1.getListingDate();
-        LocalDateTime d2 = l2.getListingDate();
+        LocalDate d1 = l1.getListingDate();
+        LocalDate d2 = l2.getListingDate();
 
         if(d1.isAfter(d2)) {
             return 1;

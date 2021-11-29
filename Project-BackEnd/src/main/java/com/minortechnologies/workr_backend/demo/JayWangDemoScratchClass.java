@@ -11,6 +11,7 @@ import com.minortechnologies.workr_backend.controllers.dataprocessing.DataFormat
 import com.minortechnologies.workr_backend.controllers.localcache.LocalCache;
 import com.minortechnologies.workr_backend.controllers.usermanagement.UserManagement;
 import com.minortechnologies.workr_backend.demo.demosource.DemoJobListingSource;
+import com.minortechnologies.workr_backend.demo.demosource.DemoSourceJobListing;
 import com.minortechnologies.workr_backend.entities.Entry;
 import com.minortechnologies.workr_backend.entities.listing.JobListing;
 import com.minortechnologies.workr_backend.entities.listing.JobType;
@@ -43,6 +44,7 @@ public class JayWangDemoScratchClass {
     public static void init(){
         localCache = Main.getLocalCache();
     }
+
 
     public static void main(String[] args) {
 
@@ -97,7 +99,7 @@ public class JayWangDemoScratchClass {
 
                     String listingData = serializer.serialize(jobListing.serialize());
 
-                    FileIO.WriteFile(save, "entry_" + jobListing.getSerializedFileName() + ".json", listingData);
+                    FileIO.WriteFile(save, "entry_" + jobListing.getData(DemoSourceJobListing.DEMO_SOURCE_ID) + ".json", listingData);
                 } catch (MalformedDataException e) {
                     e.printStackTrace();
                 }
@@ -142,19 +144,19 @@ public class JayWangDemoScratchClass {
         }
         UserDB userDB = TotalDemo.getUserManagement().getUserDatabase();
 
-/*        if (nestedDemo != null){
+        if (nestedDemo != null){
             for (Entry entry:
                     userDB) {
                 ArrayList<Experience> leads = (ArrayList<Experience>) entry.getData(User.LEADERSHIP);
                 ArrayList<Experience> rel = (ArrayList<Experience>) entry.getData(User.REL_WORK_EXP);
                 ArrayList<Experience> urel = (ArrayList<Experience>) entry.getData(User.UREL_WORK_EXP);
                 HashSet<SearchQuery> sQs = (HashSet<SearchQuery>) entry.getData(User.WATCHED_SEARCH_QUERIES);
-                leads.add(expDemo);
-                rel.add(expDemo);
-                urel.add(expDemo);
+//                leads.add(expDemo);
+//                rel.add(expDemo);
+//                urel.add(expDemo);
                 sQs.add(nestedDemo);
             }
-        }*/
+        }
         TotalDemo.getUserManagement().saveUsers();
     }
 
@@ -208,7 +210,7 @@ public class JayWangDemoScratchClass {
             System.out.println("Enter your password");
             String pass = c.nextLine();
 
-            if (TotalDemo.getUserManagement().signIn(login, pass) != null){
+            if (TotalDemo.getUserManagement().signIn(login, pass, true) != null){
                 System.out.println("Successfully signed in,");
                 User user = TotalDemo.getUserManagement().getUserByLogin(login);
                 System.out.println("Welcome, " + user.getData(User.ACCOUNT_NAME));

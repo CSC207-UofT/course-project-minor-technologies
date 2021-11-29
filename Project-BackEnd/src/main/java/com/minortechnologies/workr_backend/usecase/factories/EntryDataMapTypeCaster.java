@@ -100,8 +100,14 @@ public class EntryDataMapTypeCaster {
         try{
             switch (key){
                 case JobListing.JOB_TYPE:
+                    if (value instanceof JobType){
+                        return value;
+                    }
                     return JobType.valueOf((String) value);
                 case JobListing.LISTING_TYPE:
+                    if (value instanceof ListingType){
+                        return value;
+                    }
                     return ListingType.valueOf((String) value);
                 default:
                     return null;

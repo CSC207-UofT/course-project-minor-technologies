@@ -46,7 +46,7 @@ public class AuthTokenController {
      * @param login the login to match to the token
      * @return whether the login matches the token
      */
-    public boolean Authenticate(String token, String login){
+    public boolean Authenticate(String login, String token){
         AuthToken token1 = tokenDB.getToken(token);
 
         if (token1 != null){

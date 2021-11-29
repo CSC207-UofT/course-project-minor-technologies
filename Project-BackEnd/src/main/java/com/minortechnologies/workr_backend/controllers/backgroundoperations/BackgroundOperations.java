@@ -37,14 +37,15 @@ public class BackgroundOperations {
             endBackgroundThreads();
         }
 
-        BackgroundUpdateListings bul = new BackgroundUpdateListings();
+        BackgroundSerialization bs = new BackgroundSerialization();
 
-        threads.add(new Thread(bul));
+        threads.add(new Thread(bs));
 
         for (Thread thread:
              threads) {
             thread.start();
         }
+        runBackgroundOps = true;
     }
 
     public static void endBackgroundThreads(){
@@ -55,6 +56,7 @@ public class BackgroundOperations {
             threads.remove(threads.size() - 1);
 
             try {
+                thread.interrupt();
                 thread.join();
             } catch (InterruptedException ignored) {
             }

@@ -4,27 +4,51 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 public class ListingRequestReceiver {
 
-    @GetMapping("/Listing/Get/{uuid}")
-    public HashMap<String, Object> getListing(@PathVariable String uuid){
+    @GetMapping("/JobListing/Get/{uuid}")
+    public Map<String, Object> getListing(@PathVariable String uuid){
         return ListingRequestHandler.getListing(uuid);
     }
 
-    @GetMapping("/Listing/GetMultiple")
-    public ArrayList<HashMap<String, Object>> getMultipleListing(@RequestParam String[] uuids){
+    @GetMapping("/JobListing/GetMultiple")
+    public ArrayList<HashMap<String, Object>> getMultipleListing(@RequestBody String[] uuids){
         return ListingRequestHandler.getListing(uuids);
     }
 
-    @GetMapping("/Listing/Search")
-    public ArrayList<HashMap<String, Object>> searchListings(@RequestParam HashMap<String, Object> searchQuery){
-        return ListingRequestHandler.searchListings(searchQuery);
+    @GetMapping("/JobListing/Search")
+    public ArrayList<HashMap<String, Object>> searchListings(@RequestParam String dateTime, String location, String jobType, String searchTerms){
+
+        String[] terms = searchTerms.split("_");
+        StringBuilder searchTermsFinal = new StringBuilder();
+        for (String term:
+             terms) {
+            searchTermsFinal.append(term).append(" ");
+        }
+
+        HashMap<String, Object> query = new HashMap<>();
+        query.put("dateTime", dateTime);
+        query.put("location", location);
+        query.put("jobType", jobType);
+        query.put("searchTerms", searchTermsFinal.toString());
+        return ListingRequestHandler.searchListings(query);
     }
 
-    @GetMapping("/Listing/Score/{login}")
-    public ArrayList<String[]> score(@RequestParam String token, @PathVariable String login, @RequestParam ArrayList<String> uuids){
+    @GetMapping("/JobListing/Score/{login}")
+    public ArrayList<Map<String, Object>> score(@RequestParam String token, @PathVariable String login, @RequestBody String[] payload){
         throw new UnsupportedOperationException();
+    }
+
+    @PostMapping("/JobListing/{login}/CreateCustom")
+    public String createCustomListing(@RequestParam String token, @PathVariable String login, @RequestBody Map<String, Object> payload){
+        return ListingRequestHandler.createListing(token, login, payload);
+    }
+
+    @PostMapping("/JobListing/{login}/UpdateListing")
+    public int updateCustomListing(@RequestParam String token, @PathVariable String login, @RequestBody Map<String, Object> payload){
+        return ListingRequestHandler.updateListing(token, login, payload);
     }
 }

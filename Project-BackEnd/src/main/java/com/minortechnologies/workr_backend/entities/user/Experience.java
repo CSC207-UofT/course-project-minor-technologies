@@ -87,7 +87,7 @@ public class Experience extends Entry {
      * This entry should never be serialized on its own, It should always be serialized as part of a user entry,
      * therefore it returns null.
      *
-     * @return
+     * @return null, as this entry should never be serialized on its own.
      */
     @Override
     public String getSerializedFileName() {
@@ -108,5 +108,20 @@ public class Experience extends Entry {
         Map<String, Object> entryDataMap = entry.serialize();
 
         updateEntry(entryDataMap);
+    }
+
+    @Override
+    public boolean equals(Object other){
+        if (!(other instanceof Experience)){
+            return false;
+        }
+        Experience otherExp = (Experience) other;
+        for (String key:
+             KEYS) {
+            if (getData(key) != otherExp.getData(key)){
+                return false;
+            }
+        }
+        return true;
     }
 }

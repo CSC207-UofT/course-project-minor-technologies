@@ -3,6 +3,7 @@ package com.minortechnologies.workr_backend.networkhandler;
 import java.util.Arrays;
 
 
+import com.minortechnologies.workr_backend.controllers.backgroundoperations.BackgroundOperations;
 import com.minortechnologies.workr_backend.controllers.localcache.LocalCache;
 import com.minortechnologies.workr_backend.controllers.usermanagement.AuthTokenController;
 import com.minortechnologies.workr_backend.controllers.usermanagement.UserManagement;
@@ -11,6 +12,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
 
 
@@ -34,6 +36,11 @@ public class Application {
         return userManagement;
     }
 
+    private static ConfigurableApplicationContext ctx_test;
+
+    public static ConfigurableApplicationContext getCtx(){
+        return ctx_test;
+    }
 
     public static AuthTokenController getAuthTokenController(){
         return authTokenController;
@@ -44,22 +51,17 @@ public class Application {
         userManagement = new UserManagement();
         authTokenController = new AuthTokenController(userManagement);
         demoSource = new DemoJobListingSource();
+        BackgroundOperations.startBackgroundLoop();
+        BackgroundOperations.setUpdateInterval(60000 * 5);
+        ctx_test = SpringApplication.run(Application.class, args);
 
-        SpringApplication.run(Application.class, args);
     }
 
     @Bean
     public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
         return args -> {
 
-            System.out.println("Let's inspect the beans provided by Spring Boot:");
-
-            String[] beanNames = ctx.getBeanDefinitionNames();
-            Arrays.sort(beanNames);
-            for (String beanName : beanNames) {
-                System.out.println(beanName);
-            }
-
+            System.out.println("Welcome to Workr by MinorTechnologies");
         };
     }
 
