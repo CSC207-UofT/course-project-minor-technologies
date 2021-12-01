@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Project/Project.iml" filepath="$PROJECT_DIR$/Project/Project.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../course-project-minor-technologies/SpringAdventures.iml" filepath="$PROJECT_DIR$/../course-project-minor-technologies/SpringAdventures.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Project-BackEnd/Project-BackEnd.iml" filepath="$PROJECT_DIR$/Project-BackEnd/Project-BackEnd.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Project-FrontEnd/Project-FrontEnd.iml" filepath="$PROJECT_DIR$/Project-FrontEnd/Project-FrontEnd.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/course-project-minor-technologies.iml" filepath="$PROJECT_DIR$/.idea/course-project-minor-technologies.iml" />
     </modules>
   </component>
