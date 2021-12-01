@@ -1,0 +1,16 @@
+{
+	"requirements":"DemoRequirements",
+	"listingDate":null,									// Leave null, it's easier to let the program generate a date and then u can change it later
+	"saved":false,										// placeholder for a future function, does nothign for now. But has to be a boolean.
+	"origin":"origin",									// A string, type anything you want
+	"listingType":"CUSTOM",								// Listing type, see the ListingType enum, but for the skeleton program, this must be "CUSTOM"
+	"pay":36000,										// An integer value
+	"applicationReq":"DemoApplicationRequirements",		// A string, whatever you want.
+	"description":"DemoDescription",					// ^^^
+	"title":"DemoTitle",								// ^^^
+	"uuid":null,										// UIDs made by the listings.hashCode() function, leave null and let the program generate it.
+	"qualifications":"DemoQualifications",				// A string, whatever you want.
+	"location":"DemoLocation",							// A location. Just a string
+	"crossPlatformDuplicates":[],						// For a future function, do not touch this for now
+	"jobType":"FULL_TIME"								// an enum, must be "FULL_TIME" or "PART_TIME" for now.
+}

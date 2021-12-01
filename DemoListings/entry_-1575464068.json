@@ -1,0 +1,15 @@
+{
+  "listingDate":"2021-11-11T21:32:09.200304600",
+  "requirements":"SampleRequirements",
+  "pay":27000,
+  "listingType":"DEMO_SOURCE",
+  "applicationReq":"DemoApplicationRequirements",
+  "description":"Some Placeholder Text for Demo Listing 4 Search Term\n30 years ago,Gentlemen, a short view back to the past. Thirty years ago, Niki Lauda told us \u2018take a monkey, \nplace him into the cockpit and he is able to drive the car.\u2019 Thirty years later, Sebastian told us \u2018I had to start \nmy car like a computer, it\u2019s very complicated.\u2019 And Nico Rosberg said that during the race \u2013 I don\u2019t \nremember what race - he pressed the wrong button on the wheel. Question for you both: is Formula \nOne driving today too complicated with twenty and more buttons on the wheel, are you too much \nunder effort, under pressure? What are your wishes for the future concerning the technical \nprogramme during the race? Less buttons, more? Or less and more communication with your \nengineers?",
+  "title":"Demo Listing 4",
+  "uuid":null,
+  "qualifications":"Some Qualificiations",
+  "demoSourceID":"-1575464068",
+  "location":"Toronto",
+  "crossPlatformDuplicates":[],
+  "jobType":"FULL_TIME"
+}

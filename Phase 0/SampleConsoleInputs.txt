@@ -1,0 +1,44 @@
+Minor Technologies
+
+help
+
+saved
+
+search
+
+com.minortechnologies.workr.demo
+
+Toronto
+
+4
+
+1
+
+5
+
+search
+
+vorp
+
+Toronto
+
+4
+
+1
+
+1
+
+1
+
+saved
+
+1
+
+saved
+
+// At this point, I used a text editor (thats not intellij) to make changes to 2124123458.json in DemoListings.
+// I wrote "[Here is some edits to the Listing]" behind the word "Vorp" in the listing description.
+
+1
+
+exit

@@ -1,0 +1,45 @@
+Entry.Java Documentation
+
+An entry represents something that has some data regarding it's properties, and something that can be Serialized.
+
+============================
+General Use:
+
+To use these classes, there are 3 main methods that you can use.
+
+getData, setData, and updateData.
+
+getData(String key): 
+takes a string which represents the key, and returns the data associated with the key. If there is no assiciated key, it returns none.
+
+addData(String key, Object data):
+adds data into the Entry. The key must be a string. Data could be of any type. However if there is already data (even if the data is null), data is not added. This method returns a boolean, representing whether the data has been added or not.
+
+updateData(String key, Object data): 
+Updates data with the associated key. If the key does not exist, does not add the data to the entry. Returns a boolean representing whether the data has been added or not.
+
+CONSTANTS:
+Any class that inherets these methods should have public static constants, each being valid keys for the entry. These can be accessed using subclass.CONSTANT, so do this to ensure proper keys are being used for the 3 above methods.
+
+All these methods are synchronized, meaning if there are multiple threads attempting to use these methods, the first thread that uses any of these "blocks" the instance from being accessed until that thread has completed it's use of the thread. This is to ensure that, for example, data isn't being read from an Entry as another thread is attempting to update entry data.
+
+
+============================
+Serialization:
+
+There are also 2 abstract methods, serialize and deserialize.
+
+serialize returns a HashMap that can be then used for serialization.
+deserialize takes a Map and sets entry data from the map.
+
+============================
+Unit Testing:
+
+If you need to create instances of Entries for unit tests, currently all of the subclasses that can be instantiated's base constructor (constructor with no parameters) creates a new instance with no data. You can then use the addData to add any data you need for the unit tests
+
+============================
+Other Notes:
+
+The subclass JobListing is also an abstract class. Note that you cannot create instances of those directly. currently CustomListing is the only one that has been implemented.
+
+

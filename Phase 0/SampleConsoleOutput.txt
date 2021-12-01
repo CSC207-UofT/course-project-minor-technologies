@@ -1,0 +1,170 @@
+Enter name:
+Minor Technologies
+
+What would you like to do?
+Type "help" for commands.
+help
+
+List of available commands:
+---------------------------
+help: get help
+exit: end program
+search: search for a job entry
+saved: view watched listings
+
+What would you like to do?
+Type "help" for commands.
+saved
+
+You currently do not have any saved listings!
+View a listing with 'Search' to save it!
+What would you like to do?
+Type "help" for commands.
+search
+
+Enter all search terms:
+com.minortechnologies.workr.demo
+
+Enter location
+Toronto
+
+Enter earliest posting date to be searched:
+1: 1 day ago
+2: 3 days ago
+3: 7 days ago
+4: 14 days ago
+4
+
+Enter job type:
+1: Full Time
+2: Part Time
+1
+
+Relevant listings:
+{com.minortechnologies.workr.demo Listing 1} in Toronto,
+{com.minortechnologies.workr.demo Listing 2} in Toronto,
+{com.minortechnologies.workr.demo Listing 3} in Toronto,
+{com.minortechnologies.workr.demo Listing 4} in Toronto,
+Which listing would you like to see?
+1: com.minortechnologies.workr.demo Listing 1
+2: com.minortechnologies.workr.demo Listing 2
+3: com.minortechnologies.workr.demo Listing 3
+4: com.minortechnologies.workr.demo Listing 4
+5: Cancel
+5
+
+What would you like to do?
+Type "help" for commands.
+search
+
+Enter all search terms:
+vorp
+
+Enter location
+Toronto
+
+Enter earliest posting date to be searched:
+1: 1 day ago
+2: 3 days ago
+3: 7 days ago
+4: 14 days ago
+4
+
+Enter job type:
+1: Full Time
+2: Part Time
+1
+
+Relevant listings:
+{com.minortechnologies.workr.demo Listing 4} in Toronto,
+Which listing would you like to see?
+1: com.minortechnologies.workr.demo Listing 4
+2: Cancel
+1
+
+Listing Name: com.minortechnologies.workr.demo Listing 4
+Location: Toronto
+Job Type: FULL_TIME
+Pay: 27000
+Listing Date: 2021-10-14T23:25:19.294898600
+Listing Description: Vorp Some Placeholder Text for com.minortechnologies.workr.demo Listing 4 Search Term
+ This is a copypasta from Formula 1 in 2016 
+30 years ago,Gentlemen, a short view back to the past. Thirty years ago, Niki Lauda told us ‘take a monkey, 
+place him into the cockpit and he is able to drive the car.’ Thirty years later, Sebastian told us ‘I had to start 
+my car like a computer, it’s very complicated.’ And Nico Rosberg said that during the race – I don’t 
+remember what race - he pressed the wrong button on the wheel. Question for you both: is Formula 
+One driving today too complicated with twenty and more buttons on the wheel, are you too much 
+under effort, under pressure? What are your wishes for the future concerning the technical 
+programme during the race? Less buttons, more? Or less and more communication with your 
+engineers?
+Requirements: SampleRequirements
+Qualifications: Some Qualificiations
+Application Requirements: DemoApplicationRequirements
+would you like to watch this listing?
+1: yes
+2: no
+1
+
+Listing added to Minor Technologies's watch list
+What would you like to do?
+Type "help" for commands.
+saved
+
+Which listing would you like to see?
+1: com.minortechnologies.workr.demo Listing 4
+2: Cancel
+1
+
+Listing Name: com.minortechnologies.workr.demo Listing 4
+Location: Toronto
+Job Type: FULL_TIME
+Pay: 27000
+Listing Date: 2021-10-14T23:25:19.294898600
+Listing Description: Vorp Some Placeholder Text for com.minortechnologies.workr.demo Listing 4 Search Term
+ This is a copypasta from Formula 1 in 2016 
+30 years ago,Gentlemen, a short view back to the past. Thirty years ago, Niki Lauda told us ‘take a monkey, 
+place him into the cockpit and he is able to drive the car.’ Thirty years later, Sebastian told us ‘I had to start 
+my car like a computer, it’s very complicated.’ And Nico Rosberg said that during the race – I don’t 
+remember what race - he pressed the wrong button on the wheel. Question for you both: is Formula 
+One driving today too complicated with twenty and more buttons on the wheel, are you too much 
+under effort, under pressure? What are your wishes for the future concerning the technical 
+programme during the race? Less buttons, more? Or less and more communication with your 
+engineers?
+Requirements: SampleRequirements
+Qualifications: Some Qualificiations
+Application Requirements: DemoApplicationRequirements
+What would you like to do?
+Type "help" for commands.
+saved
+
+// At this point, I used a text editor (thats not intellij) to make changes to 2124123458.json in DemoListings.
+// I wrote "[Here is some edits to the Listing]" behind the word "Vorp" in the listing description.
+
+Which listing would you like to see?
+1: com.minortechnologies.workr.demo Listing 4
+2: Cancel
+1
+
+Listing Name: com.minortechnologies.workr.demo Listing 4
+Location: Toronto
+Job Type: FULL_TIME
+Pay: 27000
+Listing Date: 2021-10-14T23:25:19.294898600
+Listing Description: Vorp [Here is some edits to the Listing] Some Placeholder Text for com.minortechnologies.workr.demo Listing 4 Search Term
+ This is a copypasta from Formula 1 in 2016 
+30 years ago,Gentlemen, a short view back to the past. Thirty years ago, Niki Lauda told us ‘take a monkey, 
+place him into the cockpit and he is able to drive the car.’ Thirty years later, Sebastian told us ‘I had to start 
+my car like a computer, it’s very complicated.’ And Nico Rosberg said that during the race – I don’t 
+remember what race - he pressed the wrong button on the wheel. Question for you both: is Formula 
+One driving today too complicated with twenty and more buttons on the wheel, are you too much 
+under effort, under pressure? What are your wishes for the future concerning the technical 
+programme during the race? Less buttons, more? Or less and more communication with your 
+engineers?
+Requirements: SampleRequirements
+Qualifications: Some Qualificiations
+Application Requirements: DemoApplicationRequirements
+What would you like to do?
+Type "help" for commands.
+exit
+
+End of demo

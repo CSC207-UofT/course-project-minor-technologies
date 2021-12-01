@@ -1,0 +1,45 @@
+Factory Build Patterns are used to create instances of Entries. These build patterns check to make sure data provided is valid, and then if it is valid, returns an instance of this data.
+
+To use these factories, pass a Map<String, Object> into the ICreateEntry.createEntry() method. This will return an Entry Object. You can then either cast this to the specific object you want, or just use as is as every Entry object has the methods to add, retrieve, or update data.
+
+There is a reason to cast to the specific object though, clean architecture might say no to that, so just be careful if you do. The specific subclasses may have some methods for convenience, for example, JobListings have a method to get the type, which is an Enum. This allows you to not have to cast whatever you get from getData() to the correct Enum.
+
+Here's a list of keys that are required, and the expected types for that key.
+
+----
+
+JobListing
+ * UUID ==================== String
+ * listingType ============= ListingType (Enum)
+ * title =================== String
+ * location ================ String
+ * pay ===================== Integer
+ * jobType ================= JobType (Enum)
+ * qualifications ========== String
+ * requirements ============ String
+ * applicationReq ========== String
+ * description ============= String
+ * listingDate ============= LocalDateTime
+ * crossPlatformDuplicates = ArrayList<String>
+ * jobField ================ String
+
+CustomJobListing - In addition to the JobListing Keys, there is an additional key required
+ * origin = String
+
+----
+
+User
+ * accountName ========== String
+ * watchedJobListings === ArrayList<String>
+ * login ================ String
+ * hashedPassword ======= String
+ * salt ================= String
+ * watchedSearchQueries = ArrayList<SearchQuery>
+
+----
+
+SearchQuery
+ * searchTerms = String
+ * location ==== String
+ * dateTime ==== LocalDateTime
+ * jobType ===== JobType (Enum)
