@@ -31,7 +31,7 @@ public class ScoreCalculatorTest {
         handler.main();
         double test_score = handler.get_score();
 
-        assertEquals(test_score, 68.0, 0.01f);
+        assertEquals(test_score, 147.0, 0.01f);
     }
 
     @Test
@@ -76,7 +76,7 @@ public class ScoreCalculatorTest {
         handler_leadership handlerleadership = new handler_leadership(user1, jobl1);
 
         handlerleadership.score_calculate();
-        assertEquals(handlerleadership.get_score(), 10, 0.01f);
+        assertEquals(handlerleadership.get_score(), 10.0, 0.01f);
     }
 
     @Test
@@ -87,7 +87,7 @@ public class ScoreCalculatorTest {
         handler_awards handlerawards = new handler_awards(user1, jobl1);
 
         handlerawards.score_calculate();
-        assertEquals(handlerawards.get_score(), 69, 0.01f);
+        assertEquals(handlerawards.get_score(), 69.0, 0.01f);
     }
 
 
