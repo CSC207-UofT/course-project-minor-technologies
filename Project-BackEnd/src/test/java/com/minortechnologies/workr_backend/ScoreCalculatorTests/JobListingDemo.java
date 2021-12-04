@@ -87,7 +87,9 @@ public class JobListingDemo {
         LocalDate end_date_exp1 = LocalDate.of(2021, 11, 15);
         leader_experience1.addData(Experience.START_TIME, start_date_exp1);
         leader_experience1.addData(Experience.END_TIME, end_date_exp1);
-        user_test.addData(User.LEADERSHIP, leader_experience1);
+        ArrayList<Experience> leadershipExperiences = new ArrayList<>();
+        leadershipExperiences.add(leader_experience1);
+        user_test.addData(User.LEADERSHIP, leadershipExperiences);
         ArrayList<String> awards_received = new ArrayList<String>();
         awards_received.add("Economic Analysis Project Award");
         awards_received.add("Certificate on Economic Modelling");
