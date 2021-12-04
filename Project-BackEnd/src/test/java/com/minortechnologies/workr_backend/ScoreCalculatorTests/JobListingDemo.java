@@ -8,6 +8,7 @@ import com.minortechnologies.workr_backend.entities.user.Experience;
 import com.minortechnologies.workr_backend.entities.user.User;
 import org.apache.tomcat.jni.Local;
 
+import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -86,7 +87,11 @@ public class JobListingDemo {
         LocalDate end_date_exp1 = LocalDate.of(2021, 11, 15);
         leader_experience1.addData(Experience.START_TIME, start_date_exp1);
         leader_experience1.addData(Experience.END_TIME, end_date_exp1);
-
+        user_test.addData(User.LEADERSHIP, leader_experience1);
+        ArrayList<String> awards_received = new ArrayList<String>();
+        awards_received.add("Economic Analysis Project Award");
+        awards_received.add("Certificate on Economic Modelling");
+        user_test.addData(User.AWARDS, awards_received);
         return user_test;
     }
 
