@@ -29,7 +29,8 @@ public class JobListingDemo {
         jl1.addData(JobListing.APPLICATION_REQUIREMENTS, "resume, cover letter");
         jl1.addData(JobListing.DESCRIPTION, "You will be responsible for analyzing economic and financial data, market trends, and industry reports to help design, develop, and construct economic models and tools to assist government agencies, non-profits, and corporations across industries and global markets.\n" +
                 "You will also be engaged to assist in performing cost-benefit analyses, economic impact assessments, econometric modelling and forecasting, and policy analysis and program design across a range of different sectors.\n" +
-                "You may also support in assignments where econometric and statistical techniques are adopted to develop optimization tools, construct valuation and risk assessment models, quantify economic damages, and/or help businesses in their decision-making process. These economic and statistical models are used for a range of applications, including operations and strategic planning, policy design and implementation, project finance, mergers and acquisitions, tax, financial reporting, valuations, and litigation matters.");
+                "You may also support in assignments where econometric and statistical techniques are adopted to develop optimization tools, construct valuation and risk assessment models, quantify economic damages, and/or help businesses in their decision-making process. These economic and statistical models are used for a range of applications, including operations and strategic planning, policy design and implementation, project finance, mergers and acquisitions, tax, financial reporting, valuations, and litigation matters.\n" +
+                "We are looking for candidates who are highly motivated, analytical, logical thinkers with a passion for Economic Advisory and have a very strong attention to detail. Being a strong team player is critical with the ability to adapt to changing requirements or deadlines in support of our client’s goals");
         jl1.addData(JobListing.LISTING_DATE, "Nov 5, 2021");
         return jl1;
     }
@@ -91,8 +92,9 @@ public class JobListingDemo {
         leadershipExperiences.add(leader_experience1);
         user_test.addData(User.LEADERSHIP, leadershipExperiences);
         ArrayList<String> incentives = new ArrayList<>();
-        incentives.add("Passionate about economic advising");
-        incentives.add("Prepared and motivated to work with the organization's clients");
+        incentives.add("Passionate");
+        incentives.add("Prepared");
+        incentives.add("Motivated");
         user_test.addData(User.AWARDS, incentives);
         return user_test;
     }
