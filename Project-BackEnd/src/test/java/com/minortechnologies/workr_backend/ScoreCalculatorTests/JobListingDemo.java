@@ -13,7 +13,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class JobListingDemo {
-    /** Used this job listing on LinkedIn to create user and job listing for unit tests:
+    /* Used this job listing on LinkedIn to create user and job listing for unit tests:
      * https://www.linkedin.com/jobs/view/2727426318
      */
 
@@ -38,14 +38,14 @@ public class JobListingDemo {
     public static User creatingUser() {
         User user_test = new User();
         user_test.addData(User.ACCOUNT_NAME, "Peter");
-        ArrayList<String> user_skills = new ArrayList<String>();
+        ArrayList<String> user_skills = new ArrayList<>();
         user_skills.add("STATA");
         user_skills.add("R");
         user_skills.add("MS Excel");
         user_test.addData(User.SKILL_SET, user_skills);
         Experience experience1 = new Experience();
         experience1.addData(Experience.EXPERIENCE_TITLE, "Experience in economic consulting");
-        ArrayList<String> experience1_description = new ArrayList<String>();
+        ArrayList<String> experience1_description = new ArrayList<>();
         experience1_description.add("Knowledge of basic economic principles");
         experience1_description.add("Ability to conduct independent economic research");
         experience1.addData(Experience.EXPERIENCE_DESCRPTION, experience1_description);
@@ -55,32 +55,32 @@ public class JobListingDemo {
         experience1.addData(Experience.END_TIME, end_date);
         Experience experience2 = new Experience();
         experience2.addData(Experience.EXPERIENCE_TITLE, "Experience in data analysis");
-        ArrayList<String> experience2_description = new ArrayList<String>();
+        ArrayList<String> experience2_description = new ArrayList<>();
         experience2_description.add("Experience working with public data sources");
         experience2.addData(Experience.EXPERIENCE_DESCRPTION, experience2_description);
         LocalDate start_date1 = LocalDate.of(2021,1,20);
         LocalDate end_date1 = LocalDate.of(2021, 10, 20);
         experience2.addData(Experience.START_TIME, start_date1);
         experience2.addData(Experience.END_TIME, end_date1);
-        ArrayList<Experience> related_experiences = new ArrayList<Experience>();
+        ArrayList<Experience> related_experiences = new ArrayList<>();
         related_experiences.add(experience1);
         related_experiences.add(experience2);
         user_test.addData(User.REL_WORK_EXP, related_experiences);
         Experience unrelated_experience = new Experience();
         unrelated_experience.addData(Experience.EXPERIENCE_TITLE, "Experience working with students");
-        ArrayList<String> unrelated_description = new ArrayList<String>();
+        ArrayList<String> unrelated_description = new ArrayList<>();
         unrelated_description.add("Worked as a math tutor at a high school");
         unrelated_experience.addData(Experience.EXPERIENCE_DESCRPTION,unrelated_description);
         LocalDate start_date2 = LocalDate.of(2019,1,20);
         LocalDate end_date2 = LocalDate.of(2021, 10, 20);
         unrelated_experience.addData(Experience.START_TIME, start_date2);
         unrelated_experience.addData(Experience.END_TIME, end_date2);
-        ArrayList<Experience> unrelated_experiences = new ArrayList<Experience>();
+        ArrayList<Experience> unrelated_experiences = new ArrayList<>();
         unrelated_experiences.add(unrelated_experience);
         user_test.addData(User.UREL_WORK_EXP, unrelated_experiences);
         Experience leader_experience1 = new Experience();
         leader_experience1.addData(Experience.EXPERIENCE_TITLE, "Leadership experience in economic analysis project");
-        ArrayList<String> leader_exp1_description = new ArrayList<String>();
+        ArrayList<String> leader_exp1_description = new ArrayList<>();
         leader_exp1_description.add("Helped team members in economic analysis project");
         leader_experience1.addData(Experience.EXPERIENCE_DESCRPTION,leader_exp1_description);
         LocalDate start_date_exp1 = LocalDate.of(2021, 2, 15);
@@ -90,10 +90,10 @@ public class JobListingDemo {
         ArrayList<Experience> leadershipExperiences = new ArrayList<>();
         leadershipExperiences.add(leader_experience1);
         user_test.addData(User.LEADERSHIP, leadershipExperiences);
-        ArrayList<String> awards_received = new ArrayList<String>();
-        awards_received.add("Economic Analysis Project Award");
-        awards_received.add("Certificate on Economic Modelling");
-        user_test.addData(User.AWARDS, awards_received);
+        ArrayList<String> incentives = new ArrayList<>();
+        incentives.add("Passionate about economic advising");
+        incentives.add("Prepared and motivated to work with the organization's clients");
+        user_test.addData(User.AWARDS, incentives);
         return user_test;
     }
 
