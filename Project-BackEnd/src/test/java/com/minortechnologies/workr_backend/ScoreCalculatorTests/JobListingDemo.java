@@ -6,7 +6,9 @@ import com.minortechnologies.workr_backend.entities.listing.JobType;
 import com.minortechnologies.workr_backend.entities.listing.ListingType;
 import com.minortechnologies.workr_backend.entities.user.Experience;
 import com.minortechnologies.workr_backend.entities.user.User;
+import org.apache.tomcat.jni.Local;
 
+import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -76,6 +78,20 @@ public class JobListingDemo {
         ArrayList<Experience> unrelated_experiences = new ArrayList<Experience>();
         unrelated_experiences.add(unrelated_experience);
         user_test.addData(User.UREL_WORK_EXP, unrelated_experiences);
+        Experience leader_experience1 = new Experience();
+        leader_experience1.addData(Experience.EXPERIENCE_TITLE, "Leadership experience in economic analysis project");
+        ArrayList<String> leader_exp1_description = new ArrayList<String>();
+        leader_exp1_description.add("Helped team members in economic analysis project");
+        leader_experience1.addData(Experience.EXPERIENCE_DESCRPTION,leader_exp1_description);
+        LocalDate start_date_exp1 = LocalDate.of(2021, 2, 15);
+        LocalDate end_date_exp1 = LocalDate.of(2021, 11, 15);
+        leader_experience1.addData(Experience.START_TIME, start_date_exp1);
+        leader_experience1.addData(Experience.END_TIME, end_date_exp1);
+        user_test.addData(User.LEADERSHIP, leader_experience1);
+        ArrayList<String> awards_received = new ArrayList<String>();
+        awards_received.add("Economic Analysis Project Award");
+        awards_received.add("Certificate on Economic Modelling");
+        user_test.addData(User.AWARDS, awards_received);
         return user_test;
     }
 
