@@ -35,9 +35,10 @@ public class User extends Entry {
     public static final String INCENTIVE = "incentive"; // ArrayList<String>
     public static final String EMAIL = "email"; // String
     public static final String SCORES = "scores"; // ArrayList<Score>
+    public static final String GPA = "gpa"; // double
     public static final String[] KEYS = new String[] {ACCOUNT_NAME, WATCHED_JOB_LISTINGS, LOGIN, HASHED_PASSWORD,
             WATCHED_SEARCH_QUERIES ,SALT, SKILL_SET, REL_WORK_EXP, UREL_WORK_EXP, LEADERSHIP, LOCATION, AWARDS,
-            INCENTIVE, EMAIL, SCORES};
+            INCENTIVE, EMAIL, SCORES, GPA};
 
     /**
      * Creates a User entry with no data for Deserialization or for UnitTests.
@@ -66,10 +67,10 @@ public class User extends Entry {
     /**
      * Creates a new User with the provided data.
      *
-     * @param accountName
-     * @param login
-     * @param passwordHash
-     * @param salt
+     * @param accountName An account name for the new user
+     * @param login A login for the new user
+     * @param passwordHash The password hashed.
+     * @param salt The salt to be used, the salt must be in hexidecimal form
      */
     public User(String accountName, String login, String email, String passwordHash, String salt){
         super();
@@ -88,6 +89,7 @@ public class User extends Entry {
         addData(INCENTIVE, null);
         addData(EMAIL, email);
         addData(SCORES, new ArrayList<Score>());
+        addData(GPA, 0.0d);
     }
 
     public boolean matchPassword(String password){
@@ -98,7 +100,7 @@ public class User extends Entry {
      * Watched Listings in a user's profile are stored just as UUIDs. This method returns the entries associated
      * with the UUIDs
      *
-     * @return
+     * @return a set containing the JobListings associated with each UUID in a user's profile
      */
     public HashSet<JobListing> getWatchedListings() {
         HashSet<String> uuids = (HashSet<String>) getData(WATCHED_JOB_LISTINGS);
