@@ -22,7 +22,8 @@ public class handler_awards extends handler {
             for(String award: user_awards){
                 int counter = 0;
                 String[] award_words = award.split(" ");
-                //System.out.println(award_words);
+                /* Words on the following website https://webapps.towson.edu/ows/prepositions.htm were
+                considered to create words_avoiding below */
                 String[] words_avoiding = {"about", "above", "across", "after", "against", "along", "among", "around",
                 "at", "because", "before", "behind", "below", "beneath", "beside", "besides", "between", "beyond",
                 "but", "by", "concerning", "despite", "down", "during", "except", "excepting", "for", "from", "in",
