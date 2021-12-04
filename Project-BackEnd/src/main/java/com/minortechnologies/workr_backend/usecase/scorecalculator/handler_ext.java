@@ -11,22 +11,22 @@ abstract class handler_ext extends handler{
     }
 
     /** Calculates a score based on user's information matching the job listing's information */
-    double score_calc_match(ArrayList<String> user_info, double score){
+    double score_calc_match(ArrayList<String> user_info, double given_score){
         double match_score = 0.0;
         if (user_info != null) {
             for (String word : user_info) {
                 if (!this.job.getData(JobListing.QUALIFICATIONS).equals("") &&
                         this.job.getData(JobListing.QUALIFICATIONS).toString().toLowerCase().contains(word.toLowerCase()))
-                    match_score += score;
+                    match_score += given_score;
                 else if (!this.job.getData(JobListing.REQUIREMENTS).equals("") &&
                         this.job.getData(JobListing.REQUIREMENTS).toString().toLowerCase().contains(word.toLowerCase()))
-                    match_score += score;
+                    match_score += given_score;
                 else if (!this.job.getData(JobListing.APPLICATION_REQUIREMENTS).equals("") &&
                         this.job.getData(JobListing.APPLICATION_REQUIREMENTS).toString().toLowerCase().contains(word.toLowerCase()))
-                    match_score += score;
+                    match_score += given_score;
                 else if (!this.job.getData(JobListing.DESCRIPTION).equals("") &&
                         this.job.getData(JobListing.DESCRIPTION).toString().toLowerCase().contains(word.toLowerCase()))
-                    match_score += score;
+                    match_score += given_score;
 
             }
         }
