@@ -28,7 +28,7 @@ public class ScoreCalculatorTest {
      * */
     public void testHandlerMainScoreCalculate(){
         handler_main handler = new handler_main(user1,jobl1);
-        handler.main();
+        handler.generateScore();
         double test_score = handler.get_score();
 
         assertEquals(test_score, 147.0, 0.01f);
