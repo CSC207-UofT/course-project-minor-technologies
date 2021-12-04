@@ -9,6 +9,7 @@ import com.minortechnologies.workr_backend.entities.listing.CustomJobListing;
 import com.minortechnologies.workr_backend.entities.listing.JobListing;
 import com.minortechnologies.workr_backend.entities.listing.ListingType;
 import com.minortechnologies.workr_backend.entities.searchquery.SearchQuery;
+import com.minortechnologies.workr_backend.entities.user.Score;
 import com.minortechnologies.workr_backend.entities.user.User;
 import com.minortechnologies.workr_backend.usecase.factories.EntryDataMapTypeCaster;
 import com.minortechnologies.workr_backend.usecase.factories.ICreateEntry;
@@ -127,5 +128,24 @@ public class ListingRequestHandler {
         entry.updateEntry(dataCopy);
 
         return 1;
+    }
+
+    public static ArrayList<Map<String, Object>> score(String token, String login, String[] payload) {
+        ArrayList<Map<String, Object>> returnList = new ArrayList<>();
+        User user = UserRequestHandler.authenticateAndGetUser(login, token);
+        if (user == null){
+            Map<String, Object> errMap = new HashMap<>();
+            errMap.put(NetworkResponseConstants.ERROR_KEY, NetworkResponseConstants.TOKEN_AUTH_FAIL_STRING);
+            returnList.add(errMap);
+            return returnList;
+        }
+
+        for (String uuid:
+             payload) {
+            JobListing listing = Application.getLocalCache().getListingFromUUID(uuid);
+            if (!(listing == null)){
+                Score score = new Score();
+            }
+        }
     }
 }
