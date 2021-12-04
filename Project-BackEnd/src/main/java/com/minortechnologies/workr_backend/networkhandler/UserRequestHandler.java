@@ -7,6 +7,7 @@ import com.minortechnologies.workr_backend.entities.Entry;
 import com.minortechnologies.workr_backend.entities.listing.JobListing;
 import com.minortechnologies.workr_backend.entities.listing.ListingType;
 import com.minortechnologies.workr_backend.entities.user.Experience;
+import com.minortechnologies.workr_backend.entities.user.Score;
 import com.minortechnologies.workr_backend.entities.user.User;
 import com.minortechnologies.workr_backend.usecase.factories.EntryDataMapTypeCaster;
 import com.minortechnologies.workr_backend.usecase.factories.ICreateEntry;
@@ -314,5 +315,25 @@ public class UserRequestHandler {
         Experience experienceEntry = (Experience) processedPackage.get("entry");
         targetList.remove(experienceEntry);
         return NetworkResponseConstants.OPERATION_SUCCESS;
+    }
+
+
+    public static ArrayList<Map<String, Object>> getScores(String login, String token) {
+        ArrayList<Map<String, Object>> returnList = new ArrayList<>();
+        User user = UserRequestHandler.authenticateAndGetUser(login, token);
+        if (user == null) {
+            Map<String, Object> errMap = new HashMap<>();
+            errMap.put(NetworkResponseConstants.ERROR_KEY, NetworkResponseConstants.TOKEN_AUTH_FAIL_STRING);
+            returnList.add(errMap);
+            return returnList;
+        }
+
+        ArrayList<Score> scores = (ArrayList<Score>) user.getData(User.SCORES);
+        for (Score score:
+             scores) {
+            returnList.add(score.serialize());
+        }
+
+        return returnList;
     }
 }

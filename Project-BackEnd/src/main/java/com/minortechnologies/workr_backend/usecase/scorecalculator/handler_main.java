@@ -31,5 +31,4 @@ public class handler_main{
         h1.process_request();
         this.score = h1.get_score();
     }
-
 }
