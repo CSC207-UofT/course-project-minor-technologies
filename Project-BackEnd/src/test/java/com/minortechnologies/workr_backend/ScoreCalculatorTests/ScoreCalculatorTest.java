@@ -60,4 +60,12 @@ public class ScoreCalculatorTest {
         handler3.score_calculate();
         assertEquals(handler3.get_score(), 6.0, 0.01f);
     }
+
+    @Test
+    public void testHandlerLeadershipCalculate() {
+        handler_leadership handlerleadership = new handler_leadership(user1, jobl1);
+
+        handlerleadership.score_calculate();
+        assertEquals(handlerleadership.get_score(), 10, 0.01f);
+    }
 }
