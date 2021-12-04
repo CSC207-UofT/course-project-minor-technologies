@@ -31,7 +31,7 @@ public class ScoreCalculatorTest {
         handler.generateScore();
         double test_score = handler.get_score();
 
-        assertEquals(test_score, 147.0, 0.01f);
+        assertEquals(test_score, 93.0, 0.01f);
     }
 
     @Test
@@ -78,5 +78,17 @@ public class ScoreCalculatorTest {
         handlerleadership.score_calculate();
         assertEquals(handlerleadership.get_score(), 10.0, 0.01f);
     }
+
+    @Test
+    /* Tests that score_calculate() in handler_incentive.java computes user's score properly.
+     *
+     */
+    public void testHandlerIncentiveScoreCalculate() {
+        handler_incentive handlerincentive = new handler_incentive(user1, jobl1);
+
+        handlerincentive.score_calculate();
+        assertEquals(handlerincentive.get_score(), 15.0, 0.01f);
+    }
+
 
 }
