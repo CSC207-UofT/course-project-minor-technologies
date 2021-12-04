@@ -15,8 +15,8 @@ public class handler_incentive extends handler_ext {
     /* Calculates score given to a user based on the user's incentive. */
     public void score_calculate(){
         ArrayList<String> user_incentive = (ArrayList<String>) this.user.getData(User.AWARDS);
-        double score = score_calc_match(user_incentive, 15);
-        this.score += score;
+        double incentive_score = score_calc_match(user_incentive, 15);
+        this.score += incentive_score;
     }
 
 
