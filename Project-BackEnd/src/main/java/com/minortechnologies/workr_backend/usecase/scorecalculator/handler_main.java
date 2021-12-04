@@ -20,7 +20,7 @@ public class handler_main{
      * to assign a score. The second and third handlers add to this score by analyzing related and
      * unrelated work experiences of the user, respectively. */
 
-    public void main(){
+    public void generateScore(){
         handler h1 = new handler_1(this.user, this.job);
         handler h2 = new handler_2(this.user, this.job);
         handler h3 = new handler_3(this.user, this.job);
