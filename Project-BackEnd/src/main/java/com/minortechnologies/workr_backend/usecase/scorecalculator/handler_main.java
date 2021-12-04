@@ -20,12 +20,16 @@ public class handler_main{
      * to assign a score. The second and third handlers add to this score by analyzing related and
      * unrelated work experiences of the user, respectively. */
 
-    public void main(){
+    public void generateScore(){
         handler h1 = new handler_1(this.user, this.job);
         handler h2 = new handler_2(this.user, this.job);
         handler h3 = new handler_3(this.user, this.job);
+        handler h_leadership = new handler_leadership(this.user, this.job);
+        handler handler_incentive = new handler_incentive(this.user, this.job);
         h1.set_next(h2);
         h2.set_next(h3);
+        h3.set_next(h_leadership);
+        h_leadership.set_next(handler_incentive);
         h1.process_request();
         this.score = h1.get_score();
     }
