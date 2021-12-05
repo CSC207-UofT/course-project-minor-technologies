@@ -73,7 +73,7 @@ public class SearchQuery extends Entry {
     }
 
     @Override
-    public synchronized void deserialize(Map<String, Object> entryDataMap) throws MalformedDataException {
+    public synchronized void deserialize(Map<String, Object> entryDataMap) {
         for (String key:
              KEYS) {
             Object data = entryDataMap.get(key);
@@ -103,7 +103,7 @@ public class SearchQuery extends Entry {
 
     /**
      * Note, search queries should never need to be updated.
-     * @param entry
+     * @param entry the entry with the updated data
      */
 
     @Override

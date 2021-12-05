@@ -28,4 +28,14 @@ public class AdministrationReceiver {
     public void shutdown(){
         AdminHandler.Shutdown();
     }
+
+    @GetMapping("/Admin/SuspendSerialization")
+    public int suspendSerialization(){
+        return AdminHandler.suspendSerialization();
+    }
+
+    @GetMapping("/Admin/ResumeSerialization")
+    public int resumeSerialization(){
+        return AdminHandler.resumeSerialization();
+    }
 }

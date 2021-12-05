@@ -169,14 +169,14 @@ public abstract class Entry {
      *
      * If a key in entryDataMap does not exist in the entry, the data is not added.
      *
-     * @param entryDataMap
+     * @param entryDataMap the Map containing new data.
      */
     public abstract void updateEntry(Map<String, Object> entryDataMap);
 
     /**
      * updates the data of the entry with data from the new Entry.
      *
-     * @param entry
+     * @param entry The new entry data to be added to the entry.
      */
     public abstract void updateEntry(Entry entry);
 
@@ -189,10 +189,12 @@ public abstract class Entry {
      */
     protected ArrayList<HashMap<String, Object>> getNestedSerializationData(Iterable<Entry> entriesList){
         ArrayList<HashMap<String, Object>> dataMapList = new ArrayList<>();
-        for (Entry entry:
-                entriesList ) {
-            HashMap<String, Object> preSerializedQueryData = entry.serialize();
-            dataMapList.add(preSerializedQueryData);
+        if (entriesList != null){
+            for (Entry entry:
+                    entriesList ) {
+                HashMap<String, Object> preSerializedQueryData = entry.serialize();
+                dataMapList.add(preSerializedQueryData);
+            }
         }
         return dataMapList;
     }

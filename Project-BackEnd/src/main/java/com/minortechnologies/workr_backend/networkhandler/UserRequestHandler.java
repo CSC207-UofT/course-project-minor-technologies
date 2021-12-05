@@ -11,9 +11,8 @@ import com.minortechnologies.workr_backend.entities.user.Score;
 import com.minortechnologies.workr_backend.entities.user.User;
 import com.minortechnologies.workr_backend.usecase.factories.EntryDataMapTypeCaster;
 import com.minortechnologies.workr_backend.usecase.factories.ICreateEntry;
-import com.minortechnologies.workr_backend.usecase.fileio.JSONSerializer;
+import com.minortechnologies.workr_backend.usecase.factories.userfactory.CreateUser;
 import com.minortechnologies.workr_backend.usecase.fileio.MalformedDataException;
-import com.minortechnologies.workr_backend.usecase.security.Security;
 import org.apache.commons.lang3.SerializationUtils;
 
 import java.util.*;
@@ -136,11 +135,26 @@ public class UserRequestHandler {
             return NetworkResponseConstants.PAYLOAD_MALFORMED;
         }
 
-        UserManagement um = Application.getUserManagement();
-        User targetUser = um.getUserByLogin(login);
+        try {
+            for (String key:
+                 User.KEYS) {
+                if (!dataMap.containsKey(key)){
+                    dataMap.put(key, null);
+                }
+            }
 
-        targetUser.updateEntry(dataMap);
-        return NetworkResponseConstants.OPERATION_SUCCESS;
+            Entry newData = new CreateUser().create(dataMap, true);
+
+            UserManagement um = Application.getUserManagement();
+            User targetUser = um.getUserByLogin(login);
+
+            targetUser.updateEntry(newData);
+            return NetworkResponseConstants.OPERATION_SUCCESS;
+
+        } catch (MalformedDataException e) {
+            e.printStackTrace();
+            return NetworkResponseConstants.PAYLOAD_MALFORMED;
+        }
     }
 
     /**

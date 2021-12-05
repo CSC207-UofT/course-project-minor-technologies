@@ -3,9 +3,7 @@ package com.minortechnologies.workr_backend.networkhandler;
 import com.minortechnologies.workr_backend.controllers.dataprocessing.DataFormat;
 import com.minortechnologies.workr_backend.controllers.localcache.LocalCache;
 import com.minortechnologies.workr_backend.controllers.search.Search;
-import com.minortechnologies.workr_backend.controllers.usermanagement.UserManagement;
 import com.minortechnologies.workr_backend.entities.Entry;
-import com.minortechnologies.workr_backend.entities.listing.CustomJobListing;
 import com.minortechnologies.workr_backend.entities.listing.JobListing;
 import com.minortechnologies.workr_backend.entities.listing.ListingType;
 import com.minortechnologies.workr_backend.entities.searchquery.SearchQuery;
@@ -16,13 +14,11 @@ import com.minortechnologies.workr_backend.usecase.factories.ICreateEntry;
 import com.minortechnologies.workr_backend.usecase.fileio.MalformedDataException;
 import com.minortechnologies.workr_backend.usecase.scorecalculator.handler_main;
 import org.apache.commons.lang3.SerializationUtils;
-import org.apache.tomcat.jni.Local;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.logging.Handler;
 
 public class ListingRequestHandler {
 

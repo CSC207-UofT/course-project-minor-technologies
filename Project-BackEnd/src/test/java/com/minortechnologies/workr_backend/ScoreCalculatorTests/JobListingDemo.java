@@ -6,9 +6,7 @@ import com.minortechnologies.workr_backend.entities.listing.JobType;
 import com.minortechnologies.workr_backend.entities.listing.ListingType;
 import com.minortechnologies.workr_backend.entities.user.Experience;
 import com.minortechnologies.workr_backend.entities.user.User;
-import org.apache.tomcat.jni.Local;
 
-import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -92,6 +90,7 @@ public class JobListingDemo {
         awards_received.add("Economic Analysis Project Award");
         awards_received.add("Certificate on Economic Modelling");
         user_test.addData(User.AWARDS, awards_received);
+
         return user_test;
     }
 

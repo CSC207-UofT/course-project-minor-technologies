@@ -54,8 +54,6 @@ public class DataFormat {
         for(String file : fileNames) {
             String dataString = FileIO.readFile(relPath + file);
             try {
-//                JobListing jobListing = createListing(dataString);
-//                jobListings.add(jobListing);
                 Entry entry = createEntry(dataString);
                 entries.add(entry);
             } catch (MalformedDataException e) {
@@ -68,8 +66,8 @@ public class DataFormat {
     /**
      * Loads all entry files from each directory in relDir.
      * TODO: finish Docstring
-     * @param relDir
-     * @return
+     * @param relDir the parent directory to retrieve individual folders from
+     * @return An arraylist of entries loaded from each sub directory.
      */
     public static ArrayList<Entry> loadEntiresFromDirectorySub(String relDir){
         ArrayList<String> directories = FileIO.getDirectoryNamesInDir(relDir);
