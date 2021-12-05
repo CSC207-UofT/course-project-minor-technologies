@@ -26,14 +26,14 @@ public class CreateListingPredicate {
     }
     //Creates a Predicate that checks if a Listing's location matches a given location
     public static Predicate<JobListing> locationIs(String location) {
-        return p -> p.LOCATION == location;
+        return p -> p.getData(JobListing.LOCATION).toString().equalsIgnoreCase(location);
     }
     //Creates a Predicate that checks if a Listing's pay is greater than a given amount
     public static Predicate<JobListing> payGreaterThan(Integer pay) {
-        return p -> Integer.valueOf(p.PAY) > pay;
+        return p -> Integer.valueOf(p.getData(JobListing.PAY).toString()) > pay;
     }
     //Creates a Predicate that checks if a Listing's pay is less than a given amount
     public static Predicate<JobListing> payLessThan(Integer pay) {
-        return p -> Integer.valueOf(p.PAY) < pay;
+        return p -> Integer.valueOf(p.getData(JobListing.PAY).toString()) < pay;
     }
 }

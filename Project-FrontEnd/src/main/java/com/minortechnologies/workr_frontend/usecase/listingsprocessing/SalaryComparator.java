@@ -19,8 +19,8 @@ public class SalaryComparator implements Comparator<JobListing>{
      */
     @Override
     public int compare (JobListing l1, JobListing l2) {
-        int p1 = Integer.valueOf(l1.PAY);
-        int p2 = Integer.valueOf(l2.PAY);
+        int p1 = Integer.valueOf(l1.getData(JobListing.PAY).toString());
+        int p2 = Integer.valueOf(l2.getData(JobListing.PAY).toString());
 
         return p1 - p2;
     }
