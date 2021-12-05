@@ -2,6 +2,7 @@ package com.minortechnologies.workr_frontend.usecase.listingsprocessing;
 
 import com.minortechnologies.workr_frontend.entities.listing.JobListing;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Comparator;
 

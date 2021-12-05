@@ -4,6 +4,7 @@ import com.minortechnologies.workr_frontend.entities.listing.JobListing;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 
 public class QuickProcessor extends ListingsProcessor {
     /**
@@ -15,7 +16,7 @@ public class QuickProcessor extends ListingsProcessor {
      *                   criteria for comparing listings
      * @return the sorted ArrayList of listings
      */
-    protected ArrayList<JobListing> sort(ArrayList<JobListing> listings, Comparator<JobListing> comparator) {
+    protected List<JobListing> sort(List<JobListing> listings, Comparator<JobListing> comparator) {
         // Don't need to sort
         if (listings.size() <= 1)
             return listings;
@@ -33,8 +34,8 @@ public class QuickProcessor extends ListingsProcessor {
                 greater.add(listings.get(i));
         }
 
-        lesser = sort(lesser, comparator);
-        greater = sort(greater, comparator);
+        lesser = (ArrayList<JobListing>) sort(lesser, comparator);
+        greater = (ArrayList<JobListing>) sort(greater, comparator);
 
         lesser.add(pivot);
         lesser.addAll(greater);

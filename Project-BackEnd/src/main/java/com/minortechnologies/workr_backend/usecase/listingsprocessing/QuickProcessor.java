@@ -4,18 +4,19 @@ import com.minortechnologies.workr_backend.entities.listing.JobListing;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 
 public class QuickProcessor extends ListingsProcessor {
     /**
      * A child of com.minortechnologies.workr.UseCase.ListingsProcessing.ListingsProcessor which implements abstract method sort()
      * using the QuickSort sorting algorithm, and sorts by descending order.
      *
-     * @param listings   the ArrayList of listings to be sorted
+     * @param listings   the List of listings to be sorted
      * @param comparator a comparator object in which contains the
      *                   criteria for comparing listings
-     * @return the sorted ArrayList of listings
+     * @return the sorted List of listings
      */
-    protected ArrayList<JobListing> sort(ArrayList<JobListing> listings, Comparator<JobListing> comparator) {
+    protected List<JobListing> sort(List<JobListing> listings, Comparator<JobListing> comparator) {
         // Don't need to sort
         if (listings.size() <= 1)
             return listings;
@@ -33,8 +34,8 @@ public class QuickProcessor extends ListingsProcessor {
                 greater.add(listings.get(i));
         }
 
-        lesser = sort(lesser, comparator);
-        greater = sort(greater, comparator);
+        lesser = (ArrayList<JobListing>) sort(lesser, comparator);
+        greater = (ArrayList<JobListing>) sort(greater, comparator);
 
         lesser.add(pivot);
         lesser.addAll(greater);
