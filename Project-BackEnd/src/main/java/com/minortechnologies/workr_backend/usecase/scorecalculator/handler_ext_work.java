@@ -39,6 +39,27 @@ abstract class handler_ext_work extends handler{
             sub_score += 0.5;
         return sub_score;
     }
+    double titleScore(String title){
+        double score = 0.0;
+        if(title != null){
+            String[] list_of_words = title.split("");
+            for(String word: list_of_words){
+                if (!this.job.getData(JobListing.QUALIFICATIONS).equals("") &&
+                        this.job.getData(JobListing.QUALIFICATIONS).toString().toLowerCase().contains(word.toLowerCase()))
+                    score = 20;
+                else if (!this.job.getData(JobListing.REQUIREMENTS).equals("") &&
+                        this.job.getData(JobListing.REQUIREMENTS).toString().toLowerCase().contains(word.toLowerCase()))
+                    score = 20;
+                else if (!this.job.getData(JobListing.APPLICATION_REQUIREMENTS).equals("") &&
+                        this.job.getData(JobListing.APPLICATION_REQUIREMENTS).toString().toLowerCase().contains(word.toLowerCase()))
+                    score = 20;
+                else if (!this.job.getData(JobListing.DESCRIPTION).equals("") &&
+                        this.job.getData(JobListing.DESCRIPTION).toString().toLowerCase().contains(word.toLowerCase()))
+                    score = 20;
+            }
+        }
+        return score;
+    }
 
     @Override
     abstract public void scoreCalculate();
