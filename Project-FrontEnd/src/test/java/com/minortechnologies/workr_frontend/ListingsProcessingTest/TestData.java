@@ -21,7 +21,7 @@ public class TestData {
         jl1.addData(JobListing.LOCATION, "Toronto");
         jl1.addData(JobListing.PAY, "100000");
         jl1.addData(JobListing.JOB_TYPE, JobType.FULL_TIME);
-        jl1.addData(JobListing.LISTING_DATE, "Nov 5, 2021");
+        jl1.addData(JobListing.LISTING_DATE, LocalDate.of(2021, 11, 5));
         return jl1;
     }
     public static CustomJobListing createJobListing2() {
@@ -30,7 +30,7 @@ public class TestData {
         jl1.addData(JobListing.LOCATION, "Toronto");
         jl1.addData(JobListing.PAY, "75000");
         jl1.addData(JobListing.JOB_TYPE, JobType.FULL_TIME);
-        jl1.addData(JobListing.LISTING_DATE, "Nov 5, 2021");
+        jl1.addData(JobListing.LISTING_DATE, LocalDate.of(2021, 11, 5));
         return jl1;
     }
     public static CustomJobListing createJobListing3() {
@@ -39,7 +39,7 @@ public class TestData {
         jl1.addData(JobListing.LOCATION, "Toronto");
         jl1.addData(JobListing.PAY, "10000");
         jl1.addData(JobListing.JOB_TYPE, JobType.PART_TIME);
-        jl1.addData(JobListing.LISTING_DATE, "Nov 6, 2021");
+        jl1.addData(JobListing.LISTING_DATE, LocalDate.of(2021, 11, 6));
         return jl1;
     }
     public static CustomJobListing createJobListing4() {
@@ -48,7 +48,7 @@ public class TestData {
         jl1.addData(JobListing.LOCATION, "Toronto");
         jl1.addData(JobListing.PAY, "12500");
         jl1.addData(JobListing.JOB_TYPE, JobType.PART_TIME);
-        jl1.addData(JobListing.LISTING_DATE, "Nov 6, 2021");
+        jl1.addData(JobListing.LISTING_DATE, LocalDate.of(2021, 11, 7));
         return jl1;
     }
     public static CustomJobListing createJobListing5() {
@@ -57,7 +57,7 @@ public class TestData {
         jl1.addData(JobListing.LOCATION, "Toronto");
         jl1.addData(JobListing.PAY, "12500");
         jl1.addData(JobListing.JOB_TYPE, JobType.PART_TIME);
-        jl1.addData(JobListing.LISTING_DATE, "Dec 5, 2021");
+        jl1.addData(JobListing.LISTING_DATE, LocalDate.of(2021, 12, 5));
         return jl1;
     }
     public static CustomJobListing createJobListing6() {
@@ -66,7 +66,7 @@ public class TestData {
         jl1.addData(JobListing.LOCATION, "Montréal");
         jl1.addData(JobListing.PAY, "50000");
         jl1.addData(JobListing.JOB_TYPE, JobType.FULL_TIME);
-        jl1.addData(JobListing.LISTING_DATE, "Sep 5, 2021");
+        jl1.addData(JobListing.LISTING_DATE, LocalDate.of(2021, 9, 5));
         return jl1;
     }
     public static CustomJobListing createJobListing7() {
@@ -75,7 +75,7 @@ public class TestData {
         jl1.addData(JobListing.LOCATION, "Montréal");
         jl1.addData(JobListing.PAY, "50000");
         jl1.addData(JobListing.JOB_TYPE, JobType.FULL_TIME);
-        jl1.addData(JobListing.LISTING_DATE, "Oct 5, 2021");
+        jl1.addData(JobListing.LISTING_DATE, LocalDate.of(2021, 10, 5));
         return jl1;
     }
     public static CustomJobListing createJobListing8() {
@@ -84,7 +84,7 @@ public class TestData {
         jl1.addData(JobListing.LOCATION, "Montréal");
         jl1.addData(JobListing.PAY, "50000");
         jl1.addData(JobListing.JOB_TYPE, JobType.FULL_TIME);
-        jl1.addData(JobListing.LISTING_DATE, "Oct 5, 2021");
+        jl1.addData(JobListing.LISTING_DATE, LocalDate.of(2021, 10, 5));
         return jl1;
     }
 }

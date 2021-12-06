@@ -3,8 +3,12 @@ package com.minortechnologies.workr_frontend.ListingsProcessingTest;
 import com.minortechnologies.workr_frontend.entities.listing.JobListing;
 import com.minortechnologies.workr_frontend.entities.listing.JobType;
 import com.minortechnologies.workr_frontend.usecase.listingsprocessing.*;
-import org.junit.*;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
@@ -51,9 +55,9 @@ public class ListingsProcessorTest {
     }
 
     @Test
-    public void testNoFilter() {
+    public void testNoFilterSortBySalary() {
         ListingsProcessor processor = new DefaultProcessor();
-        List<JobListing> processed = processor.processList(listings, new SalaryComparator());
+        List<JobListing> processed = processor.processList(listings, "PAY");
         List<JobListing> expected = new ArrayList<>();
         expected.add(l1);
         expected.add(l2);
@@ -86,7 +90,7 @@ public class ListingsProcessorTest {
     }
 
     @Test
-    public void testFilterBySalary() {
+    public void testFilterSortBySalary() {
         Predicate<JobListing> moreThan30k = CreateListingPredicate.payGreaterThan(30000);
         Predicate<JobListing> lessThan80k = CreateListingPredicate.payLessThan(80000);
         ArrayList<Predicate<JobListing>> filters = new ArrayList<>();
@@ -94,9 +98,32 @@ public class ListingsProcessorTest {
         filters.add(lessThan80k);
 
         ListingsProcessor processor = new DefaultProcessor();
-        List<JobListing> processed = processor.processList(listings, filters, new SalaryComparator());
+        List<JobListing> processed = processor.processList(listings, filters, "PAY");
         List<JobListing> expected = new ArrayList<>();
         expected.add(l2);
+        expected.add(l8);
+        expected.add(l7);
+        expected.add(l6);
+
+        Assert.assertEquals(expected, processed);
+    }
+
+    @Test
+    public void testFilterSortByListingDate() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        Predicate<JobListing> beforeDec1 = CreateListingPredicate.listingDateBefore(LocalDate.parse("2021-12-01", formatter));
+        Predicate<JobListing> afterFeb25 = CreateListingPredicate.listingDateAfter(LocalDate.parse("2021-02-25", formatter));
+        ArrayList<Predicate<JobListing>> filters = new ArrayList<>();
+        filters.add(beforeDec1);
+        filters.add(afterFeb25);
+
+        ListingsProcessor processor = new DefaultProcessor();
+        List<JobListing> processed = processor.processList(listings, filters, "LISTING_DATE");
+        List<JobListing> expected = new ArrayList<>();
+        expected.add(l4);
+        expected.add(l3);
+        expected.add(l2);
+        expected.add(l1);
         expected.add(l8);
         expected.add(l7);
         expected.add(l6);
@@ -115,7 +142,7 @@ public class ListingsProcessorTest {
         filters.add(lessThan80k);
 
         ListingsProcessor processor = new DefaultProcessor();
-        List<JobListing> processed = processor.processList(listings, filters, new SalaryComparator());
+        List<JobListing> processed = processor.processList(listings, filters, "PAY");
         List<JobListing> expected = new ArrayList<>();
 
         Assert.assertEquals(expected, processed);
@@ -134,7 +161,7 @@ public class ListingsProcessorTest {
         filters.add(inMontreal);
 
         ListingsProcessor processor = new QuickProcessor();
-        List<JobListing> processed = processor.processList(listings, filters, new SalaryComparator());
+        List<JobListing> processed = processor.processList(listings, filters, "PAY");
         List<JobListing> expected = new ArrayList<>();
         expected.add(l6);
         expected.add(l7);

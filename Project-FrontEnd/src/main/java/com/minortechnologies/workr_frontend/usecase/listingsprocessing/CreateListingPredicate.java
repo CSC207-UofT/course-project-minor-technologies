@@ -4,7 +4,6 @@ import com.minortechnologies.workr_frontend.entities.listing.JobListing;
 import com.minortechnologies.workr_frontend.entities.listing.JobType;
 
 import java.time.LocalDate;
-import java.time.chrono.ChronoLocalDateTime;
 import java.util.function.Predicate;
 
 public class CreateListingPredicate {
@@ -18,11 +17,11 @@ public class CreateListingPredicate {
     }
     //Creates a Predicate that checks if a Listing is listed before a given date
     public static Predicate<JobListing> listingDateBefore(LocalDate date) {
-        return p -> p.getListingDate().isBefore(ChronoLocalDateTime.from(date));
+        return p -> p.getListingDate().isBefore(date);
     }
     //Creates a Predicate that checks if a Listing is listed after a given date
     public static Predicate<JobListing> listingDateAfter(LocalDate date) {
-        return p -> p.getListingDate().isAfter(ChronoLocalDateTime.from(date));
+        return p -> p.getListingDate().isAfter(date);
     }
     //Creates a Predicate that checks if a Listing's location matches a given location
     public static Predicate<JobListing> locationIs(String location) {
