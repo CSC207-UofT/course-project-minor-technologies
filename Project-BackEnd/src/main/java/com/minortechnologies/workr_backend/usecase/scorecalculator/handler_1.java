@@ -7,7 +7,11 @@ import java.util.ArrayList;
 
 public class handler_1 extends handler_ext {
 
-
+    /** Constructor of the class handler_1
+     *
+     * @param user_input a user
+     * @param job_input a job listing
+     * */
     public handler_1(User user_input, JobListing job_input) {
         super(user_input, job_input);
     }
@@ -16,9 +20,9 @@ public class handler_1 extends handler_ext {
      * user's skill set are present in the qualifications, requirements, application requirements,
      * and description. */
     @Override
-    public void score_calculate() {
+    public void scoreCalculate() {
         ArrayList<String> data = (ArrayList<String>) this.user.getData(User.SKILL_SET);
-        double score = score_calc_match(data, 10);
+        double score = scoreMatch(data, 10);
         this.score += score;
     }
 }

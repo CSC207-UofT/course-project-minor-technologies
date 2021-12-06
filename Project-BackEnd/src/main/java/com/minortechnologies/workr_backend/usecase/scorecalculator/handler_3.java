@@ -9,7 +9,11 @@ import java.util.ArrayList;
 
 public class handler_3 extends handler_ext_work{
 
-
+    /** Constructor of the class handler_3
+     *
+     * @param user_input a user
+     * @param job_input a job listing
+     * */
     public handler_3(User user_input, JobListing job_input) {
         super(user_input, job_input);
     }
@@ -18,7 +22,7 @@ public class handler_3 extends handler_ext_work{
      * experiences are generally less important and therefore assigned a lesser weight. */
 
     @Override
-    public void score_calculate() {
+    public void scoreCalculate() {
         double score = 0.0;
         ArrayList<Experience> user_experiences = (ArrayList<Experience>) this.user.getData(User.UREL_WORK_EXP);
         if(user_experiences != null){
@@ -27,7 +31,7 @@ public class handler_3 extends handler_ext_work{
                 LocalDate end_date = (LocalDate) experience.getData(Experience.END_TIME);
                 String title = (String) experience.getData(Experience.EXPERIENCE_TITLE);
                 ArrayList<String> description = (ArrayList<String>) experience.getData(experience.EXPERIENCE_DESCRPTION);
-                double experience_score = score_calc_time(start_date, end_date);
+                double experience_score = scoreTime(start_date, end_date);
                 score += experience_score * description.size() * 0.5;
             }
         }

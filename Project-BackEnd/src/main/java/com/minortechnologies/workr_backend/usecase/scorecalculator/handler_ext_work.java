@@ -13,7 +13,7 @@ abstract class handler_ext_work extends handler{
 
     /** Calculates a score based on how much time each work experience (related or unrelated)
      * lasts for and gives it a score with more recent experiences given higher weightage.*/
-    double score_calc_time(LocalDate start_date, LocalDate end_date) {
+    double scoreTime(LocalDate start_date, LocalDate end_date) {
         LocalDate current_date = LocalDate.now();
 
         double sub_score = 0.0;
@@ -41,5 +41,5 @@ abstract class handler_ext_work extends handler{
     }
 
     @Override
-    abstract public void score_calculate();
+    abstract public void scoreCalculate();
 }
