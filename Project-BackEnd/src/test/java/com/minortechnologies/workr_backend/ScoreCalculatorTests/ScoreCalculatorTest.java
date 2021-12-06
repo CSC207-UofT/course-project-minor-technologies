@@ -24,18 +24,18 @@ public class ScoreCalculatorTest {
     }
 
     @Test
-    /** Tests that score_calculate() in handler_main.java computes user's score properly.
+    /* Tests that score_calculate() in handler_main.java computes user's score properly.
      * */
     public void testHandlerMainScoreCalculate(){
         handler_main handler = new handler_main(user1,jobl1);
         handler.generateScore();
         double test_score = handler.get_score();
 
-        assertEquals(test_score, 147.0, 0.01f);
+        assertEquals(test_score, 93.0, 0.01f);
     }
 
     @Test
-    /** Tests that score_calculate() in handler_1.java computes user's score properly.
+    /* Tests that score_calculate() in handler_1.java computes user's score properly.
      *
      */
     public void testHandler1ScoreCalculate() {
@@ -47,7 +47,7 @@ public class ScoreCalculatorTest {
     }
 
     @Test
-    /** Tests that score_calculate() in handler_2.java computes user's score properly.
+    /* Tests that score_calculate() in handler_2.java computes user's score properly.
      *
      */
     public void testHandler2ScoreCalculate() {
@@ -58,7 +58,7 @@ public class ScoreCalculatorTest {
     }
 
     @Test
-    /** Tests that score_calculate() in handler_3.java computes user's score properly.
+    /* Tests that score_calculate() in handler_3.java computes user's score properly.
      *
      */
     public void testHandler3ScoreCalculate() {
@@ -69,7 +69,7 @@ public class ScoreCalculatorTest {
     }
 
     @Test
-    /** Tests that score_calculate() in handler_leadership.java computes user's score properly.
+    /* Tests that score_calculate() in handler_leadership.java computes user's score properly.
      *
      */
     public void testHandlerLeadershipScoreCalculate() {
@@ -80,14 +80,14 @@ public class ScoreCalculatorTest {
     }
 
     @Test
-    /** Tests that score_calculate() in handler_leadership.java computes user's score properly.
+    /* Tests that score_calculate() in handler_incentive.java computes user's score properly.
      *
      */
-    public void testHandlerAwardsScoreCalcualte() {
-        handler_awards handlerawards = new handler_awards(user1, jobl1);
+    public void testHandlerIncentiveScoreCalculate() {
+        handler_incentive handlerincentive = new handler_incentive(user1, jobl1);
 
-        handlerawards.score_calculate();
-        assertEquals(handlerawards.get_score(), 69.0, 0.01f);
+        handlerincentive.score_calculate();
+        assertEquals(handlerincentive.get_score(), 15.0, 0.01f);
     }
 
 

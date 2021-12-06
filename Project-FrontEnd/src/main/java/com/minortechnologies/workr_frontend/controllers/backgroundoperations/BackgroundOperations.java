@@ -19,11 +19,14 @@ public class BackgroundOperations {
         return updateInterval;
     }
 
+    /**
+     * Sets the interval at which background operations occur in milliseconds
+     * @param updateInterval the interval in milliseconds
+     */
     public static void setUpdateInterval(int updateInterval) {
         BackgroundOperations.updateInterval = updateInterval;
     }
 
-    private static ScheduledExecutorService ses; // will test how ScheduledExecutorService works in the future.
 
     /**
      * A loop that runs the background operations for this program such as automatic refreshing/updating
