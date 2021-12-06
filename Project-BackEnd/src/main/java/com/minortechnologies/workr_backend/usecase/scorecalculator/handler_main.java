@@ -13,7 +13,7 @@ public class handler_main{
         job = job_input;
         this.score=0.0;
     }
-    public double get_score(){return this.score;}
+    public double getScore(){return this.score;}
 
     /** Starts the calculation of a user's score relative to a job listing using all three handlers.
      * The first handler uses qualifications, requirements, application requirements, and description,
@@ -24,14 +24,16 @@ public class handler_main{
         handler h1 = new handler_1(this.user, this.job);
         handler h2 = new handler_2(this.user, this.job);
         handler h3 = new handler_3(this.user, this.job);
-        handler h_leadership = new handler_leadership(this.user, this.job);
-        handler handler_incentive = new handler_incentive(this.user, this.job);
-        h1.set_next(h2);
-        h2.set_next(h3);
-        h3.set_next(h_leadership);
-        h_leadership.set_next(handler_incentive);
-        h1.process_request();
-        this.score = h1.get_score();
+        handler h4 = new handler_incentive(this.user, this.job);
+        handler h5 = new handler_leadership(this.user, this.job);
+        handler h6 = new handler_6(this.user, this.job);
+        h1.setNext(h2);
+        h2.setNext(h3);
+        h3.setNext(h4);
+        h4.setNext(h5);
+        h5.setNext(h6);
+        h1.processRequest();
+        this.score = h1.getScore();
     }
 
 }
