@@ -121,6 +121,7 @@ public class FileIO {
 
         ArrayList<String> folderNames = new ArrayList<>();
 
+        assert folder != null;
         for (File file:
              folder) {
             if (file.isDirectory()){
