@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
-public class ListingsProcessorTest {
+public class ListingsProcessingTest {
 
     JobListing l1 = TestData.createJobListing1();
     JobListing l2 = TestData.createJobListing2();
