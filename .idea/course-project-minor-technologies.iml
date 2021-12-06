@@ -6,7 +6,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="stanford-corenlp-4.3.1-models-english" level="project" />
-    <orderEntry type="library" exported="" name="json-20210307" level="project" />
     <orderEntry type="library" exported="" name="json-202103071" level="project" />
     <orderEntry type="library" name="SpringLibs" level="project" />
     <orderEntry type="library" name="lib" level="project" />
@@ -21,5 +20,6 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="json-20210307" level="project" />
   </component>
 </module>
