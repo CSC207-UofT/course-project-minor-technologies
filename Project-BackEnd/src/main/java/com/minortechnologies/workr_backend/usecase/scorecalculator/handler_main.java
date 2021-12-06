@@ -35,5 +35,4 @@ public class handler_main{
         h1.processRequest();
         this.score = h1.getScore();
     }
-
 }

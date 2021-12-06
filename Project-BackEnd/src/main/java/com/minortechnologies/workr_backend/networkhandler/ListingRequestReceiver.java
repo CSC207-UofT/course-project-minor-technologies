@@ -39,7 +39,7 @@ public class ListingRequestReceiver {
 
     @GetMapping("/JobListing/Score/{login}")
     public ArrayList<Map<String, Object>> score(@RequestParam String token, @PathVariable String login, @RequestBody String[] payload){
-        throw new UnsupportedOperationException();
+        return ListingRequestHandler.calculateScore(token, login, payload);
     }
 
     @PostMapping("/JobListing/{login}/CreateCustom")

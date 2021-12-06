@@ -2,9 +2,6 @@ package com.minortechnologies.workr_backend.controllers.backgroundoperations;
 
 import com.minortechnologies.workr_backend.networkhandler.Application;
 
-import java.time.LocalDateTime;
-import java.time.Period;
-
 public class BackgroundSerialization implements IBackgroundOperation{
     @Override
     public void run() {

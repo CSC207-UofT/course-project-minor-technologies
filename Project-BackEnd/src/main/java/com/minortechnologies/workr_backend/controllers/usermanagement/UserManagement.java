@@ -11,7 +11,6 @@ import com.minortechnologies.workr_backend.usecase.fileio.IEntrySerializer;
 import com.minortechnologies.workr_backend.usecase.fileio.JSONSerializer;
 import com.minortechnologies.workr_backend.usecase.factories.userfactory.CreateUser;
 import com.minortechnologies.workr_backend.usecase.user.UserDB;
-import org.apache.el.parser.Token;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -104,11 +103,6 @@ public class UserManagement {
             }
         }
         return null;
-    }
-
-    private boolean setActiveUser(User user){
-        currentActiveUser = user;
-        return true;
     }
 
     public boolean createUser(String username, String login, String email, String password){

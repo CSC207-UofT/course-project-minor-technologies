@@ -75,7 +75,7 @@ public class Score extends Entry {
             case UID:
                 return data instanceof String;
             case SCORE:
-                return data instanceof Integer;
+                return (data instanceof Float) || (data instanceof Double);
             default:
                 return true;
         }

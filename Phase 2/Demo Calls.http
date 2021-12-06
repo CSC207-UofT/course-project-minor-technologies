@@ -1,0 +1,162 @@
+### Get All Account Data
+GET http://localhost:8080/Admin/GetAllAccounts
+
+### Get All Listings Data
+
+
+
+### Starting and Suspending Serialization
+GET http://localhost:8080/Admin/SuspendSerialization
+
+
+###
+GET http://localhost:8080/Admin/SerializeAllData
+
+###
+GET http://localhost:8080/Admin/ResumeSerialization
+
+
+### Creating the Demo User
+POST http://localhost:8080/User/Create
+Content-Type: application/json
+
+{
+  "accountName": "Jay Wang",
+  "login": "jccw2021",
+  "email": "jccw2021@mail.minortechnologies.ca",
+  "password": "Password1"
+}
+
+### Sign In
+GET http://localhost:8080/User/SignIn?login=jccw2021&password=Password1
+
+### Add a chunk of Data
+POST http://localhost:8080/User/jccw2021/SetDataLarge?token=sNCWUrATbDdnkCf_IKYoro7PPcg6kEB1
+Content-Type: application/json
+
+{
+  "relWorkExp":[
+    {
+      "experienceTitle":"Experience in economic consulting",
+      "startTime":"2020-01-20",
+      "endTime":"2021-10-20",
+      "experienceDescription":[
+        "Knowledge of basic economic principles",
+        "Ability to conduct independent economic research"
+      ]
+    },
+    {
+      "experienceTitle":"Experience in data analysis",
+      "startTime":"2021-01-20",
+      "endTime":"2021-10-20",
+      "experienceDescription":[
+        "Experience working with public data sources"
+      ]
+    }
+  ],
+  "watchedJobListings":[
+
+  ],
+  "urelWorkExp":[
+    {
+      "experienceTitle":"Experience working with students",
+      "startTime":"2019-01-20",
+      "endTime":"2021-10-20",
+      "experienceDescription":[
+        "Worked as a math tutor at a high school"
+      ]
+    }
+  ],
+  "skillSet":[
+    "STATA",
+    "R",
+    "MS Excel"
+  ],
+  "accountName":"Jay Wang",
+  "scores":[
+
+  ],
+  "awards":[
+    "Economic Analysis Project Award",
+    "Certificate on Economic Modelling"
+  ],
+  "leadership":[
+    {
+      "experienceTitle":"Leadership experience in economic analysis project",
+      "startTime":"2021-02-15",
+      "endTime":"2021-11-15",
+      "experienceDescription":[
+        "Helped team members in economic analysis project"
+      ]
+    }
+  ],
+  "watchedSearchQueries":[
+
+  ]
+}
+
+
+### Performing Searches
+###
+GET http://localhost:8080/JobListing/Search?dateTime=2021-01-01&location=Toronto&jobType=FULL_TIME&searchTerms=Zara
+
+###
+GET http://localhost:8080/JobListing/Search?dateTime=2021-01-01&location=Toronto&jobType=FULL_TIME&searchTerms=Demo
+
+### Should now have no entires
+POST http://localhost:8080/User/jccw2021/GetWatchedListings?token=sNCWUrATbDdnkCf_IKYoro7PPcg6kEB1
+
+###
+POST http://localhost:8080/User/jccw2021/AddToWatched?token=sNCWUrATbDdnkCf_IKYoro7PPcg6kEB1
+Content-Type: application/json
+
+{
+  "listingDate": "2021-11-16",
+  "requirements": "Customer Service, ",
+  "pay": 0,
+  "listingType": "DEMO_SOURCE",
+  "applicationReq": "DemoApplicationRequirements",
+  "description": "Zara offers the latest fashion trends for women, men and children. An international brand with stores in the main cities of the world and online. Our business model is centered in our customers, constantly adapting to their needs. We love what we do. Teamwork, passion, curiosity, diversity, sustainability, creativity and humility are our daily motivation. Does it sound like you? Maybe you are a Zara person.\n\nHow we imagine you\n\nYou are passionate, curious, motivated and dynamic, with something different to contribute? You are a multitasker, creative, unstoppable and proactive? Do you love fashion and celebrate self-expression? You will shine in a fast-paced environment, where you can be yourself around talented people like you! Having previous retail experience is a plus, but what we care most about is that you want to learn and grow with us. At Zara you will find more than a job.\n\nWhat we expect from you\n\nFrom day one you will belong to a team in which each voice counts. You will develop your skills and be given responsibilities. You will have all the tools at your fingertips to make a difference. As a Sales Assistant, part of your responsibilities will be:\n\nDeliver a high level of customer service\nSupport the cash desk and delivery teams\nUnderstand and be passionate about the latest fashion trends\nReplenish the shop floor\nAdhere to all the Health & Safety procedures\nSupport other store functions when needed\nFlexible availabilities (day, evening, weekend and holiday)\nWhat we offer\nIn addition to a competitive salary, you will also be entitled to an employee discount to buy the latest trends in any of our brands, Zara, Massimo Dutti and ZaraHome.\n\nOur internal talent is our greatest asset and we are proud of offering internal promotion programs where you will find opportunities to grow, eLearning and training programs- we never stop learning!, Social projects to get involved and contribute to a better society, and much more!\n\nZara Canada provides equal access to employment and will offer reasonable accommodations upon request, for job applicants with disabilities during its recruitment process.\n\nJob Types: Full-time, Part-time",
+  "jobField": "service",
+  "title": "Sales Associate, Zara Toronto",
+  "uuid": "66caf423-f714-49c7-89b2-9edeb7bc4d54",
+  "qualifications": "Demo",
+  "demoSourceID": "-1287241166",
+  "location": "Toronto",
+  "crossPlatformDuplicates": [],
+  "jobType": "FULL_TIME"
+}
+
+### added as fb56b33a-f223-47e6-a8c4-c58ec9a5ba5f
+
+### Should now have 1 entry
+POST http://localhost:8080/User/jccw2021/GetWatchedListings?token=sNCWUrATbDdnkCf_IKYoro7PPcg6kEB1
+
+### Creates a custom listing
+POST http://localhost:8080/JobListing/jccw2021/CreateCustom?token=sNCWUrATbDdnkCf_IKYoro7PPcg6kEB1
+Content-Type: application/json
+
+{
+  "requirements":"economic impact assessments, cost-benefit analysis, economic benchmarking, economic consulting, data analytics, regional economic development, excellent analytical, project management, multi-tasking, communication, organizational, teamwork and interpersonal skills",
+  "listingDate":null,
+  "saved":false,
+  "origin":"origin",
+  "listingType":"CUSTOM",
+  "pay":100000,
+  "applicationReq":"resume, cover letter",
+  "description":"You will be responsible for analyzing economic and financial data, market trends, and industry reports to help design, develop, and construct economic models and tools to assist government agencies, non-profits, and corporations across industries and global markets.\\nYou will also be engaged to assist in performing cost-benefit analyses, economic impact assessments, econometric modelling and forecasting, and policy analysis and program design across a range of different sectors.\\nYou may also support in assignments where econometric and statistical techniques are adopted to develop optimization tools, construct valuation and risk assessment models, quantify economic damages, and/or help businesses in their decision-making process. These economic and statistical models are used for a range of applications, including operations and strategic planning, policy design and implementation, project finance, mergers and acquisitions, tax, financial reporting, valuations, and litigation matters.",
+  "title":"Analyst, Economic Advisory",
+  "uuid":null,
+  "qualifications":"MS Excel, Access, Word, PowerPoint, STATA, R, MatLab",
+  "location":"Toronto",
+  "crossPlatformDuplicates":[],
+  "jobType":"FULL_TIME"
+}
+
+
+### Calculates a Score for the above Custom Listing
+GET http://localhost:8080/JobListing/Score/jccw2021/?token=sNCWUrATbDdnkCf_IKYoro7PPcg6kEB1
+Content-Type: application/json
+
+[]
+

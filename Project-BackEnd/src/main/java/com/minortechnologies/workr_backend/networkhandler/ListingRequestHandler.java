@@ -3,18 +3,17 @@ package com.minortechnologies.workr_backend.networkhandler;
 import com.minortechnologies.workr_backend.controllers.dataprocessing.DataFormat;
 import com.minortechnologies.workr_backend.controllers.localcache.LocalCache;
 import com.minortechnologies.workr_backend.controllers.search.Search;
-import com.minortechnologies.workr_backend.controllers.usermanagement.UserManagement;
 import com.minortechnologies.workr_backend.entities.Entry;
-import com.minortechnologies.workr_backend.entities.listing.CustomJobListing;
 import com.minortechnologies.workr_backend.entities.listing.JobListing;
 import com.minortechnologies.workr_backend.entities.listing.ListingType;
 import com.minortechnologies.workr_backend.entities.searchquery.SearchQuery;
+import com.minortechnologies.workr_backend.entities.user.Score;
 import com.minortechnologies.workr_backend.entities.user.User;
 import com.minortechnologies.workr_backend.usecase.factories.EntryDataMapTypeCaster;
 import com.minortechnologies.workr_backend.usecase.factories.ICreateEntry;
 import com.minortechnologies.workr_backend.usecase.fileio.MalformedDataException;
+import com.minortechnologies.workr_backend.usecase.scorecalculator.handler_main;
 import org.apache.commons.lang3.SerializationUtils;
-import org.apache.tomcat.jni.Local;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -127,5 +126,46 @@ public class ListingRequestHandler {
         entry.updateEntry(dataCopy);
 
         return 1;
+    }
+
+    public static ArrayList<Map<String, Object>> calculateScore(String token, String login, String[] payload) {
+        ArrayList<Map<String, Object>> returnList = new ArrayList<>();
+        User user = UserRequestHandler.authenticateAndGetUser(login, token);
+        if (user == null) {
+            Map<String, Object> errMap = new HashMap<>();
+            errMap.put(NetworkResponseConstants.ERROR_KEY, NetworkResponseConstants.TOKEN_AUTH_FAIL_STRING);
+            returnList.add(errMap);
+            return returnList;
+        }
+
+        ArrayList<Score> scores = (ArrayList<Score>) user.getData(User.SCORES);
+        ArrayList<Score> newScores = new ArrayList<>();
+        ArrayList<String> uuids = new ArrayList<>();
+
+        for (String uuid :
+                payload) {
+            JobListing listing = Application.getLocalCache().getListingFromUUID(uuid);
+            if (!(listing == null)) {
+                Score score = new Score();
+                handler_main scoreCalc = new handler_main(user, listing);
+                scoreCalc.generateScore();
+                double scoredouble = scoreCalc.get_score();
+                score.addData(Score.SCORE, scoredouble);
+                score.addData(Score.UID, uuid);
+                uuids.add(Score.UID);
+                newScores.add(score);
+                Map<String, Object> scoreSerialized = score.serialize();
+                returnList.add(scoreSerialized);
+            }
+        }
+
+        for (String uuid:
+            uuids) {
+            scores.removeIf(oldScore -> (oldScore.getData(Score.UID).equals(uuid)));
+        }
+
+        scores.addAll(newScores);
+
+        return returnList;
     }
 }
