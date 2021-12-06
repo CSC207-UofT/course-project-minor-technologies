@@ -6,6 +6,7 @@ import com.minortechnologies.workr_backend.entities.user.User;
 import java.util.ArrayList;
 
 abstract class handler_ext extends handler{
+
     public handler_ext(User user_input, JobListing job_input) {
         super(user_input, job_input);
     }

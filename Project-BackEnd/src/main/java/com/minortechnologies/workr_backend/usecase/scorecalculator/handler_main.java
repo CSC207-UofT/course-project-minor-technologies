@@ -27,11 +27,13 @@ public class handler_main{
         handler h4 = new handler_incentive(this.user, this.job);
         handler h5 = new handler_leadership(this.user, this.job);
         handler h6 = new handler_6(this.user, this.job);
+        handler h7 = new handler_awards(this.user, this.job);
         h1.setNext(h2);
         h2.setNext(h3);
         h3.setNext(h4);
         h4.setNext(h5);
         h5.setNext(h6);
+        h6.setNext(h7);
         h1.processRequest();
         this.score = h1.getScore();
     }
