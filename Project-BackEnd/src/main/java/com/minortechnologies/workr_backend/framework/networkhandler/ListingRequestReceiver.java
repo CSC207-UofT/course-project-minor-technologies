@@ -1,5 +1,6 @@
-package com.minortechnologies.workr_backend.networkhandler;
+package com.minortechnologies.workr_backend.framework.networkhandler;
 
+import com.minortechnologies.workr_backend.controllers.networkhandler.ListingRequestHandler;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -39,7 +40,7 @@ public class ListingRequestReceiver {
 
     @GetMapping("/JobListing/Score/{login}")
     public ArrayList<Map<String, Object>> score(@RequestParam String token, @PathVariable String login, @RequestBody String[] payload){
-        throw new UnsupportedOperationException();
+        return ListingRequestHandler.calculateScore(token, login, payload);
     }
 
     @PostMapping("/JobListing/{login}/CreateCustom")

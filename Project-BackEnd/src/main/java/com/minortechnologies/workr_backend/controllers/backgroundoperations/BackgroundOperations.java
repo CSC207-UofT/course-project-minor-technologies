@@ -5,7 +5,7 @@ import java.util.concurrent.ScheduledExecutorService;
 
 public class BackgroundOperations {
 
-    public static ArrayList<Thread> threads = new ArrayList<>();
+    public static final ArrayList<Thread> threads = new ArrayList<>();
 
     private static int updateInterval = 5000;
 

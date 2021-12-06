@@ -1,5 +1,6 @@
-package com.minortechnologies.workr_backend.networkhandler;
+package com.minortechnologies.workr_backend.framework.networkhandler;
 
+import com.minortechnologies.workr_backend.controllers.networkhandler.AdminHandler;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -27,5 +28,15 @@ public class AdministrationReceiver {
     @GetMapping("/Admin/Shutdown")
     public void shutdown(){
         AdminHandler.Shutdown();
+    }
+
+    @GetMapping("/Admin/SuspendSerialization")
+    public int suspendSerialization(){
+        return AdminHandler.suspendSerialization();
+    }
+
+    @GetMapping("/Admin/ResumeSerialization")
+    public int resumeSerialization(){
+        return AdminHandler.resumeSerialization();
     }
 }

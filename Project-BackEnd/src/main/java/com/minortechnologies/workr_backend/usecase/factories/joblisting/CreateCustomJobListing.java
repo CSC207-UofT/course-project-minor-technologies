@@ -22,7 +22,7 @@ public class CreateCustomJobListing implements ICreateJobListing {
      *
      * @param listingJsonData - a JSONObject containing the data for a CustomListing
      * @return A CustomListing from the listingJsonData
-     * @throws IOException if the JSONData is missing keys required for this listing type
+     * @throws MalformedDataException if the JSONData is missing keys required for this listing type
      */
     @Override
     public JobListing create(Map<String, Object> listingJsonData) throws MalformedDataException {

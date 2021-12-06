@@ -1,7 +1,9 @@
-package com.minortechnologies.workr_backend.networkhandler;
+package com.minortechnologies.workr_backend.framework.networkhandler;
 
+import com.minortechnologies.workr_backend.controllers.networkhandler.UserRequestHandler;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -84,5 +86,10 @@ public class UserRequestReceiver {
     @PostMapping("User/{login}/Experience/Remove")
     public int removeExperience(@PathVariable String login, @RequestParam String token, @RequestBody Map<String, Object> payload){
         return UserRequestHandler.removeExperience(login, token, payload);
+    }
+
+    @GetMapping("User/{login}/Scores")
+    public ArrayList<Map<String, Object>> removeExperience(@PathVariable String login, @RequestParam String token){
+        return UserRequestHandler.getScores(login, token);
     }
 }

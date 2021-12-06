@@ -20,7 +20,7 @@ public class FileIO {
      * Reads the file at the relative path (relative to the root directory for the project)
      * returns an empty string if the file was unable to be read.
      * @param relPath the path relative to the root directory, must include the / at the start.
-     * @return
+     * @return string containing the contents of the file.
      */
     public static String readFile(String relPath){
         try{
@@ -39,7 +39,7 @@ public class FileIO {
      * @param relPath - The path relative to the root directory of the project to write the file to.
      * @param fileName - the name for the file.
      * @param data - The data to be written, in any format
-     * @return
+     * @return whether the data was successfully written.
      */
     public static boolean WriteFile(String relPath, String fileName, String data){
         try{

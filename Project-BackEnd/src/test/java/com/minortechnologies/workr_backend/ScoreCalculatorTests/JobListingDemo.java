@@ -13,7 +13,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class JobListingDemo {
-    /* Used this job listing on LinkedIn to create user and job listing for unit tests:
+    /** Used this job listing on LinkedIn to create user and job listing for unit tests:
      * https://www.linkedin.com/jobs/view/2727426318
      */
 

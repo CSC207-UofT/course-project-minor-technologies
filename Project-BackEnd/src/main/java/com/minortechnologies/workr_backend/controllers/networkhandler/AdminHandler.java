@@ -1,17 +1,15 @@
-package com.minortechnologies.workr_backend.networkhandler;
+package com.minortechnologies.workr_backend.controllers.networkhandler;
 
 import com.minortechnologies.workr_backend.controllers.backgroundoperations.BackgroundOperations;
 import com.minortechnologies.workr_backend.controllers.usermanagement.AuthTokenController;
 import com.minortechnologies.workr_backend.controllers.usermanagement.UserManagement;
 import com.minortechnologies.workr_backend.entities.Entry;
 import com.minortechnologies.workr_backend.entities.security.AuthToken;
-import com.minortechnologies.workr_backend.entities.user.User;
+import com.minortechnologies.workr_backend.framework.networkhandler.Application;
 import com.minortechnologies.workr_backend.usecase.security.AuthTokenDB;
 import com.minortechnologies.workr_backend.usecase.user.UserDB;
-import org.springframework.boot.ExitCodeGenerator;
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.ConfigurableApplicationContext;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -68,5 +66,20 @@ public class AdminHandler {
 
         int exitCode = SpringApplication.exit(Application.getCtx(), () -> 0);
         System.exit(exitCode);
+    }
+
+
+    public static int suspendSerialization() {
+        BackgroundOperations.endBackgroundThreads();
+        return 1;
+    }
+
+
+    public static int resumeSerialization() {
+        if (!BackgroundOperations.isRunBackgroundOps()){
+            BackgroundOperations.startBackgroundLoop();
+            return 1;
+        }
+        return 2;
     }
 }

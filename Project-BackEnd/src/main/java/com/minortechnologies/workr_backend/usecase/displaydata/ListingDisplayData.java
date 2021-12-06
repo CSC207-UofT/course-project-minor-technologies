@@ -37,8 +37,7 @@ public class ListingDisplayData implements IDisplayData{
         this.description = (String) jobListing.getData(JobListing.REQUIREMENTS);
         this.listingDate = dateParse((LocalDateTime) jobListing.getData(JobListing.LISTING_DATE));
 
-        ArrayList<ListingPreviewData> cpd = new ArrayList<>();
-        this.crossPlatformDuplicates = cpd;
+        this.crossPlatformDuplicates = new ArrayList<>();
     }
 
     private String dateParse(LocalDateTime dateTime){
