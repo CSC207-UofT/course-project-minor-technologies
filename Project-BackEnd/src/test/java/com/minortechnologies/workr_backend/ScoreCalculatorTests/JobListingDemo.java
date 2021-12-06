@@ -95,7 +95,12 @@ public class JobListingDemo {
         incentives.add("Passionate");
         incentives.add("Prepared");
         incentives.add("Motivated");
-        user_test.addData(User.AWARDS, incentives);
+        user_test.addData(User.INCENTIVE, incentives);
+        ArrayList<String> award = new ArrayList<>();
+        award.add("Certificate in economic consulting");
+        user_test.addData(User.AWARDS, award);
+        String GPA = "4.0";
+        user_test.addData(User.GPA, GPA);
         return user_test;
     }
 

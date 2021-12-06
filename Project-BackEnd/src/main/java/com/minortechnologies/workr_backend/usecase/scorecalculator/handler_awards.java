@@ -20,7 +20,7 @@ public class handler_awards extends handler {
         ArrayList<String> user_awards = (ArrayList<String>) this.user.getData(User.AWARDS);
         if(user_awards != null){
             for(String award: user_awards){
-                int counter = 0;
+                int counter = 1;
                 String[] award_words = award.split(" ");
                 /* Words on the following website https://webapps.towson.edu/ows/prepositions.htm were
                 considered to create words_avoiding below */
@@ -31,22 +31,29 @@ public class handler_awards extends handler {
                         "over", "past", "regarding", "since", "through", "throughout", "to", "toward", "under", "underneath",
                         "until", "up", "upon", "with", "within", "without", "regard"};
                 ArrayList<String> words_to_avoid = new ArrayList<String>(Arrays.asList(words_avoiding));
-                for(String word: award_words){
-                    if (words_to_avoid.contains(word.toLowerCase())){
-                        counter += 0;
-                    } else{
-                        if (!this.job.getData(JobListing.QUALIFICATIONS).equals("") &&
-                                this.job.getData(JobListing.QUALIFICATIONS).toString().toLowerCase().contains(word.toLowerCase()))
-                            counter += 1;
-                        else if (!this.job.getData(JobListing.REQUIREMENTS).equals("") &&
-                                this.job.getData(JobListing.REQUIREMENTS).toString().toLowerCase().contains(word.toLowerCase()))
-                            counter += 1;
-                        else if (!this.job.getData(JobListing.APPLICATION_REQUIREMENTS).equals("") &&
-                                this.job.getData(JobListing.APPLICATION_REQUIREMENTS).toString().toLowerCase().contains(word.toLowerCase()))
-                            counter += 1;
-                        else if (!this.job.getData(JobListing.DESCRIPTION).equals("") &&
-                                this.job.getData(JobListing.DESCRIPTION).toString().toLowerCase().contains(word.toLowerCase()))
-                            counter += 1;
+                for(String sentence: award_words){
+
+                    if(sentence.equals(""))
+                        continue;
+
+                    String [] list_of_words = sentence.split(" ");
+
+                    for(String word: list_of_words)
+                    {
+                        if (!words_to_avoid.contains(word.toLowerCase())){
+                            if (!this.job.getData(JobListing.QUALIFICATIONS).equals("") &&
+                                    this.job.getData(JobListing.QUALIFICATIONS).toString().toLowerCase().contains(word.toLowerCase()))
+                                counter += 1;
+                            else if (!this.job.getData(JobListing.REQUIREMENTS).equals("") &&
+                                    this.job.getData(JobListing.REQUIREMENTS).toString().toLowerCase().contains(word.toLowerCase()))
+                                counter += 1;
+                            else if (!this.job.getData(JobListing.APPLICATION_REQUIREMENTS).equals("") &&
+                                    this.job.getData(JobListing.APPLICATION_REQUIREMENTS).toString().toLowerCase().contains(word.toLowerCase()))
+                                counter += 1;
+                            else if (!this.job.getData(JobListing.DESCRIPTION).equals("") &&
+                                    this.job.getData(JobListing.DESCRIPTION).toString().toLowerCase().contains(word.toLowerCase()))
+                                counter += 1;
+                        }
                     }
 
                 }
