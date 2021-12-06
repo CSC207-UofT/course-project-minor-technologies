@@ -33,6 +33,7 @@ public class handler_3 extends handler_ext_work{
                 ArrayList<String> description = (ArrayList<String>) experience.getData(experience.EXPERIENCE_DESCRPTION);
                 double experience_score = scoreTime(start_date, end_date);
                 score += experience_score * description.size() * 0.5;
+                score += titleScore(title);
             }
         }
 

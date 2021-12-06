@@ -15,7 +15,7 @@ public class handler_6 extends handler{
     @Override
     public void scoreCalculate() {
         double score = 0.0;
-        double gpa = 0.0;
+        double gpa;
 
         if(this.user.getData(User.GPA) != null)
         {
