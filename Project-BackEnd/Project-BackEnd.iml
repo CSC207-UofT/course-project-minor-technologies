@@ -75,7 +75,7 @@
     <orderEntry type="library" scope="TEST" name="Maven: org.xmlunit:xmlunit-core:2.8.3" level="project" />
     <orderEntry type="library" name="Maven: org.jetbrains:annotations:23.0.0" level="project" />
     <orderEntry type="library" name="json-20210307" level="project" />
-    <orderEntry type="library" name="apache.commons.lang3" level="project" />
+    <orderEntry type="library" name="maven: org.apache.commons:commons-lang3:3.3.2" level="project" />
     <orderEntry type="module-library" scope="TEST">
       <library name="JUnit4">
         <CLASSES>
