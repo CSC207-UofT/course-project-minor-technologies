@@ -1,4 +1,4 @@
-package com.minortechnologies.workr_backend.networkhandler;
+package com.minortechnologies.workr_backend.controllers.networkhandler;
 
 import com.minortechnologies.workr_backend.controllers.dataprocessing.DataFormat;
 import com.minortechnologies.workr_backend.controllers.localcache.LocalCache;
@@ -9,6 +9,7 @@ import com.minortechnologies.workr_backend.entities.listing.ListingType;
 import com.minortechnologies.workr_backend.entities.searchquery.SearchQuery;
 import com.minortechnologies.workr_backend.entities.user.Score;
 import com.minortechnologies.workr_backend.entities.user.User;
+import com.minortechnologies.workr_backend.framework.networkhandler.Application;
 import com.minortechnologies.workr_backend.usecase.factories.EntryDataMapTypeCaster;
 import com.minortechnologies.workr_backend.usecase.factories.ICreateEntry;
 import com.minortechnologies.workr_backend.usecase.fileio.MalformedDataException;
@@ -149,7 +150,7 @@ public class ListingRequestHandler {
                 Score score = new Score();
                 handler_main scoreCalc = new handler_main(user, listing);
                 scoreCalc.generateScore();
-                double scoredouble = scoreCalc.get_score();
+                double scoredouble = scoreCalc.getScore();
                 score.addData(Score.SCORE, scoredouble);
                 score.addData(Score.UID, uuid);
                 uuids.add(Score.UID);
