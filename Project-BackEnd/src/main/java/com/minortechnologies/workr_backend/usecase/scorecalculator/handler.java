@@ -18,21 +18,25 @@ abstract class handler {
     public handler(User user_input, JobListing job_input){
         this.next = null; this.user = user_input; this.job=job_input; this.score = 0.0d;
     }
-
-    public void set_next(handler handler_input){
+    /** Links the class to the next processing unit to continue the calculation
+     *
+     * @param handler_input the next handler/processing unit for score calculation
+     * */
+    public void setNext(handler handler_input){
         this.next = handler_input;
     }
 
-    public double get_score(){ return this.score;}
+    /** Sets the calculated score to the class instance variable*/
+    public double getScore(){ return this.score;}
 
-    /** Calculates a score by running the score_calculate method which is different across the three handlers*/
-    void process_request(){
-        score_calculate();
+    /**Sets a score by running the score_calculate method which is different across the three handlers*/
+    void processRequest(){
+        scoreCalculate();
         if (next != null){
-            next.process_request();this.score = this.score + next.get_score();}
+            next.processRequest();this.score = this.score + next.getScore();}
 
     }
-
-    public abstract void score_calculate();
+    /**Abstract method to calculate score*/
+    public abstract void scoreCalculate();
 
 }
