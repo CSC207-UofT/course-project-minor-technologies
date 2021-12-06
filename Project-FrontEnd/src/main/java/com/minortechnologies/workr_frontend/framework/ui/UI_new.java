@@ -20,10 +20,8 @@ public class UI_new {
     private User currentUser;
     private int numUsers = 0;
 
-    private JPanel cards, loginPanel, signupPanel,
-            accountPanel, listingsPanel, searchPanel,
-            resultsPanel;
-    private CardLayout cardLayout;
+    final CardLayout cardLayout;
+    JPanel cards = new JPanel(new CardLayout());
 
     private final Font TITLE_FONT = new Font("Times New Roman", Font.BOLD, 20);
     private final Font ERROR_FONT = new Font("Times New Roman", Font.BOLD, 12);
@@ -35,13 +33,12 @@ public class UI_new {
     }
 
     public UI_new() {
-        cards = new JPanel(new CardLayout());
-
-        loginPanel = loginScreen();
-        signupPanel = signupScreen();
-        accountPanel = accountScreen();
-        listingsPanel = listingsScreen();
-        searchPanel = searchScreen();
+        setup();
+        JPanel loginPanel = loginScreen();
+        JPanel signupPanel = signupScreen();
+        JPanel accountPanel = accountScreen();
+        JPanel listingsPanel = listingsScreen();
+        JPanel searchPanel = searchScreen();
 
         cards.add(loginPanel, "login");
         cards.add(signupPanel, "signup");
@@ -55,7 +52,7 @@ public class UI_new {
     }
 
     private JPanel loginScreen() {
-        loginPanel = new JPanel();
+        JPanel loginPanel = new JPanel();
         loginPanel.setLayout(null);
 
         //header
@@ -84,27 +81,25 @@ public class UI_new {
         JButton loginButton = new JButton("Log in");
         loginButton.setBounds(325, 150, 75, 25);
         loginPanel.add(loginButton);
-        loginButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    boolean userFound = false;
-                    for (User user : users) {
-                        if (user == null) {
-                            break;
-                        }
-                        if (user.ACCOUNT_NAME.equals(username.getText())) {
-                            userFound = true;
-                            currentUser = user;
-                            cardLayout.show(cards, "main");
-                            break;
-                        }
+        loginButton.addActionListener(e -> {
+            try {
+                boolean userFound = false;
+                for (User user : users) {
+                    if (user == null) {
+                        break;
                     }
-                    if (!userFound) {
-                        noSuchUserWarning(loginPanel);
+                    if (user.getData("accountName").equals(username.getText())) {
+                        userFound = true;
+                        currentUser = user;
+                        cardLayout.show(cards, "main");
+                        break;
                     }
-                } catch (IndexOutOfBoundsException n) {
+                }
+                if (!userFound) {
                     noSuchUserWarning(loginPanel);
                 }
+            } catch (IndexOutOfBoundsException n) {
+                noSuchUserWarning(loginPanel);
             }
         });
 
@@ -112,11 +107,7 @@ public class UI_new {
         JButton signupButton = new JButton("No account? Sign up here");
         signupButton.setBounds(275, 400, 200, 25);
         loginPanel.add(signupButton);
-        signupButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                cardLayout.show(cards, "signup");
-            }
-        });
+        signupButton.addActionListener(e -> cardLayout.show(cards, "signup"));
         return loginPanel;
     }
 
@@ -132,7 +123,7 @@ public class UI_new {
     }
 
     private JPanel signupScreen() {
-        signupPanel = new JPanel();
+        JPanel signupPanel = new JPanel();
         signupPanel.setLayout(null);
 
         //header
@@ -169,26 +160,24 @@ public class UI_new {
         JButton confirmButton = new JButton("Confirm");
         confirmButton.setBounds(310, 175, 90, 25);
         signupPanel.add(confirmButton);
-        confirmButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                String newUsername = username.getText();
-                char[] newPassword = password.getPassword();
+        confirmButton.addActionListener(e -> {
+            String newUsername = username.getText();
+            char[] newPassword = password.getPassword();
 
-                if (Arrays.equals(newPassword, confirmPassword.getPassword())) {
-                    User newUser = new User(newUsername, newPassword, Security.generateNewToken());
-                    users[numUsers] = newUser;
-                    numUsers++;
-                    currentUser = newUser;
-                    cardLayout.show(cards, "main");
-                } else {
-                    JLabel passwordMismatch = new JLabel("ERROR: Passwords do not match");
-                    passwordMismatch.setFont(ERROR_FONT);
-                    passwordMismatch.setForeground(Color.RED);
-                    passwordMismatch.setBounds(200, 200, 200, 25);
-                    signupPanel.add(passwordMismatch);
-                    frame.revalidate(); //updating to show error
-                    frame.repaint();
-                }
+            if (Arrays.equals(newPassword, confirmPassword.getPassword())) {
+                User newUser = new User(newUsername, newPassword, "aaaa");
+                users[numUsers] = newUser;
+                numUsers++;
+                currentUser = newUser;
+                cardLayout.show(cards, "main");
+            } else {
+                JLabel passwordMismatch = new JLabel("ERROR: Passwords do not match");
+                passwordMismatch.setFont(ERROR_FONT);
+                passwordMismatch.setForeground(Color.RED);
+                passwordMismatch.setBounds(200, 200, 200, 25);
+                signupPanel.add(passwordMismatch);
+                frame.revalidate(); //updating to show error
+                frame.repaint();
             }
         });
 
@@ -200,11 +189,7 @@ public class UI_new {
         signupPanel.add(loginButton);
 
         //login listener
-        loginButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                cardLayout.show(cards, "login");
-            }
-        });
+        loginButton.addActionListener(e -> cardLayout.show(cards, "login"));
 
         return signupPanel;
     }
@@ -215,7 +200,7 @@ public class UI_new {
         JLabel header;
 
         try {
-            header = new JLabel("Welcome, " + currentUser.ACCOUNT_NAME);
+            header = new JLabel("Welcome, " + currentUser.getData("accountName"));
         } catch (NullPointerException n) {
             //in case username is not defined
             header = new JLabel("Welcome to Workr");
@@ -229,41 +214,25 @@ public class UI_new {
         JButton search = new JButton("Search listings");
         search.setBounds(150, 75, 200, 50);
         accountPanel.add(search);
-        search.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                cardLayout.show(cards, "search");
-            }
-        });
+        search.addActionListener(e -> cardLayout.show(cards, "search"));
 
         //view saved listings
         JButton viewListings = new JButton("View my listings");
         viewListings.setBounds(150, 125, 200, 50);
         accountPanel.add(viewListings);
-        viewListings.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                cardLayout.show(cards, "listings");
-            }
-        });
+        viewListings.addActionListener(e -> cardLayout.show(cards, "listings"));
 
         //log out
         JButton logout = new JButton("Log out");
         logout.setBounds(150, 175, 200, 50);
         accountPanel.add(logout);
-        logout.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                cardLayout.show(cards, "login");
-            }
-        });
+        logout.addActionListener(e -> cardLayout.show(cards, "login"));
 
         //quit
         JButton quit = new JButton("Quit to OS");
         quit.setBounds(150, 225, 200, 50);
         accountPanel.add(quit);
-        quit.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                System.exit(0);
-            }
-        });
+        quit.addActionListener(e -> System.exit(0));
 
 
         return accountPanel;
@@ -332,46 +301,42 @@ public class UI_new {
         JButton generateQuery = new JButton("Search");
         generateQuery.setBounds(200, 225, 100, 50);
         searchPanel.add(generateQuery);
-        generateQuery.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                String terms = searchTerms.getText();
-                String jobLocation = location.getText();
+        generateQuery.addActionListener(e -> {
+            String terms = searchTerms.getText();
+            String jobLocation = location.getText();
 
-                LocalDateTime currentTime = LocalDateTime.now();
-                LocalDateTime dateTime;
-                String range = dateButtons.getSelection().getActionCommand();
+            LocalDateTime currentTime = LocalDateTime.now();
+            LocalDateTime dateTime;
+            String range = dateButtons.getSelection().getActionCommand();
 
-                switch (range) {
-                    case "1 Day Old":
-                        dateTime = currentTime.minusDays(1);
-                        break;
-                    case "3 Days Old":
-                        dateTime = currentTime.minusDays(3);
-                        break;
-                    case "7 Days Old":
-                        dateTime = currentTime.minusDays(7);
-                        break;
-                    case "14 Days Old":
-                        dateTime = currentTime.minusDays(14);
-                        break;
-                    default:
-                        JOptionPane.showMessageDialog(null, "Please select a range!");
-                }
-
-                JobType jobType;
-                String selectedType = typeButtons.getSelection().getActionCommand();
-
-                switch (selectedType) {
-                    case "Full time":
-                        jobType = JobType.FULL_TIME;
-                    case "Part time":
-                        jobType = JobType.PART_TIME;
-                    default:
-
-                }
+            switch (range) {
+                case "1 Day Old":
+                    dateTime = currentTime.minusDays(1);
+                    break;
+                case "3 Days Old":
+                    dateTime = currentTime.minusDays(3);
+                    break;
+                case "7 Days Old":
+                    dateTime = currentTime.minusDays(7);
+                    break;
+                case "14 Days Old":
+                    dateTime = currentTime.minusDays(14);
+                    break;
+                default:
+                    JOptionPane.showMessageDialog(null, "Please select a range!");
             }
 
+            JobType jobType;
+            String selectedType = typeButtons.getSelection().getActionCommand();
 
+            switch (selectedType) {
+                case "Full time":
+                    jobType = JobType.FULL_TIME;
+                case "Part time":
+                    jobType = JobType.PART_TIME;
+                default:
+
+            }
         });
         //return button
         JButton goBack = new JButton("Return");
@@ -387,7 +352,7 @@ public class UI_new {
     }
 
     private JPanel listingsScreen() {
-        return listingsPanel;
+
     }
 
 }

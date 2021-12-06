@@ -4,7 +4,6 @@ import com.minortechnologies.workr_frontend.entities.Entry;
 import com.minortechnologies.workr_frontend.entities.listing.JobListing;
 import com.minortechnologies.workr_frontend.entities.listing.ListingType;
 import com.minortechnologies.workr_frontend.usecase.IDatabase;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
 
@@ -179,7 +178,7 @@ public class JobListingDB implements IDatabase{
     }
 
 
-    @NotNull
+
     @Override
     public Iterator<Entry> iterator() {
         return new JobListingDBIterator(this.listingDB);

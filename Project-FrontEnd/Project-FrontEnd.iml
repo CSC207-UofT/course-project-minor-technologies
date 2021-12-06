@@ -41,5 +41,6 @@
       </library>
     </orderEntry>
     <orderEntry type="library" name="json-202103071" level="project" />
+    <orderEntry type="library" name="apache.commons.lang3" level="project" />
   </component>
 </module>
