@@ -39,7 +39,7 @@ public class JobListingComparator implements Comparator<JobListing> {
             case "LISTING_DATE":
                 return compareByListingDate(l1, l2);
             case "PAY":
-                return compareBySalary(l1, l2);
+                return compareByPay(l1, l2);
             default:
                 return 0;
         }
@@ -74,7 +74,7 @@ public class JobListingComparator implements Comparator<JobListing> {
     }
 
     //l1 is greater than l2 if its salary is greater than that of l2's
-    public int compareBySalary (JobListing l1, JobListing l2) {
+    public int compareByPay (JobListing l1, JobListing l2) {
         int p1 = Integer.valueOf(l1.getData(JobListing.PAY).toString());
         int p2 = Integer.valueOf(l2.getData(JobListing.PAY).toString());
 
