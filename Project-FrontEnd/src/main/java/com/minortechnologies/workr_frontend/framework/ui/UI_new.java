@@ -1,12 +1,13 @@
 package com.minortechnologies.workr_frontend.framework.ui;
 
-import com.minortechnologies.workr_backend.usecase.security.Security;
+import com.minortechnologies.workr_frontend.entities.listing.JobType;
 import com.minortechnologies.workr_frontend.entities.user.User;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 
 public class UI_new {
@@ -269,6 +270,119 @@ public class UI_new {
     }
 
     private JPanel searchScreen() {
+        JPanel searchPanel = new JPanel();
+        searchPanel.setLayout(null);
+
+        //header
+        JLabel header = new JLabel("Search for your next job");
+        header.setBounds(100, 50, 300, 50);
+        header.setFont(TITLE_FONT);
+        searchPanel.add(header);
+
+        //search terms field
+        JTextField searchTerms = new JTextField("search terms");
+        searchTerms.setBounds(100, 100, 300, 25);
+        searchPanel.add(searchTerms);
+
+        //location field
+        JTextField location = new JTextField("location");
+        location.setBounds(100, 125, 300, 25);
+        searchPanel.add(location);
+
+        //radio buttons to choose dates
+        ButtonGroup dateButtons = new ButtonGroup();
+
+        JRadioButton oneDay = new JRadioButton("1 Day Old");
+        JRadioButton threeDay = new JRadioButton(("3 Days Old"));
+        JRadioButton sevenDay = new JRadioButton(("7 Days Old"));
+        JRadioButton fourteenDay = new JRadioButton(("14 Days Old"));
+
+        dateButtons.add(oneDay);
+        dateButtons.add(threeDay);
+        dateButtons.add(sevenDay);
+        dateButtons.add(fourteenDay);
+
+        oneDay.setBounds(50, 175, 100, 25);
+        threeDay.setBounds(150, 175, 100, 25);
+        sevenDay.setBounds(250, 175, 100, 25);
+        fourteenDay.setBounds(350, 175, 100, 25);
+
+        searchPanel.add(oneDay);
+        searchPanel.add(threeDay);
+        searchPanel.add(sevenDay);
+        searchPanel.add(fourteenDay);
+
+
+        //radio buttons to choose fulltime/parttime
+        ButtonGroup typeButtons = new ButtonGroup();
+
+        JRadioButton partTime = new JRadioButton("Part time");
+        JRadioButton fullTime = new JRadioButton(("Full time"));
+
+        typeButtons.add(partTime);
+        typeButtons.add(fullTime);
+
+        partTime.setBounds(150, 200, 100, 25);
+        fullTime.setBounds(250, 200, 100, 25);
+
+        searchPanel.add(partTime);
+        searchPanel.add(fullTime);
+
+        //search button
+        JButton generateQuery = new JButton("Search");
+        generateQuery.setBounds(200, 225, 100, 50);
+        searchPanel.add(generateQuery);
+        generateQuery.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String terms = searchTerms.getText();
+                String jobLocation = location.getText();
+
+                LocalDateTime currentTime = LocalDateTime.now();
+                LocalDateTime dateTime;
+                String range = dateButtons.getSelection().getActionCommand();
+
+                switch (range) {
+                    case "1 Day Old":
+                        dateTime = currentTime.minusDays(1);
+                        break;
+                    case "3 Days Old":
+                        dateTime = currentTime.minusDays(3);
+                        break;
+                    case "7 Days Old":
+                        dateTime = currentTime.minusDays(7);
+                        break;
+                    case "14 Days Old":
+                        dateTime = currentTime.minusDays(14);
+                        break;
+                    default:
+                        JOptionPane.showMessageDialog(null, "Please select a range!");
+                }
+
+                JobType jobType;
+                String selectedType = typeButtons.getSelection().getActionCommand();
+
+                switch (selectedType) {
+                    case "Full time":
+                        jobType = JobType.FULL_TIME;
+                    case "Part time":
+                        jobType = JobType.PART_TIME;
+                    default:
+
+                }
+            }
+
+
+        });
+        //return button
+        JButton goBack = new JButton("Return");
+        goBack.setBounds(150, 325, 200, 50);
+        searchPanel.add(goBack);
+        goBack.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(cards, "main");
+            }
+        });
+
         return searchPanel;
     }
 
