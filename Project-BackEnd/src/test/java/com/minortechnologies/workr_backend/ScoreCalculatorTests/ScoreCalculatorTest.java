@@ -29,9 +29,9 @@ public class ScoreCalculatorTest {
     public void testHandlerMainScoreCalculate(){
         handler_main handler = new handler_main(user1,jobl1);
         handler.generateScore();
-        double test_score = handler.get_score();
+        double test_score = handler.getScore();
 
-        assertEquals(test_score, 93.0, 0.01f);
+        assertEquals(test_score, 122.0, 0.01f);
     }
 
     @Test
@@ -42,8 +42,8 @@ public class ScoreCalculatorTest {
         handler_main handler_main1 = new handler_main(user1, jobl1);
         handler_1 handler1 = new handler_1(user1, jobl1);
 
-        handler1.score_calculate();
-        assertEquals(handler1.get_score(), 30.0,0.01);
+        handler1.scoreCalculate();
+        assertEquals(handler1.getScore(), 30.0,0.01);
     }
 
     @Test
@@ -53,8 +53,8 @@ public class ScoreCalculatorTest {
     public void testHandler2ScoreCalculate() {
         handler_2 handler2 = new handler_2(user1, jobl1);
 
-        handler2.score_calculate();
-        assertEquals(handler2.get_score(), 32.0, 0.01f);
+        handler2.scoreCalculate();
+        assertEquals(handler2.getScore(), 32.0, 0.01f);
     }
 
     @Test
@@ -64,8 +64,8 @@ public class ScoreCalculatorTest {
     public void testHandler3ScoreCalculate() {
         handler_3 handler3 = new handler_3(user1, jobl1);
 
-        handler3.score_calculate();
-        assertEquals(handler3.get_score(), 6.0, 0.01f);
+        handler3.scoreCalculate();
+        assertEquals(handler3.getScore(), 6.0, 0.01f);
     }
 
     @Test
@@ -75,8 +75,8 @@ public class ScoreCalculatorTest {
     public void testHandlerLeadershipScoreCalculate() {
         handler_leadership handlerleadership = new handler_leadership(user1, jobl1);
 
-        handlerleadership.score_calculate();
-        assertEquals(handlerleadership.get_score(), 10.0, 0.01f);
+        handlerleadership.scoreCalculate();
+        assertEquals(handlerleadership.getScore(), 10.0, 0.01f);
     }
 
     @Test
@@ -86,8 +86,24 @@ public class ScoreCalculatorTest {
     public void testHandlerIncentiveScoreCalculate() {
         handler_incentive handlerincentive = new handler_incentive(user1, jobl1);
 
-        handlerincentive.score_calculate();
-        assertEquals(handlerincentive.get_score(), 15.0, 0.01f);
+        handlerincentive.scoreCalculate();
+        assertEquals(handlerincentive.getScore(), 15.0, 0.01f);
+    }
+
+    @Test
+    public void testHandlerAwardsScoreCalculate() {
+        handler_awards handlerawards = new handler_awards(user1, jobl1);
+
+        handlerawards.scoreCalculate();
+        assertEquals(handlerawards.getScore(), 9.0, 0.01f);
+    }
+
+    @Test
+    public void testHandlerGpaScoreCalculate() {
+        handler_6 handler_gpa= new handler_6(user1, jobl1);
+
+        handler_gpa.scoreCalculate();
+        assertEquals(handler_gpa.getScore(), 20.0, 0.01f);
     }
 
 
