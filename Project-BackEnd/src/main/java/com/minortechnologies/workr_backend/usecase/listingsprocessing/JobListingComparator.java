@@ -1,6 +1,6 @@
-package com.minortechnologies.workr_frontend.usecase.listingsprocessing;
+package com.minortechnologies.workr_backend.usecase.listingsprocessing;
 
-import com.minortechnologies.workr_frontend.entities.listing.JobListing;
+import com.minortechnologies.workr_backend.entities.listing.JobListing;
 
 import java.text.Collator;
 import java.time.LocalDate;
