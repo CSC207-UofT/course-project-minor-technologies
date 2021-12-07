@@ -15,10 +15,10 @@ public class UI_new {
     public static void main(String[] args) { new UI_new(); }
 
     private User[] users;
+    private int numUsers = 0;
     private JFrame frame;
 
     private User currentUser;
-    private int numUsers = 0;
 
     final CardLayout cardLayout;
     JPanel cards = new JPanel(new CardLayout());
@@ -34,6 +34,7 @@ public class UI_new {
 
     public UI_new() {
         setup();
+        users = new User[100];
         JPanel loginPanel = loginScreen();
         JPanel signupPanel = signupScreen();
         JPanel accountPanel = accountScreen();
@@ -88,7 +89,7 @@ public class UI_new {
                     if (user == null) {
                         break;
                     }
-                    if (user.getData("accountName").equals(username.getText())) {
+                    if (user.ACCOUNT_NAME.equals(username.getText())) {
                         userFound = true;
                         currentUser = user;
                         cardLayout.show(cards, "main");
@@ -163,9 +164,12 @@ public class UI_new {
         confirmButton.addActionListener(e -> {
             String newUsername = username.getText();
             char[] newPassword = password.getPassword();
+            StringBuilder pword = new StringBuilder();
+
+            for (char a : newPassword) {pword.append(a);}
 
             if (Arrays.equals(newPassword, confirmPassword.getPassword())) {
-                User newUser = new User(newUsername, newPassword, "aaaa");
+                User newUser = new User(newUsername, pword.toString(), "abr");
                 users[numUsers] = newUser;
                 numUsers++;
                 currentUser = newUser;
@@ -200,7 +204,7 @@ public class UI_new {
         JLabel header;
 
         try {
-            header = new JLabel("Welcome, " + currentUser.getData("accountName"));
+            header = new JLabel("Welcome, " + currentUser.ACCOUNT_NAME);
         } catch (NullPointerException n) {
             //in case username is not defined
             header = new JLabel("Welcome to Workr");
@@ -352,7 +356,49 @@ public class UI_new {
     }
 
     private JPanel listingsScreen() {
+        JPanel listingsPanel = new JPanel();
+        listingsPanel.setLayout(null);
 
+        //header
+        JLabel header = new JLabel("View your listings");
+        header.setFont(TITLE_FONT);
+        header.setBounds(150, 25, 300, 50);
+
+//        //listings table
+//        DefaultListModel demoList = new DefaultListModel();
+//        JList list;
+//        JLabel noDataWarning;
+//
+//        try {
+//            String[] listingHeaders;
+//
+//            HashSet<JobListing> set = currentUser.getWatchedListings();
+//
+//            ArrayList<JobListing> listings = new ArrayList<>(set);
+//            demoList.addElement(listings);
+//            list = new JList(demoList);
+//        } catch (NullPointerException n) {
+//            list = new JList();
+//            noDataWarning = new JLabel("You don't have any saved listings!");
+//            noDataWarning.setBounds(50, 225, 400, 50);
+//            listingsPanel.add(noDataWarning);
+//        }
+//
+//        list.setBounds(50, 25, 400, 250);
+//        listingsPanel.add(list);
+//
+//        //return button
+//        JButton goBack = new JButton("Return");
+//        goBack.setBounds(150, 325, 200, 50);
+//        listingsPanel.add(goBack);
+//        goBack.addActionListener(new ActionListener() {
+//            public void actionPerformed(ActionEvent e) {
+//                cardLayout.show(cards, "main");
+//            }
+//        });
+
+
+        return listingsPanel;
     }
 
 }

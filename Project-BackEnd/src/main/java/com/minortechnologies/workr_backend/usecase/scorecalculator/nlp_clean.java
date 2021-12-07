@@ -1,11 +1,11 @@
 package com.minortechnologies.workr_backend.usecase.scorecalculator;
 
 
-import edu.stanford.nlp.pipeline.CoreDocument;
-import edu.stanford.nlp.pipeline.CoreSentence;
-import edu.stanford.nlp.pipeline.StanfordCoreNLP;
-
-import edu.stanford.nlp.trees.Tree;
+//import edu.stanford.nlp.pipeline.CoreDocument;
+//import edu.stanford.nlp.pipeline.CoreSentence;
+//import edu.stanford.nlp.pipeline.StanfordCoreNLP;
+//
+//import edu.stanford.nlp.trees.Tree;
 
 import java.util.*;
 import java.util.regex.Pattern;
