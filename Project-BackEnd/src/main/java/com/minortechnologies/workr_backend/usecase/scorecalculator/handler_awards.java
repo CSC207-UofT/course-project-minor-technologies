@@ -32,10 +32,8 @@ public class handler_awards extends handler {
                         "until", "up", "upon", "with", "within", "without", "regard"};
                 ArrayList<String> words_to_avoid = new ArrayList<String>(Arrays.asList(words_avoiding));
                 for(String sentence: award_words){
-
                     if(sentence.equals(""))
                         continue;
-
                     String [] list_of_words = sentence.split(" ");
 
                     for(String word: list_of_words)

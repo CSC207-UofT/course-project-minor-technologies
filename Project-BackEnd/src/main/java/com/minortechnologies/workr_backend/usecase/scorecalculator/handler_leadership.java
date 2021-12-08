@@ -28,6 +28,7 @@ public class handler_leadership extends handler_ext_work {
                         lead_experience.getData(lead_experience.EXPERIENCE_DESCRPTION);
                 double lead_exp_score = scoreTime(start_date, end_date);
                 score += lead_exp_score * lead_description.size();
+                score += titleScore(exp_title);
             }
         }
         this.score += score;

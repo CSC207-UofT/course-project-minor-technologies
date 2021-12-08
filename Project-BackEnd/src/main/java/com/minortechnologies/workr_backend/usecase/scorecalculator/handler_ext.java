@@ -15,22 +15,28 @@ abstract class handler_ext extends handler{
     double scoreMatch(ArrayList<String> user_info, double given_score){
         double match_score = 0.0;
         if (user_info != null) {
-            for (String word : user_info) {
-                if (!this.job.getData(JobListing.QUALIFICATIONS).equals("") &&
-                        this.job.getData(JobListing.QUALIFICATIONS).toString().toLowerCase().contains(word.toLowerCase()))
-                    match_score += given_score;
-                else if (!this.job.getData(JobListing.REQUIREMENTS).equals("") &&
-                        this.job.getData(JobListing.REQUIREMENTS).toString().toLowerCase().contains(word.toLowerCase()))
-                    match_score += given_score;
-                else if (!this.job.getData(JobListing.APPLICATION_REQUIREMENTS).equals("") &&
-                        this.job.getData(JobListing.APPLICATION_REQUIREMENTS).toString().toLowerCase().contains(word.toLowerCase()))
-                    match_score += given_score;
-                else if (!this.job.getData(JobListing.DESCRIPTION).equals("") &&
-                        this.job.getData(JobListing.DESCRIPTION).toString().toLowerCase().contains(word.toLowerCase()))
-                    match_score += given_score;
+            for (String sentence : user_info) {
+                if (sentence.equals(""))
+                    continue;
+                String[] list_of_words = sentence.split(" ");
+                for (String word : list_of_words) {
+                    if (!this.job.getData(JobListing.QUALIFICATIONS).equals("") &&
+                            this.job.getData(JobListing.QUALIFICATIONS).toString().toLowerCase().contains(word.toLowerCase()))
+                        match_score += given_score;
+                    else if (!this.job.getData(JobListing.REQUIREMENTS).equals("") &&
+                            this.job.getData(JobListing.REQUIREMENTS).toString().toLowerCase().contains(word.toLowerCase()))
+                        match_score += given_score;
+                    else if (!this.job.getData(JobListing.APPLICATION_REQUIREMENTS).equals("") &&
+                            this.job.getData(JobListing.APPLICATION_REQUIREMENTS).toString().toLowerCase().contains(word.toLowerCase()))
+                        match_score += given_score;
+                    else if (!this.job.getData(JobListing.DESCRIPTION).equals("") &&
+                            this.job.getData(JobListing.DESCRIPTION).toString().toLowerCase().contains(word.toLowerCase()))
+                        match_score += given_score;
+                }
+            }
 
             }
-        }
+
         return match_score;
     }
 
