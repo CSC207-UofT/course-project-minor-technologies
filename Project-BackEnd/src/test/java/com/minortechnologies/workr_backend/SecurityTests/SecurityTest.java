@@ -36,13 +36,9 @@ public class SecurityTest {
      */
     @Test
     public void repeatableHashResults() {
-        try {
-            byte[] hash1 = Security.generateHash(hashString1);
-            byte[] hash2 = Security.generateHash(hashString2);
-            assertArrayEquals(hash1, hash2);
-        } catch (InvalidKeySpecException | NoSuchAlgorithmException e) {
-            fail();
-        }
+        byte[] hash1 = Security.generateHash(hashString1);
+        byte[] hash2 = Security.generateHash(hashString2);
+        assertArrayEquals(hash1, hash2);
     }
 
     /**

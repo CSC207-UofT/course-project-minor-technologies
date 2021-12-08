@@ -48,8 +48,12 @@ public class SearchQuery extends Entry {
         return (String) getData(LOCATION);
     }
 
-    public LocalDateTime getDateTime() {
-        return (LocalDateTime) getData(DATE_TIME);
+    public LocalDate getDateTime() {
+
+        if (getData(DATE_TIME) instanceof LocalDateTime){
+            updateData(DATE_TIME, ((LocalDateTime) getData(DATE_TIME)).toLocalDate());
+        }
+        return (LocalDate) getData(DATE_TIME);
     }
 
     public JobType getJobType() {
@@ -69,7 +73,7 @@ public class SearchQuery extends Entry {
     }
 
     @Override
-    public synchronized void deserialize(Map<String, Object> entryDataMap) throws MalformedDataException {
+    public synchronized void deserialize(Map<String, Object> entryDataMap) {
         for (String key:
              KEYS) {
             Object data = entryDataMap.get(key);
@@ -78,8 +82,9 @@ public class SearchQuery extends Entry {
                     data = ICreateEntry.parseDateTime(data);
                     break;
                 case JOB_TYPE:
-                    assert data instanceof String;
-                    data = JobType.valueOf((String) data);
+                    if (data instanceof String){
+                        data = JobType.valueOf((String) data);
+                    }
                     break;
             }
             addData(key, data);
@@ -98,7 +103,7 @@ public class SearchQuery extends Entry {
 
     /**
      * Note, search queries should never need to be updated.
-     * @param entry
+     * @param entry the entry with the updated data
      */
 
     @Override

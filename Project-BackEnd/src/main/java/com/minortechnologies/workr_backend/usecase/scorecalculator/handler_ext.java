@@ -6,12 +6,13 @@ import com.minortechnologies.workr_backend.entities.user.User;
 import java.util.ArrayList;
 
 abstract class handler_ext extends handler{
+
     public handler_ext(User user_input, JobListing job_input) {
         super(user_input, job_input);
     }
 
     /** Calculates a score based on user's information matching the job listing's information */
-    double score_calc_match(ArrayList<String> user_info, double given_score){
+    double scoreMatch(ArrayList<String> user_info, double given_score){
         double match_score = 0.0;
         if (user_info != null) {
             for (String word : user_info) {
@@ -35,5 +36,5 @@ abstract class handler_ext extends handler{
 
 
     @Override
-    abstract public void score_calculate();
+    abstract public void scoreCalculate();
 }

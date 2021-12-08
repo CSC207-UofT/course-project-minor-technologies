@@ -32,6 +32,8 @@ public class EntryDataMapTypeCaster {
 
     public static final String[] ENUMS = new String[] {JobListing.JOB_TYPE, JobListing.LISTING_TYPE};
 
+    public static final String[] DOUBLES = new String[] {User.GPA};
+
     public static final String[] RECURSIVE_LIST = new String[] {User.WATCHED_SEARCH_QUERIES, User.REL_WORK_EXP,
             User.UREL_WORK_EXP, User.LEADERSHIP};
 
@@ -63,15 +65,27 @@ public class EntryDataMapTypeCaster {
                 }
             }
             else if (Arrays.asList(HASHSETS).contains(key)){
+                ArrayList<Object> data2;
+                if (data instanceof String[]){
+                    String[] data3 = (String[]) data;
+                    data2 = new ArrayList<>(Arrays.asList(data3));
+                }
+                else{
+                    data2 = (ArrayList<Object>) data;
+                }
 
-                ArrayList<Object> data2 = (ArrayList<Object>) data;
                 data = toHashSet(key, data2);
+            }
+            else if (Arrays.asList(DOUBLES).contains(key)){
+                if (data instanceof Float){
+                    data = (double) data;
+                }
             }
             dataMap.replace(key, data);
         }
     }
 
-    private Object toHashSet(String key, ArrayList<Object> data) {
+    private Object toHashSet(String key, Iterable<Object> data) {
         switch (key){
             case User.WATCHED_JOB_LISTINGS:
                 return toStringHashSet(data);
@@ -80,7 +94,7 @@ public class EntryDataMapTypeCaster {
     }
 
 
-    private HashSet<String> toStringHashSet(ArrayList<Object> data){
+    private HashSet<String> toStringHashSet(Iterable<Object> data){
         HashSet<String> finalSet = new HashSet<>();
         for (Object string:
                 data) {
@@ -100,8 +114,14 @@ public class EntryDataMapTypeCaster {
         try{
             switch (key){
                 case JobListing.JOB_TYPE:
+                    if (value instanceof JobType){
+                        return value;
+                    }
                     return JobType.valueOf((String) value);
                 case JobListing.LISTING_TYPE:
+                    if (value instanceof ListingType){
+                        return value;
+                    }
                     return ListingType.valueOf((String) value);
                 default:
                     return null;

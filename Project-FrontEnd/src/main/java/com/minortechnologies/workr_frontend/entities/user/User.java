@@ -36,9 +36,11 @@ public class User extends Entry {
     public static final String AWARDS = "awards"; // ArrayList<String>
     public static final String INCENTIVE = "incentive"; // ArrayList<String>
     public static final String TOKEN = "token"; // String
+    public static final String SCORES = "scores";
+    public static final String GPA = "gpa"; // double
     public static final String[] KEYS = new String[] {ACCOUNT_NAME, WATCHED_JOB_LISTINGS, LOGIN,
             WATCHED_SEARCH_QUERIES, SKILL_SET, REL_WORK_EXP, UREL_WORK_EXP, LEADERSHIP, LOCATION, AWARDS,
-            INCENTIVE};
+            INCENTIVE, SCORES, GPA};
 
     /**
      * Creates a User entry with no data for Deserialization or for UnitTests.
@@ -69,6 +71,8 @@ public class User extends Entry {
         addData(AWARDS, null);
         addData(INCENTIVE, null);
         addData(TOKEN, token);
+        addData(SCORES, new ArrayList<Score>());
+        addData(GPA, 0.0d);
     }
 
     /**
@@ -78,9 +82,8 @@ public class User extends Entry {
      * @return A HashSet containing UUIDs of watched listings
      */
     public HashSet<String> getWatchedListings() {
-        HashSet<String> uuids = (HashSet<String>) getData(WATCHED_JOB_LISTINGS);
 
-        return uuids;
+        return (HashSet<String>) getData(WATCHED_JOB_LISTINGS);
     }
 
     /**
@@ -123,6 +126,7 @@ public class User extends Entry {
                 case REL_WORK_EXP:
                 case UREL_WORK_EXP:
                 case LEADERSHIP:
+                case SCORES:
                     ArrayList<Entry> dataMaps = (ArrayList<Entry>) getData(key);
                     data = getNestedSerializationData(dataMaps);
                     break;

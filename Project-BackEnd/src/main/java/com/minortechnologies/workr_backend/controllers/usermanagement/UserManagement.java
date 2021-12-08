@@ -6,7 +6,7 @@ import com.minortechnologies.workr_backend.entities.listing.JobListing;
 import com.minortechnologies.workr_backend.entities.security.AuthToken;
 import com.minortechnologies.workr_backend.entities.user.User;
 import com.minortechnologies.workr_backend.framework.fileio.FileIO;
-import com.minortechnologies.workr_backend.networkhandler.Application;
+import com.minortechnologies.workr_backend.framework.networkhandler.Application;
 import com.minortechnologies.workr_backend.usecase.fileio.IEntrySerializer;
 import com.minortechnologies.workr_backend.usecase.fileio.JSONSerializer;
 import com.minortechnologies.workr_backend.usecase.factories.userfactory.CreateUser;
@@ -47,12 +47,19 @@ public class UserManagement {
         return currentActiveUser;
     }
 
-    public String signIn(String login, String password){
+    public String signIn(String login, String password, boolean generateToken){
         User user = userDatabase.signIn(login, password);
 
         if (user != null){
-            AuthToken token = Application.getAuthTokenController().generateToken(user);
-            return token.getToken();
+            if (!generateToken || Application.getAuthTokenController() == null){
+                currentActiveUser = user;
+                return "TokenTemp";
+                // TODO: Remove Demo Code
+            }
+            else{
+                AuthToken token = Application.getAuthTokenController().generateToken(user);
+                return token.getToken();
+            }
         }
         return null;
     }
@@ -96,11 +103,6 @@ public class UserManagement {
             }
         }
         return null;
-    }
-
-    private boolean setActiveUser(User user){
-        currentActiveUser = user;
-        return true;
     }
 
     public boolean createUser(String username, String login, String email, String password){

@@ -13,7 +13,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class JobListingDemo {
-    /* Used this job listing on LinkedIn to create user and job listing for unit tests:
+    /** Used this job listing on LinkedIn to create user and job listing for unit tests:
      * https://www.linkedin.com/jobs/view/2727426318
      */
 
@@ -95,7 +95,12 @@ public class JobListingDemo {
         incentives.add("Passionate");
         incentives.add("Prepared");
         incentives.add("Motivated");
-        user_test.addData(User.AWARDS, incentives);
+        user_test.addData(User.INCENTIVE, incentives);
+        ArrayList<String> award = new ArrayList<>();
+        award.add("Certificate in economic consulting");
+        user_test.addData(User.AWARDS, award);
+        String GPA = "4.0";
+        user_test.addData(User.GPA, GPA);
         return user_test;
     }
 
