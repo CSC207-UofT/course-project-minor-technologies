@@ -1,5 +1,6 @@
 package com.minortechnologies.workr_backend.framework.networkhandler;
 
+import com.minortechnologies.workr_backend.controllers.networkhandler.NetworkResponseConstants;
 import com.minortechnologies.workr_backend.controllers.networkhandler.UserRequestHandler;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,7 +20,11 @@ public class UserRequestReceiver {
 
     @GetMapping("/User/SignIn")
     public String signIn(@RequestParam String login, @RequestParam String password){
-        return UserRequestHandler.authenticateSignIn(login, password);
+        String returnString = UserRequestHandler.authenticateSignIn(login, password);
+        if (returnString == null){
+            return NetworkResponseConstants.TOKEN_AUTH_FAIL_STRING;
+        }
+        return returnString;
     }
 
     @GetMapping("/User/SignInByToken")
