@@ -96,5 +96,8 @@
       </library>
     </orderEntry>
     <orderEntry type="library" name="stanford-corenlp-4.3.1-models-english" level="project" />
+    <orderEntry type="library" name="json-202103072" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.commons:commons-lang3:3.3.2" level="project" />
+    <orderEntry type="library" name="json-202103074" level="project" />
   </component>
 </module>
