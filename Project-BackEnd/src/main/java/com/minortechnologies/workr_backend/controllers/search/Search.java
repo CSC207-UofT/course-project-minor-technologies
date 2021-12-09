@@ -4,14 +4,12 @@ import com.minortechnologies.workr_backend.demo.demosource.DemoJobListingSource;
 import com.minortechnologies.workr_backend.entities.Entry;
 import com.minortechnologies.workr_backend.entities.listing.JobListing;
 import com.minortechnologies.workr_backend.entities.searchquery.SearchQuery;
-import com.minortechnologies.workr_backend.main.Main;
-import com.minortechnologies.workr_backend.networkhandler.Application;
+import com.minortechnologies.workr_backend.framework.networkhandler.Application;
 import com.minortechnologies.workr_backend.usecase.IDatabase;
 import com.minortechnologies.workr_backend.usecase.factories.ICreateEntry;
 import com.minortechnologies.workr_backend.usecase.fileio.MalformedDataException;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -24,19 +22,19 @@ public class Search {
      * Searches the LocalCache (files already loaded by the program) using query.
      *
      * @param query The search query
-     * @return com.minortechnologies.workr.Entities.Listings.Listing[] - returns an array of com.minortechnologies.workr.Controllers.Search.Search Listings from the com.minortechnologies.workr.Controllers.LocalCache.LocalCache according to the search query
+     * @return returns an array of JobListings from the LocalCache according to the search query
      */
     public static HashMap<String, ArrayList<JobListing>> searchLocalCache(SearchQuery query){
-        IDatabase lcDatabase = Main.getLocalCache().getListingDB();
+        IDatabase lcDatabase = Application.getLocalCache().getListingDB();
         return searchProvidedDatabase(query, lcDatabase);
     }
 
     /**
      * Uses the search query on a provided IDatabase object.
      *
-     * @param query
-     * @param database
-     * @return
+     * @param query The query to be performed
+     * @param database The database to be searched
+     * @return results for the search query, query sections
      */
     public static HashMap<String, ArrayList<JobListing>> searchProvidedDatabase(SearchQuery query, IDatabase database){
         ArrayList<JobListing> l1 = new ArrayList<>();
@@ -109,12 +107,12 @@ public class Search {
         ArrayList<Entry> results = new ArrayList<>();
 
         // Demo Source Job Listings
-        DemoJobListingSource djls = Application.getDemoSource();
+        DemoJobListingSource demoSource = Application.getDemoSource();
 
-        ArrayList<Map<String, Object>> djlsResults = djls.search(query);
+        ArrayList<Map<String, Object>> demoSourceResults = demoSource.search(query);
 
         for (Map<String, Object> listingData:
-                djlsResults) {
+                demoSourceResults) {
             try{
                 JobListing listing = (JobListing) ICreateEntry.createEntry(listingData, false);
                 results.add(listing);

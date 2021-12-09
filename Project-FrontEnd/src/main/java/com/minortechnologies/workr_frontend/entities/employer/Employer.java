@@ -19,7 +19,7 @@ public class Employer extends Entry {
     }
 
     @Override
-    public synchronized void deserialize(Map<String, Object> entryDataMap) throws MalformedDataException {
+    public synchronized void deserialize(Map<String, Object> entryDataMap) {
         throw new UnsupportedOperationException();
     }
 

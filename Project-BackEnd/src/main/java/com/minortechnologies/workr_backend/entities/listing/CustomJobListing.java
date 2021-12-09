@@ -11,7 +11,7 @@ public class CustomJobListing extends JobListing{
 
     /**
      * Creates an empty CustomJobListing, with only the data for the title.
-     * @param title
+     * @param title The title of the custom job listing
      */
     public CustomJobListing(String title){
         super();
@@ -63,8 +63,8 @@ public class CustomJobListing extends JobListing{
      * For Custom Listings, for now, we shall assume a user would not
      * create the same listing twice.
      *
-     * @param other
-     * @return
+     * @param other the other listing to be compared to
+     * @return whether the other listing is equivalent.
      */
     @Override
     public boolean isEquivalent(JobListing other) {

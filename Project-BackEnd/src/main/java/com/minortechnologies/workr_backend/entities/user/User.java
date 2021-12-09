@@ -3,8 +3,8 @@ package com.minortechnologies.workr_backend.entities.user;
 import com.minortechnologies.workr_backend.entities.Entry;
 import com.minortechnologies.workr_backend.entities.listing.JobListing;
 import com.minortechnologies.workr_backend.entities.searchquery.SearchQuery;
-import com.minortechnologies.workr_backend.main.Main;
-import com.minortechnologies.workr_backend.networkhandler.Application;
+import com.minortechnologies.workr_backend.framework.networkhandler.Application;
+import com.minortechnologies.workr_backend.usecase.factories.EntryDataMapTypeCaster;
 import com.minortechnologies.workr_backend.usecase.fileio.MalformedDataException;
 import com.minortechnologies.workr_backend.usecase.security.Security;
 
@@ -47,22 +47,6 @@ public class User extends Entry {
         super();
     }
 
-    /**
-     * A demo constructor, this should never be called outside of demo stuff
-     *
-     * TODO: Delete this constructor
-     * @param login
-     */
-    public User(String login){
-        this("demo", login, "testEmail@Email.com", null, null);
-        byte[] saltArr = Security.generateSalt();
-        String salt = Security.toHex(saltArr);
-        String hashedPassword = Security.toHex(Security.generateHash("demo", saltArr));
-
-        updateData(HASHED_PASSWORD, hashedPassword);
-        updateData(SALT, salt);
-    }
-
 
     /**
      * Creates a new User with the provided data.
@@ -70,7 +54,7 @@ public class User extends Entry {
      * @param accountName An account name for the new user
      * @param login A login for the new user
      * @param passwordHash The password hashed.
-     * @param salt The salt to be used, the salt must be in hexidecimal form
+     * @param salt The salt to be used, the salt must be in hexadecimal form
      */
     public User(String accountName, String login, String email, String passwordHash, String salt){
         super();
@@ -103,31 +87,44 @@ public class User extends Entry {
      * @return a set containing the JobListings associated with each UUID in a user's profile
      */
     public HashSet<JobListing> getWatchedListings() {
-        HashSet<String> uuids = (HashSet<String>) getData(WATCHED_JOB_LISTINGS);
-        HashSet<JobListing> watchedListings = new HashSet<>();
 
-        for (String uuid:
-             uuids) {
-            JobListing listing = Application.getLocalCache().getListingFromUUID(uuid);
-            watchedListings.add(listing);
+        Object uuidsObject = getData(WATCHED_JOB_LISTINGS);
+
+        if (uuidsObject instanceof ArrayList){
+            ArrayList<String> d1 = (ArrayList<String>) uuidsObject;
+            uuidsObject = new HashSet<>(d1);
+            updateData(WATCHED_JOB_LISTINGS, uuidsObject);
         }
 
+        HashSet<String> uuids = (HashSet<String>) uuidsObject;
+        HashSet<JobListing> watchedListings = new HashSet<>();
+        if (uuids != null){
+            for (String uuid:
+                    uuids) {
+                JobListing listing = Application.getLocalCache().getListingFromUUID(uuid);
+                watchedListings.add(listing);
+            }
+        }
         return watchedListings;
     }
 
     /**
      * Adds a listing to watchedListings. If listing is already in watchedListing, returns false, otherwise returns true.
      *
-     * @param jobListing adds this listing to the user's watched listings
+     * @param jobListingUUID the UUID of the listing to add
      * @return a boolean, false if listing is already in watchedListing, otherwise returns true.
      */
-    public boolean addListingToWatch(JobListing jobListing){
-        jobListing.setSaved(true);
-
-        return ((HashSet<String>) getData(WATCHED_JOB_LISTINGS)).add(jobListing.getUUID());
-    }
 
     public boolean addListingToWatch(String jobListingUUID){
+
+        Object data = getData(WATCHED_JOB_LISTINGS);
+
+        if (data instanceof ArrayList){
+            ArrayList<String> data2 = (ArrayList<String>) data;
+            HashSet<String> data3 = new HashSet<>(data2);
+            updateData(WATCHED_JOB_LISTINGS, data3);
+        }
+
         return ((HashSet<String>) getData(WATCHED_JOB_LISTINGS)).add(jobListingUUID);
     }
 
@@ -172,7 +169,13 @@ public class User extends Entry {
 
     private ArrayList<HashMap<String, Object>> getSerializedSearchQueries(){
 
-        return getNestedSerializationData((HashSet<Entry>) getData(WATCHED_SEARCH_QUERIES));
+        Object data = getData(WATCHED_SEARCH_QUERIES);
+        if (data instanceof ArrayList){
+            ArrayList<Entry> oldData = (ArrayList<Entry>) data;
+            data = new HashSet<>(oldData);
+        }
+
+        return getNestedSerializationData((HashSet<Entry>) data);
     }
 
     @Override
@@ -196,15 +199,16 @@ public class User extends Entry {
 
 
     /**
-     * for security purposes, updateEntry alter password, salt, and email of a user.
+     * for security purposes, updateEntry cannot alter password, salt, and email of a user.
      *
-     * @param entryDataMap
+     * @param entryDataMap a map containing datasets to be updated.
      */
     @Override
     public synchronized void updateEntry(Map<String, Object> entryDataMap) {
         entryDataMap.remove(User.HASHED_PASSWORD);
         entryDataMap.remove(User.SALT);
         entryDataMap.remove(User.EMAIL);
+        new EntryDataMapTypeCaster().convertValueTypes(entryDataMap);
         for (String key:
                 KEYS) {
             if (entryDataMap.containsKey(key) && entryDataMap.get(key) != null){
@@ -216,8 +220,16 @@ public class User extends Entry {
 
     @Override
     public synchronized void updateEntry(Entry entry) {
-        Map<String, Object> entryData = entry.serialize();
-        updateEntry(entryData);
+        entry.updateData(User.HASHED_PASSWORD, null);
+        entry.updateData(User.SALT, null);
+        entry.updateData(User.EMAIL, null);
+        for (String key:
+                KEYS) {
+            Object data = entry.getData(key);
+            if (data != null){
+                updateData(key, data);
+            }
+        }
     }
 
     @Override

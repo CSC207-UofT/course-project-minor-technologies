@@ -30,7 +30,7 @@ public class LocalCache {
 
     /**
      * Calls on FileIO and DataFormat to load listings. Adds the created listing according
-     * to listingDB according to the com.minortechnologies.workr.Entities.Listings.ListingType Enum.
+     * to listingDB according to the ListingType Enum.
      *
      * Load all listings from the folder DemoListings.
      * 
@@ -118,7 +118,7 @@ public class LocalCache {
      * If a job listing has an equivalent, then the old one is updated with the new data and the old instance is returned.
      * other-wise returns null.
      *
-     * @param jobListing
+     * @param jobListing a job listing to be added to the LocalCache
      * @return the existing listing, otherwise null.
      */
     public Entry addJobListing(Entry jobListing){

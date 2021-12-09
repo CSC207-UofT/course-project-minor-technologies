@@ -6,9 +6,7 @@ import com.minortechnologies.workr_backend.entities.listing.JobType;
 import com.minortechnologies.workr_backend.entities.listing.ListingType;
 import com.minortechnologies.workr_backend.entities.user.Experience;
 import com.minortechnologies.workr_backend.entities.user.User;
-import org.apache.tomcat.jni.Local;
 
-import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -95,7 +93,12 @@ public class JobListingDemo {
         incentives.add("Passionate");
         incentives.add("Prepared");
         incentives.add("Motivated");
-        user_test.addData(User.AWARDS, incentives);
+        user_test.addData(User.INCENTIVE, incentives);
+        ArrayList<String> award = new ArrayList<>();
+        award.add("Certificate in economic consulting");
+        user_test.addData(User.AWARDS, award);
+        String GPA = "4.0";
+        user_test.addData(User.GPA, GPA);
         return user_test;
     }
 

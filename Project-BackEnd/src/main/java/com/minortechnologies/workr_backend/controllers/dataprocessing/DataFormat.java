@@ -59,8 +59,6 @@ public class DataFormat {
         for(String file : fileNames) {
             String dataString = FileIO.readFile(relPath + file);
             try {
-//                JobListing jobListing = createListing(dataString);
-//                jobListings.add(jobListing);
                 Entry entry = createEntry(dataString);
                 entries.add(entry);
             } catch (MalformedDataException e) {
