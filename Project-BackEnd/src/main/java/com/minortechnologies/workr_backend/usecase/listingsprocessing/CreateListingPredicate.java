@@ -29,10 +29,10 @@ public class CreateListingPredicate {
     }
     //Creates a Predicate that checks if a Listing's pay is greater than a given amount
     public static Predicate<JobListing> payGreaterThan(Integer pay) {
-        return p -> Integer.valueOf(p.getData(JobListing.PAY).toString()) > pay;
+        return p -> (int) p.getData(JobListing.PAY) > pay;
     }
     //Creates a Predicate that checks if a Listing's pay is less than a given amount
     public static Predicate<JobListing> payLessThan(Integer pay) {
-        return p -> Integer.valueOf(p.getData(JobListing.PAY).toString()) < pay;
+        return p -> (int) p.getData(JobListing.PAY) < pay;
     }
 }
