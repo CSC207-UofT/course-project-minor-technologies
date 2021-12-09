@@ -4,8 +4,8 @@ package com.minortechnologies.workr_backend.usecase.scorecalculator;
 import com.minortechnologies.workr_backend.entities.listing.JobListing;
 import com.minortechnologies.workr_backend.entities.user.User;
 
-abstract class handler {
-    handler next;
+public abstract class Handler {
+    Handler next;
     User user;
     JobListing job;
     double score;
@@ -15,14 +15,14 @@ abstract class handler {
      * @param user_input a user
      * @param job_input a job listing
      * */
-    public handler(User user_input, JobListing job_input){
+    public Handler(User user_input, JobListing job_input){
         this.next = null; this.user = user_input; this.job=job_input; this.score = 0.0d;
     }
     /** Links the class to the next processing unit to continue the calculation
      *
      * @param handler_input the next handler/processing unit for score calculation
      * */
-    public void setNext(handler handler_input){
+    public void setNext(Handler handler_input){
         this.next = handler_input;
     }
 
