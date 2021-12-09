@@ -79,8 +79,9 @@ public class EntryDataMapTypeCaster {
             else if (Arrays.asList(DOUBLES).contains(key)){
                 if (!(data instanceof Float)){
                     if (data instanceof Integer){
-                        float data2 = (float) data;
-                        data = data2;
+                        int dataInt = (int) data;
+                        float dataFloat = (float) dataInt;
+                        data = dataFloat;
                     }
                     else{
                         data = 0.0d;
