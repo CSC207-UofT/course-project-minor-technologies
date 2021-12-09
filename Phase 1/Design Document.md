@@ -46,7 +46,7 @@ The program packages are currently separated into the different clean architectu
 
 ### Design Patterns.
 
-Creating Entry objects through deserialization in our program uses the Factory Design Principle. In com.minortechnologies.workr.usecase.factories contains Methods and objects that deserialize code. First, a map containing the entry data passed into ICreateEntry.create(), where it uses some portions of the data to determine which subclass should be created. Then, subclasses of ICreateEntry are used to create the final entry.
+Creating Entry objects through deserialization in our program uses the Factory Design Principle. In com.minortechnologies.workr_frontend.usecase.factories contains Methods and objects that deserialize code. First, a map containing the entry data passed into ICreateEntry.create(), where it uses some portions of the data to determine which subclass should be created. Then, subclasses of ICreateEntry are used to create the final entry.
 
 Any usecase objects that implements IEntryDatabase also has to implement the iterator design pattern. As these database objects will be a collection of Entry objects, it allows for iteration through the database. UserDB and JobListingDB both implement iterators.
 
@@ -66,7 +66,7 @@ IntelliJ Generated Class Diagrams can be viewed as PDF with the "Class Diagram.p
 
 DemoSource package
 
-Running the TotalDemo class in the com.minortechnologies.workr.demo package gives a demo of the below features.
+Running the TotalDemo class in the com.minortechnologies.workr_frontend.demo package gives a demo of the below features.
 
 TotalDemo was created as a relatively simple program loop with implementations of how to use the below classes. It does not have a proper UI that adhers to Clean Archictecture or SOLID principles. It is there for the purposes of demonstration and testing features.
 
@@ -91,7 +91,7 @@ Serialization
 * IEntrySerializer and IEntryDeserializer interfaces were created.
     * Currently there is a JSONSerializer that implements both interfaces. It serializes a map into a String in JSON Format and can deserialize a String in JSON Format into a HashMap
 * SearchQueries and Experience are serialized as part of a User instance.
-* Created EntryDataMapTypeCaster in com.minortechnologies.workr.usecase.factories.
+* Created EntryDataMapTypeCaster in com.minortechnologies.workr_frontend.usecase.factories.
     * This object exists to ensure essentially, that Entry.deserialize(Entry.serialize) works, in that output from Entry.serialize() can be directly passed into Entry.deserialize(). This was not the case before as serialized serialized list style collections (such as ArrayLists or HashSets) into an array, and therefore the deserialize method had to cast or convert to the correct object types.
     * Effectively, this Object was created to offload some de/serialization work from the Entries to a new class, which also adheres to the single responsibility design principle.
 

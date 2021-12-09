@@ -1,0 +1,624 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="cfc9da3c-0dc6-4aae-8ddf-0c93a5a63dc0" name="Changes" comment="Wrote some test code for Security and some CreateUser cases">
+      <change afterPath="$PROJECT_DIR$/Project/src/Entities/Employer/IEmployer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/commons-lang3-3.3.2.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/course-project-minor-technologies.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/course-project-minor-technologies.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/Project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Project/Project.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/src/Controllers/LocalCache/LocalCache.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/Controllers/LocalCache/LocalCache.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/src/Controllers/Search/Search.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/Controllers/Search/Search.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/src/Controllers/UserManagement/UserManagement.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/Controllers/UserManagement/UserManagement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/src/Entities/Employer/Employer.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/Entities/Employer/Employer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/src/Entities/IEntry.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/Entities/Entry.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/src/Entities/Listing/JobListing.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/Entities/Listing/JobListing.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/src/Entities/SearchQuery/SearchQuery.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/Entities/SearchQuery/SearchQuery.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/src/Entities/User/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/Entities/User/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/src/JayWangDemoScratchClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/JayWangDemoScratchClass.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/src/UseCase/FileIO/IEntrySerializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/UseCase/FileIO/IEntrySerializer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/src/UseCase/FileIO/JSONSerializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/UseCase/FileIO/JSONSerializer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/src/UseCase/ICreateEntry.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/UseCase/ICreateEntry.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/src/UseCase/IDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/UseCase/IDatabase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/src/UseCase/Listing/JobListingDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/UseCase/Listing/JobListingDB.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Project/src/UseCase/User/UserDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project/src/UseCase/User/UserDB.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Enum" />
+        <option value="Class" />
+        <option value="Interface" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="Jay_Wang" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="ProjectId" id="1zQeZPS34f8XS2K88o7fA6jP9IW" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="Downloaded.Files.Path.Enabled" value="true" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="TODO_SCOPE" value="All Places" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="codeWithMe.voiceChat.enabledByDefault" value="false" />
+    <property name="jdk.selected.JAVA_MODULE" value="corretto-11" />
+    <property name="last_directory_selection" value="$PROJECT_DIR$/Project/src" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../stanford-corenlp-4.3.1" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.152439" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="preferences.editor" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\OneDrive\Surface Pro Desktop\Essential\School\Year 2\Sem1\CSC207\course-project-minor-technologies\Phase 0" />
+    </key>
+    <key name="ExtractSuperBase.RECENT_KEYS">
+      <recent name="UseCase.Listing" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="JSONAndListingDemo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="JSONAndListingDemo" />
+      <module name="Project" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="JayWangDemoScratchClass" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="JayWangDemoScratchClass" />
+      <module name="Project" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="Project" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="All in Project" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Project" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DataFormatTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Project" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="DataFormatTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.DataFormatTest" />
+        <item itemvalue="JUnit.All in Project" />
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.JSONAndListingDemo" />
+        <item itemvalue="Application.JayWangDemoScratchClass" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="cfc9da3c-0dc6-4aae-8ddf-0c93a5a63dc0" name="Changes" comment="" />
+      <created>1634084794618</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1634084794618</updated>
+      <workItem from="1634084796298" duration="279000" />
+      <workItem from="1634085129697" duration="7954000" />
+      <workItem from="1634159054938" duration="13925000" />
+      <workItem from="1634175939272" duration="1333000" />
+      <workItem from="1634181122476" duration="199000" />
+      <workItem from="1634185213438" duration="229000" />
+      <workItem from="1634185508035" duration="796000" />
+      <workItem from="1634219089702" duration="2713000" />
+      <workItem from="1634235894447" duration="701000" />
+      <workItem from="1634254934768" duration="2603000" />
+      <workItem from="1634270080069" duration="4011000" />
+      <workItem from="1634303713615" duration="4125000" />
+      <workItem from="1634331673769" duration="2874000" />
+      <workItem from="1634352902743" duration="4355000" />
+      <workItem from="1634392366779" duration="7046000" />
+      <workItem from="1634410675007" duration="5547000" />
+      <workItem from="1634429059247" duration="180000" />
+      <workItem from="1634429953706" duration="1022000" />
+      <workItem from="1634434612294" duration="2911000" />
+      <workItem from="1634441928038" duration="631000" />
+      <workItem from="1634493092631" duration="20530000" />
+      <workItem from="1634523806301" duration="2990000" />
+      <workItem from="1634589377832" duration="660000" />
+      <workItem from="1634594485679" duration="16000" />
+      <workItem from="1634675790493" duration="983000" />
+      <workItem from="1634771529895" duration="5022000" />
+      <workItem from="1634781682175" duration="5156000" />
+      <workItem from="1634919312650" duration="9877000" />
+      <workItem from="1635194847729" duration="3718000" />
+      <workItem from="1635201824651" duration="5891000" />
+      <workItem from="1635216904008" duration="4000" />
+      <workItem from="1635374720188" duration="6447000" />
+      <workItem from="1635457674145" duration="14680000" />
+      <workItem from="1635539031107" duration="728000" />
+      <workItem from="1635539884771" duration="11679000" />
+      <workItem from="1635642690520" duration="5756000" />
+      <workItem from="1635653346485" duration="1900000" />
+      <workItem from="1635692531646" duration="1466000" />
+      <workItem from="1635694116480" duration="2003000" />
+      <workItem from="1635719821004" duration="66000" />
+      <workItem from="1635800735984" duration="16843000" />
+      <workItem from="1635822389906" duration="14000" />
+      <workItem from="1636997058883" duration="4000" />
+    </task>
+    <task id="LOCAL-00012" summary="Very minor changes">
+      <created>1634236345201</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1634236345201</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Docstring updates for LocalCache.java">
+      <created>1634236563731</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1634236563731</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Docstring updates for LocalCache.java">
+      <created>1634255463535</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1634255463535</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Docstring updates for LocalCache and Main">
+      <created>1634255543298</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1634255543298</updated>
+    </task>
+    <task id="LOCAL-00016" summary="A quick implementation of BackgroundOperations">
+      <created>1634267360347</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1634267360347</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Made WrkDir a constant: WORK_PATH if it's needed.&#10;&#10;Added a new method: GetFileNamesInDir - Returns a list of filenames in the given directory">
+      <created>1634271612535</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1634271612535</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Background Operations is working. &#10;&#10;If you want to test this, run JSONAndListingDemo, A loop will iterate 15 times, (once every 10 seconds). During this time, use another text editor (not Intellij as it will not update files while it is running/debugging java.) to edit DemoListing2.json in DemoListings">
+      <created>1634273873214</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1634273873214</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Background Operations is working. &#10;&#10;If you want to test this, run JSONAndListingDemo, A loop will iterate 15 times, (once every 10 seconds). During this time, use another text editor (not Intellij as it will not update files while it is running/debugging java.) to edit description in DemoListing2.json in DemoListings">
+      <created>1634274010571</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1634274010571</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Background Operations is working. &#10;&#10;If you want to test this, run JSONAndListingDemo, A loop will iterate 15 times, (once every 10 seconds). During this time, use another text editor (not Intellij as it will not update files while it is running/debugging java.) to edit description in DemoListing2.json in DemoListings. Your changes (if you saved before the lasted loop iteration) should be reflected as the loop prints the description of that listing.">
+      <created>1634274066161</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1634274066161</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Background Operations is working. &#10;&#10;If you want to test this, run JSONAndListingDemo, A loop will iterate 15 times, (once every 10 seconds). During this time, use another text editor (not Intellij as it will not update files while it is running/debugging java.) to edit description in DemoListing2.json in DemoListings. Your changes (if you saved before the lasted loop iteration) should be reflected as the loop prints the description of that listing.">
+      <created>1634305061503</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1634305061503</updated>
+    </task>
+    <task id="LOCAL-00022" summary="In ListingInOut\Load, there is a template json file. Use it to make some demo listings we will use for the walkthrough please and send it into #demolistings">
+      <created>1634334153587</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1634334153587</updated>
+    </task>
+    <task id="LOCAL-00023" summary="In ListingInOut\Load, there is a template json file. Use it to make some demo listings we will use for the walkthrough please and send it into #demolistings">
+      <created>1634334201347</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1634334201347</updated>
+    </task>
+    <task id="LOCAL-00024" summary="In ListingInOut\Load, there is a template json file. Use it to make some demo listings we will use for the walkthrough please and send it into #demolistings">
+      <created>1634353070503</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1634353070503</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Did some bug squashing related to BackgroundOperations, LocalCache, and FileIO">
+      <created>1634354979889</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1634354979889</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Some more bugsquashing">
+      <created>1634356040670</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1634356040670</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Some more bugsquashing.&#10;&#10;Making use of some constants&#10;&#10;MacOS vs Windows file structure compatability (File.Separator)">
+      <created>1634395669383</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1634395669383</updated>
+    </task>
+    <task id="LOCAL-00028" summary="Added Phillips's Main Program Loop since for whatever reason github isnt letting him in.&#10;&#10;Added some addition functions on top.">
+      <created>1634399177196</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1634399177196</updated>
+    </task>
+    <task id="LOCAL-00029" summary="Added Phillips's Main Program Loop since for whatever reason github isnt letting him in.&#10;&#10;Added some addition functions on top.">
+      <created>1634399212274</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1634399212274</updated>
+    </task>
+    <task id="LOCAL-00030" summary="Added Phillips's Main Program Loop since for whatever reason github isnt letting him in.&#10;&#10;Added some addition functions on top.">
+      <created>1634399482853</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1634399482853</updated>
+    </task>
+    <task id="LOCAL-00031" summary="Added a folder &quot;Phase 0&quot;">
+      <created>1634417532198</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1634417532199</updated>
+    </task>
+    <task id="LOCAL-00032" summary="Added a folder &quot;Phase 0&quot;">
+      <created>1634418600042</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1634418600042</updated>
+    </task>
+    <task id="LOCAL-00033" summary="Moved some files into Phase 0">
+      <created>1634418858101</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1634418858101</updated>
+    </task>
+    <task id="LOCAL-00034" summary="Moved some files into Phase 0">
+      <created>1634420080906</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1634420080906</updated>
+    </task>
+    <task id="LOCAL-00035" summary="Fixed FileIOTest.java">
+      <created>1634427596904</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1634427596904</updated>
+    </task>
+    <task id="LOCAL-00036" summary="CRC Cards now seperated with the Clean Architecture Layers">
+      <created>1634429118560</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1634429118560</updated>
+    </task>
+    <task id="LOCAL-00037" summary="CRC Cards now seperated with the Clean Architecture Layers">
+      <created>1634429170483</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1634429170483</updated>
+    </task>
+    <task id="LOCAL-00038" summary="some Unittest fixes">
+      <created>1634430925824</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1634430925824</updated>
+    </task>
+    <task id="LOCAL-00039" summary="Unit Test Stuff">
+      <created>1634438439187</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1634438439187</updated>
+    </task>
+    <task id="LOCAL-00040" summary="Removed some test that would have required some complicated implementation">
+      <created>1634439482338</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1634439482338</updated>
+    </task>
+    <task id="LOCAL-00041" summary="First Iteration of seperating the File Structure into a Clean Architecture Format">
+      <created>1634515221083</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1634515221084</updated>
+    </task>
+    <task id="LOCAL-00042" summary="First Iteration of seperating the File Structure into a Clean Architecture Format">
+      <created>1634515233584</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1634515233584</updated>
+    </task>
+    <task id="LOCAL-00043" summary="First Iteration of seperating the File Structure into a Clean Architecture Format">
+      <created>1634517139844</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1634517139844</updated>
+    </task>
+    <task id="LOCAL-00044" summary="cleaning some stuff.">
+      <created>1634523035331</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1634523035331</updated>
+    </task>
+    <task id="LOCAL-00045" summary="More changes for the sake of clean architecture">
+      <created>1634589403860</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1634589403860</updated>
+    </task>
+    <task id="LOCAL-00046" summary="IDatabase now requires implementing Iterable&lt;IEntry&gt;&#10;&#10;Implemented Iterable&lt;IEntry&gt; in ListingDB">
+      <created>1634776588716</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1634776588716</updated>
+    </task>
+    <task id="LOCAL-00047" summary="Removed Test Cases to make life a bit easier. We will need to redo them in the future anyways.&#10;&#10;Iterator for ListingDB now works.&#10;&#10;added some new stuff according to CRC Cards">
+      <created>1634782430730</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1634782430730</updated>
+    </task>
+    <task id="LOCAL-00048" summary="Serialization">
+      <created>1634943392376</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1634943392376</updated>
+    </task>
+    <task id="LOCAL-00049" summary="Serialization">
+      <created>1634943400474</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1634943400474</updated>
+    </task>
+    <task id="LOCAL-00050" summary="Renamed Listing (and any associated stuff) to JobListing&#10;&#10;Implemented the framework for a user login system.">
+      <created>1635201875926</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1635201875926</updated>
+    </task>
+    <task id="LOCAL-00051" summary="Testing UUIDs (randomly generated) instead of hashes for UIDs">
+      <created>1635207252456</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1635207252456</updated>
+    </task>
+    <task id="LOCAL-00052" summary="Testing UUIDs (randomly generated) instead of hashes for UIDs">
+      <created>1635208030658</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1635208030658</updated>
+    </task>
+    <task id="LOCAL-00053" summary="Testing UUIDs (randomly generated) instead of hashes for UIDs">
+      <created>1635208042034</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1635208042034</updated>
+    </task>
+    <task id="LOCAL-00054" summary="Implementing a hashed password storage system.">
+      <created>1635541209479</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1635541209479</updated>
+    </task>
+    <task id="LOCAL-00055" summary="Added edu.stanford.nlp:stanford-corenlp 4.3.1 to libraries.">
+      <created>1635541744647</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1635541744647</updated>
+    </task>
+    <task id="LOCAL-00056" summary="Added edu.stanford.nlp:stanford-corenlp 4.3.1 to libraries.">
+      <created>1635542593442</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1635542593442</updated>
+    </task>
+    <task id="LOCAL-00057" summary="Added edu.stanford.nlp:stanford-corenlp 4.3.1 to libraries.">
+      <created>1635542824968</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1635542824968</updated>
+    </task>
+    <task id="LOCAL-00058" summary="User Security (password hashing and logging in) works.&#10;&#10;Check JayWangDemoScratchClass.java to see how it might be implemented in UI.">
+      <created>1635557286212</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1635557286212</updated>
+    </task>
+    <task id="LOCAL-00059" summary="Wrote some test code for Security and some CreateUser cases">
+      <created>1635653950436</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1635653950437</updated>
+    </task>
+    <task id="LOCAL-00060" summary="Wrote some test code for Security and some CreateUser cases">
+      <created>1635694498301</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1635694498302</updated>
+    </task>
+    <option name="localTasksCounter" value="61" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="CUSTOM_BOOLEAN_PROPERTIES">
+                <map>
+                  <entry key="Show.Git.Branches" value="true" />
+                </map>
+              </option>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="AbstractEntry" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+              <option name="COLUMN_ID_WIDTH">
+                <map>
+                  <entry key="Table.Default.Author.ColumnIdWidth" value="94" />
+                  <entry key="Table.Default.Date.ColumnIdWidth" value="83" />
+                  <entry key="Table.Space.CommitStatus.ColumnIdWidth" value="58" />
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="In ListingInOut\Load, there is a template json file. Use it to make some demo listings we will use for the walkthrough please and send it into #demolistings" />
+    <MESSAGE value="Did some bug squashing related to BackgroundOperations, LocalCache, and FileIO" />
+    <MESSAGE value="Some more bugsquashing" />
+    <MESSAGE value="Some more bugsquashing.&#10;&#10;Making use of some constants&#10;&#10;MacOS vs Windows file structure compatability (File.Separator)" />
+    <MESSAGE value="Added Phillips's Main Program Loop since for whatever reason github isnt letting him in.&#10;&#10;Added some addition functions on top." />
+    <MESSAGE value="Added a folder &quot;Phase 0&quot;" />
+    <MESSAGE value="Moved some files into Phase 0" />
+    <MESSAGE value="Fixed FileIOTest.java" />
+    <MESSAGE value="CRC Cards now seperated with the Clean Architecture Layers" />
+    <MESSAGE value="some Unittest fixes" />
+    <MESSAGE value="Unit Test Stuff" />
+    <MESSAGE value="Removed some test that would have required some complicated implementation" />
+    <MESSAGE value="First Iteration of Separating the File Structure into a Clean Architecture Format" />
+    <MESSAGE value="First Iteration of seperating the File Structure into a Clean Architecture Format" />
+    <MESSAGE value="cleaning some stuff." />
+    <MESSAGE value="More changes for the sake of clean architecture" />
+    <MESSAGE value="IDatabase now requires implementing Iterable&lt;IEntry&gt;&#10;&#10;Implemented Iterable&lt;IEntry&gt; in ListingDB" />
+    <MESSAGE value="Removed Test Cases to make life a bit easier. We will need to redo them in the future anyways.&#10;&#10;Iterator for ListingDB now works.&#10;&#10;added some new stuff according to CRC Cards" />
+    <MESSAGE value="Serialization" />
+    <MESSAGE value="Renamed Listing (and any associated stuff) to JobListing&#10;&#10;Implemented the framework for a user login system." />
+    <MESSAGE value="Testing UUIDs (randomly generated) instead of hashes for UIDs" />
+    <MESSAGE value="Implementing a hashed password storage system." />
+    <MESSAGE value="Added edu.stanford.nlp:stanford-corenlp 4.3.1 to libraries." />
+    <MESSAGE value="User Security (password hashing and logging in) works.&#10;&#10;Check JayWangDemoScratchClass.java to see how it might be implemented in UI." />
+    <MESSAGE value="Wrote some test code for Security and some CreateUser cases" />
+    <option name="LAST_COMMIT_MESSAGE" value="Wrote some test code for Security and some CreateUser cases" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.NullPointerException" package="java.lang" />
+          <option name="timeStamp" value="6" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="demoListingJson.value[21]" />
+        <watch expression="jsonData" />
+      </configuration>
+    </watches-manager>
+  </component>
+</project>
