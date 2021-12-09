@@ -1,6 +1,7 @@
 package com.minortechnologies.workr_backend.usecase.scorecalculator;
 
 import com.minortechnologies.workr_backend.entities.listing.JobListing;
+import com.minortechnologies.workr_backend.entities.user.Experience;
 import com.minortechnologies.workr_backend.entities.user.User;
 
 import java.time.LocalDate;
@@ -13,7 +14,10 @@ abstract class HandlerExtWork extends Handler{
 
     /** Calculates a score based on how much time each work experience (related or unrelated)
      * lasts for and gives it a score with more recent experiences given higher weightage.*/
-    double scoreTime(LocalDate start_date, LocalDate end_date) {
+    double scoreTime(Experience experience) {
+
+        LocalDate start_date = (LocalDate) experience.getData(Experience.START_TIME);
+        LocalDate end_date = (LocalDate) experience.getData(Experience.END_TIME);
         LocalDate current_date = LocalDate.now();
 
         double sub_score = 0.0;
@@ -39,7 +43,8 @@ abstract class HandlerExtWork extends Handler{
             sub_score += 0.5;
         return sub_score;
     }
-    double titleScore(String title){
+    double titleScore(Experience experience){
+        String title = (String) experience.getData(Experience.EXPERIENCE_TITLE);
         double score = 0.0;
         if(title != null){
             String[] list_of_words = title.split("");

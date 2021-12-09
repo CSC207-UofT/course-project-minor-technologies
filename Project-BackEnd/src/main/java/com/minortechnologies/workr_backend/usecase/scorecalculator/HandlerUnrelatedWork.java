@@ -27,13 +27,9 @@ public class HandlerUnrelatedWork extends HandlerExtWork{
         ArrayList<Experience> user_experiences = (ArrayList<Experience>) this.user.getData(User.UREL_WORK_EXP);
         if(user_experiences != null){
             for(Experience experience : user_experiences) {
-                LocalDate start_date = (LocalDate) experience.getData(Experience.START_TIME);
-                LocalDate end_date = (LocalDate) experience.getData(Experience.END_TIME);
-                String title = (String) experience.getData(Experience.EXPERIENCE_TITLE);
                 ArrayList<String> description = (ArrayList<String>) experience.getData(Experience.EXPERIENCE_DESCRPTION);
-                double experience_score = scoreTime(start_date, end_date);
-                score += experience_score * description.size() * 0.5;
-                score += titleScore(title);
+                score += scoreTime(experience) * description.size() * 0.5;
+                score += titleScore(experience);
             }
         }
 
