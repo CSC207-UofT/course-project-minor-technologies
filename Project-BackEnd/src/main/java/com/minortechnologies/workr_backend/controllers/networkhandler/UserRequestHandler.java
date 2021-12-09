@@ -1,4 +1,4 @@
-package com.minortechnologies.workr_backend.networkhandler;
+package com.minortechnologies.workr_backend.controllers.networkhandler;
 
 import com.minortechnologies.workr_backend.controllers.localcache.LocalCache;
 import com.minortechnologies.workr_backend.controllers.usermanagement.AuthTokenController;
@@ -9,6 +9,7 @@ import com.minortechnologies.workr_backend.entities.listing.ListingType;
 import com.minortechnologies.workr_backend.entities.user.Experience;
 import com.minortechnologies.workr_backend.entities.user.Score;
 import com.minortechnologies.workr_backend.entities.user.User;
+import com.minortechnologies.workr_backend.framework.networkhandler.Application;
 import com.minortechnologies.workr_backend.usecase.factories.EntryDataMapTypeCaster;
 import com.minortechnologies.workr_backend.usecase.factories.ICreateEntry;
 import com.minortechnologies.workr_backend.usecase.factories.userfactory.CreateUser;

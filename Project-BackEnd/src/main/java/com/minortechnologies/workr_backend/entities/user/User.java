@@ -3,7 +3,7 @@ package com.minortechnologies.workr_backend.entities.user;
 import com.minortechnologies.workr_backend.entities.Entry;
 import com.minortechnologies.workr_backend.entities.listing.JobListing;
 import com.minortechnologies.workr_backend.entities.searchquery.SearchQuery;
-import com.minortechnologies.workr_backend.networkhandler.Application;
+import com.minortechnologies.workr_backend.framework.networkhandler.Application;
 import com.minortechnologies.workr_backend.usecase.factories.EntryDataMapTypeCaster;
 import com.minortechnologies.workr_backend.usecase.fileio.MalformedDataException;
 import com.minortechnologies.workr_backend.usecase.security.Security;

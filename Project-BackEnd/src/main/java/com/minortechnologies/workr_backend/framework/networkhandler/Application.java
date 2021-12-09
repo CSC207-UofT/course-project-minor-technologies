@@ -1,4 +1,4 @@
-package com.minortechnologies.workr_backend.networkhandler;
+package com.minortechnologies.workr_backend.framework.networkhandler;
 
 
 import com.minortechnologies.workr_backend.controllers.backgroundoperations.BackgroundOperations;

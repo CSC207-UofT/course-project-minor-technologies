@@ -7,14 +7,14 @@ import com.minortechnologies.workr_backend.entities.user.Experience;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class handler_3 extends handler_ext_work{
+public class HandlerUnrelatedWork extends HandlerExtWork{
 
-    /** Constructor of the class handler_3
+    /** Constructor of the class HandlerUnrelatedWork
      *
      * @param user_input a user
      * @param job_input a job listing
      * */
-    public handler_3(User user_input, JobListing job_input) {
+    public HandlerUnrelatedWork(User user_input, JobListing job_input) {
         super(user_input, job_input);
     }
 
@@ -27,12 +27,9 @@ public class handler_3 extends handler_ext_work{
         ArrayList<Experience> user_experiences = (ArrayList<Experience>) this.user.getData(User.UREL_WORK_EXP);
         if(user_experiences != null){
             for(Experience experience : user_experiences) {
-                LocalDate start_date = (LocalDate) experience.getData(Experience.START_TIME);
-                LocalDate end_date = (LocalDate) experience.getData(Experience.END_TIME);
-                String title = (String) experience.getData(Experience.EXPERIENCE_TITLE);
-                ArrayList<String> description = (ArrayList<String>) experience.getData(experience.EXPERIENCE_DESCRPTION);
-                double experience_score = scoreTime(start_date, end_date);
-                score += experience_score * description.size() * 0.5;
+                ArrayList<String> description = (ArrayList<String>) experience.getData(Experience.EXPERIENCE_DESCRPTION);
+                score += scoreTime(experience) * description.size() * 0.5;
+                score += titleScore(experience);
             }
         }
 

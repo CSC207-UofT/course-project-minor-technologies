@@ -4,7 +4,7 @@ import com.minortechnologies.workr_backend.demo.demosource.DemoJobListingSource;
 import com.minortechnologies.workr_backend.entities.Entry;
 import com.minortechnologies.workr_backend.entities.listing.JobListing;
 import com.minortechnologies.workr_backend.entities.searchquery.SearchQuery;
-import com.minortechnologies.workr_backend.networkhandler.Application;
+import com.minortechnologies.workr_backend.framework.networkhandler.Application;
 import com.minortechnologies.workr_backend.usecase.IDatabase;
 import com.minortechnologies.workr_backend.usecase.factories.ICreateEntry;
 import com.minortechnologies.workr_backend.usecase.fileio.MalformedDataException;

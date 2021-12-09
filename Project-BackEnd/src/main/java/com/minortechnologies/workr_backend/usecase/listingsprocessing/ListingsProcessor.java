@@ -4,41 +4,40 @@ import com.minortechnologies.workr_backend.entities.listing.JobListing;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
 
 public abstract class ListingsProcessor {
     /**
-     * abstract class com.minortechnologies.workr.UseCase.ListingsProcessing.ListingsProcessor containing template method processList and implementation
-     * of steps which is the same for all types of processors. Those implementations have
-     * been marked as final.
+     * abstract class com.minortechnologies.workr.UseCase.ListingsProcessing.ListingsProcessor
+     * containing template method processList and implementation
+     * of steps which is the same for all types of processors.
+     * Those implementations have been marked as final.
      * @param listings the List of listings to be filtered and sorted
      * @param filters a List of Predicates providing conditions for
      *                whether a given listing should be filtered out
-     * @param comparator a comparator object in which contains the criteria
-     *                   for comparing listings
+     * @param toCompare the criteria used to compare JobListings
      * @return the filtered and sorted List of listings
      */
     public final List<JobListing> processList(List<JobListing> listings, List<Predicate<JobListing>> filters,
-                                              Comparator<JobListing> comparator) {
+                                              String toCompare) {
         List<JobListing> filteredListings = filter(listings, filters);
-        return sort(filteredListings, comparator);
+        return sort(filteredListings, toCompare);
     }
     /**
      * default method when no comparator is provided (sorts alphabetically ascending, A to Z by default)
      */
     public final List<JobListing> processList(List<JobListing> listings, List<Predicate<JobListing>> filters) {
         List<JobListing> filteredListings = filter(listings, filters);
-        return sort(filteredListings, new AlphabeticalComparator());
+        return sort(filteredListings, "TITLE");
     }
     /**
      * default method when no filters are provided
      */
-    public final List<JobListing> processList(List<JobListing> listings, Comparator<JobListing> comparator) {
+    public final List<JobListing> processList(List<JobListing> listings, String toCompare) {
         List<Predicate<JobListing>> emptyList = Collections.emptyList();
         List<JobListing> filteredListings = filter(listings, emptyList);
-        return sort(filteredListings, comparator);
+        return sort(filteredListings, toCompare);
     }
     /**
      * default method when no comparator or filters are provided
@@ -46,7 +45,7 @@ public abstract class ListingsProcessor {
     public final List<JobListing> processList(List<JobListing> listings) {
         List<Predicate<JobListing>> emptyList = Collections.emptyList();
         List<JobListing> filteredListings = filter(listings, emptyList);
-        return sort(filteredListings, new AlphabeticalComparator());
+        return sort(filteredListings, "TITLE");
     }
     /**
      * Creates a new List containing only listings that meet the criteria given by filters
@@ -69,9 +68,8 @@ public abstract class ListingsProcessor {
         ArrayList<JobListing> toFilter = new ArrayList<>(listings);
         // filters listings by the composite predicate and returns a List containing those which pass
         toFilter = toFilter.stream().filter(filter).collect(ArrayList::new, ArrayList::add, ArrayList::addAll);
-        List<JobListing> filtered = toFilter;
-        return filtered;
+        return toFilter;
     }
 
-    abstract List<JobListing> sort(List<JobListing> listings, Comparator<JobListing> comparator);
+    abstract List<JobListing> sort(List<JobListing> listings, String toCompare);
 }

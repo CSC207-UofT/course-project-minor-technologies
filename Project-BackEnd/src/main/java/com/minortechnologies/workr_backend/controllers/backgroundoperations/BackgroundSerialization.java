@@ -1,6 +1,6 @@
 package com.minortechnologies.workr_backend.controllers.backgroundoperations;
 
-import com.minortechnologies.workr_backend.networkhandler.Application;
+import com.minortechnologies.workr_backend.framework.networkhandler.Application;
 
 public class BackgroundSerialization implements IBackgroundOperation{
     @Override

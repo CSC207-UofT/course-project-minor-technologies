@@ -1,4 +1,4 @@
-package com.minortechnologies.workr_backend.networkhandler;
+package com.minortechnologies.workr_backend.controllers.networkhandler;
 
 import com.minortechnologies.workr_backend.controllers.dataprocessing.DataFormat;
 import com.minortechnologies.workr_backend.controllers.localcache.LocalCache;
@@ -9,10 +9,11 @@ import com.minortechnologies.workr_backend.entities.listing.ListingType;
 import com.minortechnologies.workr_backend.entities.searchquery.SearchQuery;
 import com.minortechnologies.workr_backend.entities.user.Score;
 import com.minortechnologies.workr_backend.entities.user.User;
+import com.minortechnologies.workr_backend.framework.networkhandler.Application;
 import com.minortechnologies.workr_backend.usecase.factories.EntryDataMapTypeCaster;
 import com.minortechnologies.workr_backend.usecase.factories.ICreateEntry;
 import com.minortechnologies.workr_backend.usecase.fileio.MalformedDataException;
-import com.minortechnologies.workr_backend.usecase.scorecalculator.handler_main;
+import com.minortechnologies.workr_backend.usecase.scorecalculator.HandlerMain;
 import org.apache.commons.lang3.SerializationUtils;
 
 import java.util.ArrayList;
@@ -147,9 +148,9 @@ public class ListingRequestHandler {
             JobListing listing = Application.getLocalCache().getListingFromUUID(uuid);
             if (!(listing == null)) {
                 Score score = new Score();
-                handler_main scoreCalc = new handler_main(user, listing);
+                HandlerMain scoreCalc = new HandlerMain(user, listing);
                 scoreCalc.generateScore();
-                double scoredouble = scoreCalc.get_score();
+                double scoredouble = scoreCalc.getScore();
                 score.addData(Score.SCORE, scoredouble);
                 score.addData(Score.UID, uuid);
                 uuids.add(Score.UID);

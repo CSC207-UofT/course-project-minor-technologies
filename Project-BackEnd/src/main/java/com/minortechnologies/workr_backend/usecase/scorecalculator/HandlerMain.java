@@ -3,12 +3,12 @@ package com.minortechnologies.workr_backend.usecase.scorecalculator;
 import com.minortechnologies.workr_backend.entities.listing.JobListing;
 import com.minortechnologies.workr_backend.entities.user.User;
 
-public class handler_main{
+public class HandlerMain {
     protected User user;
     protected JobListing job;
     double score;
 
-    public handler_main(User user_input, JobListing job_input) {
+    public HandlerMain(User user_input, JobListing job_input) {
         user = user_input;
         job = job_input;
         this.score=0.0;
@@ -21,17 +21,19 @@ public class handler_main{
      * unrelated work experiences of the user, respectively. */
 
     public void generateScore(){
-        handler h1 = new handler_1(this.user, this.job);
-        handler h2 = new handler_2(this.user, this.job);
-        handler h3 = new handler_3(this.user, this.job);
-        handler h4 = new handler_incentive(this.user, this.job);
-        handler h5 = new handler_leadership(this.user, this.job);
-        handler h6 = new handler_6(this.user, this.job);
+        Handler h1 = new HandlerSkills(this.user, this.job);
+        Handler h2 = new HandlerRelatedWork(this.user, this.job);
+        Handler h3 = new HandlerUnrelatedWork(this.user, this.job);
+        Handler h4 = new HandlerIncentive(this.user, this.job);
+        Handler h5 = new HandlerLeadership(this.user, this.job);
+        Handler h6 = new HandlerGrade(this.user, this.job);
+        Handler h7 = new HandlerAwards(this.user, this.job);
         h1.setNext(h2);
         h2.setNext(h3);
         h3.setNext(h4);
         h4.setNext(h5);
         h5.setNext(h6);
+        h6.setNext(h7);
         h1.processRequest();
         this.score = h1.getScore();
     }

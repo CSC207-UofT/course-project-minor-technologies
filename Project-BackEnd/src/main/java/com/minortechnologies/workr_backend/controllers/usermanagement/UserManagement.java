@@ -6,7 +6,7 @@ import com.minortechnologies.workr_backend.entities.listing.JobListing;
 import com.minortechnologies.workr_backend.entities.security.AuthToken;
 import com.minortechnologies.workr_backend.entities.user.User;
 import com.minortechnologies.workr_backend.framework.fileio.FileIO;
-import com.minortechnologies.workr_backend.networkhandler.Application;
+import com.minortechnologies.workr_backend.framework.networkhandler.Application;
 import com.minortechnologies.workr_backend.usecase.fileio.IEntrySerializer;
 import com.minortechnologies.workr_backend.usecase.fileio.JSONSerializer;
 import com.minortechnologies.workr_backend.usecase.factories.userfactory.CreateUser;
