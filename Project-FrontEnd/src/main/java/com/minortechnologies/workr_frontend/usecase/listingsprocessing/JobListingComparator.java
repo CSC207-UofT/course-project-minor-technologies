@@ -75,8 +75,8 @@ public class JobListingComparator implements Comparator<JobListing> {
 
     //l1 is greater than l2 if its salary is greater than that of l2's
     public int compareByPay (JobListing l1, JobListing l2) {
-        int p1 = Integer.valueOf(l1.getData(JobListing.PAY).toString());
-        int p2 = Integer.valueOf(l2.getData(JobListing.PAY).toString());
+        int p1 = (int) l1.getData(JobListing.PAY);
+        int p2 = (int) l2.getData(JobListing.PAY);
 
         return p1 - p2;
     }
