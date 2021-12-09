@@ -9,15 +9,12 @@ import com.minortechnologies.workr_backend.framework.networkhandler.Application;
 import com.minortechnologies.workr_backend.usecase.security.AuthTokenDB;
 import com.minortechnologies.workr_backend.usecase.user.UserDB;
 import org.springframework.boot.SpringApplication;
-import org.springframework.context.ApplicationContext;
 
 import java.util.ArrayList;
 import java.util.Map;
 
 
 public class AdminHandler {
-
-    private ApplicationContext appContext;
 
     /**
      * Serializes all data

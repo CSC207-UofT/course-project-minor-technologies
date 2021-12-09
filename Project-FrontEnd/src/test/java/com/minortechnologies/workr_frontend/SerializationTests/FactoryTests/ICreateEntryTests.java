@@ -26,7 +26,7 @@ public class ICreateEntryTests {
 
     HashMap<String, Object> jobListingData;
     HashMap<String, Object> userData;
-    String sep = File.separator;
+    final String sep = File.separator;
 
     @Before
     public void setUp(){

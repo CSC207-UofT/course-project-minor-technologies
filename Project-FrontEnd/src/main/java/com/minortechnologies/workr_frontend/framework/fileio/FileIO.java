@@ -99,11 +99,6 @@ public class FileIO {
         return fileNames;
     }
 
-    public static boolean containsFolder(String relDir){
-        String path = WORK_PATH + relDir;
-        return Files.exists(Path.of(path));
-    }
-
     public static boolean createDirectory(String relDir){
         return new File(WORK_PATH + relDir).mkdirs();
     }

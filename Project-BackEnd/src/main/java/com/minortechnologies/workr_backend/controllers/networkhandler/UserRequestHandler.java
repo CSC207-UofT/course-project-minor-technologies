@@ -110,9 +110,9 @@ public class UserRequestHandler {
         HashMap<String, Object> dataMap = new HashMap<>();
         dataMap.put(key, data);
 
-        EntryDataMapTypeCaster edmtc = new EntryDataMapTypeCaster();
+        EntryDataMapTypeCaster entryDataMapTypeCaster = new EntryDataMapTypeCaster();
         try{
-            edmtc.convertValueTypes(dataMap);
+            entryDataMapTypeCaster.convertValueTypes(dataMap);
         }
         catch (ClassCastException e){
             return NetworkResponseConstants.PAYLOAD_MALFORMED;

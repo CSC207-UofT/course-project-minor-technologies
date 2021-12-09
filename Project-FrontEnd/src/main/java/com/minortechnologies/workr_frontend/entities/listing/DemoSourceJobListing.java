@@ -10,11 +10,6 @@ public class DemoSourceJobListing extends JobListing {
 
     public static final String DEMO_SOURCE_ID = "demoSourceID";
 
-    public DemoSourceJobListing(String title){
-        super();
-        addData(JobListing.TITLE, title);
-    }
-
     public DemoSourceJobListing(Map<String, Object> dataMap) throws MalformedDataException{
         super();
         deserialize(dataMap);
