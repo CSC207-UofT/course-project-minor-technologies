@@ -30,7 +30,7 @@ public class LocalCache {
 
     /**
      * Calls on FileIO and DataFormat to load listings. Adds the created listing according
-     * to listingDB according to the com.minortechnologies.workr.Entities.Listings.ListingType Enum.
+     * to listingDB according to the ListingType Enum.
      *
      * Load all listings from the folder DemoListings.
      * 

@@ -12,9 +12,13 @@ public class CreateSearchQuery implements ICreateEntry {
 
     @Override
     public Entry create(Map<String, Object> entryDataMap) throws MalformedDataException {
-        SearchQuery query = new SearchQuery();
-        query.deserialize(entryDataMap);
-        return query;
+        ArrayList<String> missingKeys = verifyMapIntegrity(entryDataMap);
+        if (missingKeys.size() == 0){
+            SearchQuery query = new SearchQuery();
+            query.deserialize(entryDataMap);
+            return query;
+        }
+        throw new MalformedDataException(ICreateEntry.missingKeyInfo(missingKeys, "SEARCH QUERY"));
     }
 
     @Override
