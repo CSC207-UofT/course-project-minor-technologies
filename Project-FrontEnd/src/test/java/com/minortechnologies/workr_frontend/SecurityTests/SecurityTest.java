@@ -25,24 +25,16 @@ public class SecurityTest {
         salt1 = Security.generateSalt();
         salt2 = Security.generateSalt();
     }
-
-    @After
-    public void tearDown() {
-    }
-
+    
     /**
      * tests that equal inputs generates the same hash (when salt is not used)
      *
      */
     @Test
     public void repeatableHashResults() {
-        try {
-            byte[] hash1 = Security.generateHash(hashString1);
-            byte[] hash2 = Security.generateHash(hashString2);
-            assertArrayEquals(hash1, hash2);
-        } catch (InvalidKeySpecException | NoSuchAlgorithmException e) {
-            fail();
-        }
+        byte[] hash1 = Security.generateHash(hashString1);
+        byte[] hash2 = Security.generateHash(hashString2);
+        assertArrayEquals(hash1, hash2);
     }
 
     /**

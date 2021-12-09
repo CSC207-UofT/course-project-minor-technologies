@@ -4,7 +4,6 @@ import com.minortechnologies.workr_frontend.entities.Entry;
 import com.minortechnologies.workr_frontend.entities.user.User;
 import com.minortechnologies.workr_frontend.usecase.factories.ICreateEntry;
 import com.minortechnologies.workr_frontend.usecase.fileio.MalformedDataException;
-import com.minortechnologies.workr_frontend.usecase.security.Security;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -11,12 +11,17 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 
+@SuppressWarnings("unchecked")
 public class CreateUser implements ICreateUser{
 
     @Override
     public User create(Map<String, Object> userDataMap) throws MalformedDataException {
+        return create(userDataMap, false);
+    }
+
+    public User create(Map<String, Object> userDataMap, boolean ignoreMissingKeys) throws MalformedDataException {
         ArrayList<String> missingKeys = verifyMapIntegrity(userDataMap);
-        if (missingKeys.size() != 0){
+        if (missingKeys.size() != 0 && !ignoreMissingKeys){
             String message = ICreateEntry.missingKeyInfo(missingKeys, "User");
             throw new MalformedDataException(message);
         }

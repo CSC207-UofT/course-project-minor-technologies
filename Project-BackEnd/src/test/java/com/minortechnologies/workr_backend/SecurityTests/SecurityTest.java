@@ -5,8 +5,6 @@ import com.minortechnologies.workr_backend.usecase.security.Security;
 import com.minortechnologies.workr_backend.usecase.factories.userfactory.CreateUser;
 import org.junit.*;
 
-import java.security.NoSuchAlgorithmException;
-import java.security.spec.InvalidKeySpecException;
 
 import static org.junit.Assert.*;
 
@@ -26,23 +24,15 @@ public class SecurityTest {
         salt2 = Security.generateSalt();
     }
 
-    @After
-    public void tearDown() {
-    }
-
     /**
      * tests that equal inputs generates the same hash (when salt is not used)
      *
      */
     @Test
     public void repeatableHashResults() {
-        try {
-            byte[] hash1 = Security.generateHash(hashString1);
-            byte[] hash2 = Security.generateHash(hashString2);
-            assertArrayEquals(hash1, hash2);
-        } catch (InvalidKeySpecException | NoSuchAlgorithmException e) {
-            fail();
-        }
+        byte[] hash1 = Security.generateHash(hashString1);
+        byte[] hash2 = Security.generateHash(hashString2);
+        assertArrayEquals(hash1, hash2);
     }
 
     /**

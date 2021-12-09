@@ -7,6 +7,7 @@ import org.apache.commons.lang3.SerializationUtils;
 import java.util.HashMap;
 import java.util.Map;
 
+@SuppressWarnings("ALL") // this class has not be implemented in any meaningful capacity.
 public class Employer extends Entry {
 
     public final String EMPLOYER_NAME = "employerName";
@@ -19,7 +20,7 @@ public class Employer extends Entry {
     }
 
     @Override
-    public synchronized void deserialize(Map<String, Object> entryDataMap) throws MalformedDataException {
+    public synchronized void deserialize(Map<String, Object> entryDataMap) {
         throw new UnsupportedOperationException();
     }
 
