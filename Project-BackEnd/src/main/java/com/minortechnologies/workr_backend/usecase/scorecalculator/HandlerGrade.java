@@ -3,10 +3,14 @@ package com.minortechnologies.workr_backend.usecase.scorecalculator;
 import com.minortechnologies.workr_backend.entities.listing.JobListing;
 import com.minortechnologies.workr_backend.entities.user.User;
 
-public class handler_6 extends handler{
+public class HandlerGrade extends Handler{
 
-
-    public handler_6(User user_input, JobListing job_input) {
+    /** Constructor of the class HandlerGrade
+     *
+     * @param user_input a user
+     * @param job_input a job listing
+     * */
+    public HandlerGrade(User user_input, JobListing job_input) {
         super(user_input, job_input);
     }
 

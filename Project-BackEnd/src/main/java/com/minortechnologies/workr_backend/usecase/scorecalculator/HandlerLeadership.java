@@ -7,9 +7,14 @@ import com.minortechnologies.workr_backend.entities.user.Experience;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class handler_leadership extends handler_ext_work {
+public class HandlerLeadership extends HandlerExtWork {
 
-    public handler_leadership(User user_input, JobListing job_input) {
+    /** Constructor of the class HandlerLeadership
+     *
+     * @param user_input a user
+     * @param job_input a job listing
+     * */
+    public HandlerLeadership(User user_input, JobListing job_input) {
         super(user_input, job_input);
     }
 
@@ -25,7 +30,7 @@ public class handler_leadership extends handler_ext_work {
                 LocalDate end_date = (LocalDate) lead_experience.getData(Experience.END_TIME);
                 String exp_title = (String) lead_experience.getData(Experience.EXPERIENCE_TITLE);
                 ArrayList<String> lead_description = (ArrayList<String>)
-                        lead_experience.getData(lead_experience.EXPERIENCE_DESCRPTION);
+                        lead_experience.getData(Experience.EXPERIENCE_DESCRPTION);
                 double lead_exp_score = scoreTime(start_date, end_date);
                 score += lead_exp_score * lead_description.size();
                 score += titleScore(exp_title);

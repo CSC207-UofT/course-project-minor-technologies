@@ -6,9 +6,14 @@ import com.minortechnologies.workr_backend.entities.user.User;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class handler_awards extends handler {
+public class HandlerAwards extends Handler {
 
-    public handler_awards(User user_input, JobListing job_input) {
+    /** Constructor of the class HandlerAwards
+     *
+     * @param user_input a user
+     * @param job_input a job listing
+     * */
+    public HandlerAwards(User user_input, JobListing job_input) {
         super(user_input, job_input);
     }
 
@@ -30,7 +35,7 @@ public class handler_awards extends handler {
                         "inside", "instead", "into", "like", "near", "of", "off", "on", "onto", "out", "outside",
                         "over", "past", "regarding", "since", "through", "throughout", "to", "toward", "under", "underneath",
                         "until", "up", "upon", "with", "within", "without", "regard"};
-                ArrayList<String> words_to_avoid = new ArrayList<String>(Arrays.asList(words_avoiding));
+                ArrayList<String> words_to_avoid = new ArrayList<>(Arrays.asList(words_avoiding));
                 for(String sentence: award_words){
                     if(sentence.equals(""))
                         continue;

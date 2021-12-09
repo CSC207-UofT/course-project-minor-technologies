@@ -6,8 +6,8 @@ import com.minortechnologies.workr_backend.entities.user.User;
 import java.time.LocalDate;
 import java.time.Period;
 
-abstract class handler_ext_work extends handler{
-    public handler_ext_work(User user_input, JobListing job_input) {
+abstract class HandlerExtWork extends Handler{
+    public HandlerExtWork(User user_input, JobListing job_input) {
         super(user_input, job_input);
     }
 

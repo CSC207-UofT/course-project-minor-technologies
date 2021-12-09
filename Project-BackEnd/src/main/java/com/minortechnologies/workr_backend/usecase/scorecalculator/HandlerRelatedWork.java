@@ -7,38 +7,39 @@ import com.minortechnologies.workr_backend.entities.user.Experience;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class handler_3 extends handler_ext_work{
+public class HandlerRelatedWork extends HandlerExtWork{
 
-    /** Constructor of the class handler_3
+
+    /** Constructor of the class HandlerRelatedWork
      *
      * @param user_input a user
      * @param job_input a job listing
      * */
-    public handler_3(User user_input, JobListing job_input) {
+    public HandlerRelatedWork(User user_input, JobListing job_input) {
         super(user_input, job_input);
     }
 
-    /** Calculates a score given to user based on the user's unrelated work experiences. Unrelated work
-     * experiences are generally less important and therefore assigned a lesser weight. */
-
+    /** Calculates a score given to user based on the user's related work experiences.*/
     @Override
     public void scoreCalculate() {
         double score = 0.0;
-        ArrayList<Experience> user_experiences = (ArrayList<Experience>) this.user.getData(User.UREL_WORK_EXP);
+        ArrayList<Experience> user_experiences = (ArrayList<Experience>) this.user.getData(User.REL_WORK_EXP);
         if(user_experiences != null){
             for(Experience experience : user_experiences) {
                 LocalDate start_date = (LocalDate) experience.getData(Experience.START_TIME);
                 LocalDate end_date = (LocalDate) experience.getData(Experience.END_TIME);
                 String title = (String) experience.getData(Experience.EXPERIENCE_TITLE);
-                ArrayList<String> description = (ArrayList<String>) experience.getData(experience.EXPERIENCE_DESCRPTION);
+                ArrayList<String> description = (ArrayList<String>) experience.getData(Experience.EXPERIENCE_DESCRPTION);
                 double experience_score = scoreTime(start_date, end_date);
-                score += experience_score * description.size() * 0.5;
+                score += experience_score * description.size();
                 score += titleScore(title);
             }
         }
-
 
         this.score += score;
     }
 
 }
+
+
+
