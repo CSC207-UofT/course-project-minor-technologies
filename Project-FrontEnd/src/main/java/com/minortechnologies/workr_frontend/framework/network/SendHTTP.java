@@ -52,7 +52,7 @@ public class SendHTTP {
      * @param targetURL The target URL to send the request to
      * @param urlParams Request Parameters contained in a Map.
      * @return The response from the server.
-     * @throws IOException Not Entirely Sure the Cause. Need to analyze this code further. See start of this class file info.
+     * @throws IOException Not Entirely Sure the Cause. Need to analyze this code further. See start of this class file disclaimer.
      * @throws FileNotFoundException if the targetURL does not exist
      */
     public static String executeGet(String targetURL, Map<String, String> urlParams) throws IOException, FileNotFoundException{
@@ -80,9 +80,11 @@ public class SendHTTP {
      *
      * @param targetURL The target URL to send the request to
      * @param urlParams Request Parameters contained in a Map.
-     * @param data The HTTP Request Body
+     * @param data The HTTP Request Body as a String.
+     *             If a Map needs to be sent, create a JSONObject, pass the Map into the constructor
+     *             If an Array or List needs to be sent, create a JSONArray and pass the array or list into the constructor.
      * @return The response from the target server as a String
-     * @throws IOException Not Entirely Sure the Cause. Need to analyze this code further. See start of this class file info.
+     * @throws IOException Not Entirely Sure the Cause. Need to analyze this code further. See start of this class file disclaimer.
      * @throws FileNotFoundException if the targetURL does not exist
      */
     public static String executePost(String targetURL, Map<String, String> urlParams, String data) throws IOException {
