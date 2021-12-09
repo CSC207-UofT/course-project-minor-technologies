@@ -5,14 +5,14 @@ import com.minortechnologies.workr_backend.entities.user.User;
 
 import java.util.ArrayList;
 
-public class handler_1 extends handler_ext {
+public class HandlerSkills extends HandlerExt {
 
-    /** Constructor of the class handler_1
+    /** Constructor of the class HandlerSkills
      *
      * @param user_input a user
      * @param job_input a job listing
      * */
-    public handler_1(User user_input, JobListing job_input) {
+    public HandlerSkills(User user_input, JobListing job_input) {
         super(user_input, job_input);
     }
 
