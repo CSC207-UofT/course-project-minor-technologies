@@ -7,15 +7,15 @@ import com.minortechnologies.workr_backend.entities.user.Experience;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class handler_2 extends handler_ext_work{
+public class HandlerRelatedWork extends HandlerExtWork{
 
 
-    /** Constructor of the class handler_2
+    /** Constructor of the class HandlerRelatedWork
      *
      * @param user_input a user
      * @param job_input a job listing
      * */
-    public handler_2(User user_input, JobListing job_input) {
+    public HandlerRelatedWork(User user_input, JobListing job_input) {
         super(user_input, job_input);
     }
 
