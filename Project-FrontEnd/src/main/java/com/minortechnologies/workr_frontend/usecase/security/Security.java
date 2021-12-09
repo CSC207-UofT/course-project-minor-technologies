@@ -45,10 +45,8 @@ public class Security {
      *
      * @param string - the string to be hashes
      * @return byte array representing the hashing result.
-     * @throws InvalidKeySpecException - TODO: find out why this would get thrown
-     * @throws NoSuchAlgorithmException - Should never throw this as the algorithm selection is hardcoded into the method
      */
-    public static byte[] generateHash(String string) throws InvalidKeySpecException, NoSuchAlgorithmException{
+    public static byte[] generateHash(String string) {
 
         byte[] salt = new byte[] {0};
         return generateHash(string, salt);

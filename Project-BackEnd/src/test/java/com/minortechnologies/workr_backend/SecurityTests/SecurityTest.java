@@ -5,8 +5,6 @@ import com.minortechnologies.workr_backend.usecase.security.Security;
 import com.minortechnologies.workr_backend.usecase.factories.userfactory.CreateUser;
 import org.junit.*;
 
-import java.security.NoSuchAlgorithmException;
-import java.security.spec.InvalidKeySpecException;
 
 import static org.junit.Assert.*;
 
@@ -24,10 +22,6 @@ public class SecurityTest {
         hashString2 = "TestString";
         salt1 = Security.generateSalt();
         salt2 = Security.generateSalt();
-    }
-
-    @After
-    public void tearDown() {
     }
 
     /**

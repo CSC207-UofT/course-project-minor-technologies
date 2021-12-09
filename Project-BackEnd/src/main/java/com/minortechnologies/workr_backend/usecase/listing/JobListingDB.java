@@ -74,7 +74,7 @@ public class JobListingDB implements IDatabase{
      * // correctly done, the listing would have to be replaced entirely.
      *
      * @param entry the entry to be added
-     * @return
+     * @return whether the entry had been updated
      */
     @Override
     public boolean updateEntry(Entry entry){
@@ -90,8 +90,8 @@ public class JobListingDB implements IDatabase{
     /**
      * returns true if an Entry is contained in this database, otherwise returns false.
      *
-     * @param entry
-     * @return
+     * @param entry the entry to search for
+     * @return whether the entry is contained in this database.
      */
     @Override
     public boolean contains(Entry entry) {
@@ -104,8 +104,8 @@ public class JobListingDB implements IDatabase{
     /**
      * returns true if there is an Equivalent entry in this database, determined by the Entry.isEquivalent method.
      * TODO: complete docstring
-     * @param entry
-     * @return
+     * @param entry The entry to find an equivalent entry for
+     * @return The entry that was found to be equivalent to the provided entry.
      */
     @Override
     public Entry getEquivalent(Entry entry){
@@ -134,14 +134,14 @@ public class JobListingDB implements IDatabase{
      * returns the index for a listing with a matching UID;
      * returns -1 if there are no listings with the matching UID;
      *
-     * @param jobListing
-     * @return
+     * @param jobListing A JobListing object to find the index for
+     * @return the index of the provided listing.
      */
     private int getIndex(JobListing jobListing){
         ListingType type = jobListing.getListingType();
         ArrayList<JobListing> db = listingDB.get(type);
         for (int i = 0; i < db.size(); i++) {
-            if (db.get(i).getUUID() == jobListing.getUUID()){
+            if (Objects.equals(db.get(i).getUUID(), jobListing.getUUID())){
                 return i;
             }
         }
@@ -151,8 +151,8 @@ public class JobListingDB implements IDatabase{
     /**
      * Removes the provided entry from the database.
      *
-     * @param entry
-     * @return
+     * @param entry the entry to remove from the database
+     * @return whether the entry was successfully removed from the database.
      */
     @Override
     public boolean removeEntry(Entry entry) {

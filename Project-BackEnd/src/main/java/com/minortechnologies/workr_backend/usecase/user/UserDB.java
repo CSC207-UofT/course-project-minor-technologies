@@ -111,8 +111,8 @@ public class UserDB implements IDatabase {
     /**
      * Whether this database contains this specific entry.
      *
-     * @param entry
-     * @return
+     * @param entry The entry to search the database for
+     * @return Whether this database contains this entry.
      */
     @Override
     public boolean contains(Entry entry) {

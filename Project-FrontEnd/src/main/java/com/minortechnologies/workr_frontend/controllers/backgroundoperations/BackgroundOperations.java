@@ -1,7 +1,6 @@
 package com.minortechnologies.workr_frontend.controllers.backgroundoperations;
 
 import java.util.ArrayList;
-import java.util.concurrent.ScheduledExecutorService;
 
 public class BackgroundOperations {
 
