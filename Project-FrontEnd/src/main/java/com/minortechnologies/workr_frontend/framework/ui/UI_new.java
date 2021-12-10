@@ -2,23 +2,31 @@ package com.minortechnologies.workr_frontend.framework.ui;
 
 import com.minortechnologies.workr_frontend.entities.listing.JobType;
 import com.minortechnologies.workr_frontend.entities.user.User;
+import org.json.JSONObject;
+import com.minortechnologies.workr_frontend.framework.network.SendHTTP;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Arrays;
+import java.util.HashMap;
+
+import static com.minortechnologies.workr_frontend.framework.network.SendHTTP.executeGet;
+import static com.minortechnologies.workr_frontend.framework.network.SendHTTP.executePost;
 
 public class UI_new {
 
-    public static void main(String[] args) { new UI_new(); }
+    public static void main(String[] args) {
+        new UI_new();
+    }
 
-    private User[] users;
-    private int numUsers = 0;
     private JFrame frame;
 
-    private User currentUser;
+    private String currentUser;
 
     final CardLayout cardLayout;
     JPanel cards = new JPanel(new CardLayout());
@@ -34,7 +42,6 @@ public class UI_new {
 
     public UI_new() {
         setup();
-        users = new User[100];
         JPanel loginPanel = loginScreen();
         JPanel signupPanel = signupScreen();
         JPanel accountPanel = accountScreen();
@@ -83,25 +90,38 @@ public class UI_new {
         loginButton.setBounds(325, 150, 75, 25);
         loginPanel.add(loginButton);
         loginButton.addActionListener(e -> {
+            HashMap<String, String> params = new HashMap<>();
+            params.put("login", username.toString());
+            params.put("passwowrd", password.toString());
+
             try {
-                boolean userFound = false;
-                for (User user : users) {
-                    if (user == null) {
-                        break;
-                    }
-                    if (user.ACCOUNT_NAME.equals(username.getText())) {
-                        userFound = true;
-                        currentUser = user;
-                        cardLayout.show(cards, "main");
-                        break;
-                    }
-                }
-                if (!userFound) {
-                    noSuchUserWarning(loginPanel);
-                }
-            } catch (IndexOutOfBoundsException n) {
+                currentUser = executeGet("http://localhost:8080/User/SignIn", params);
+            } catch (IOException fileNotFoundException) {
+                fileNotFoundException.printStackTrace();
+            }
+
+            if (currentUser == null) {
                 noSuchUserWarning(loginPanel);
             }
+//            try {
+//                boolean userFound = false;
+//                for (User user : users) {
+//                    if (user == null) {
+//                        break;
+//                    }
+//                    if (user.ACCOUNT_NAME.equals(username.getText())) {
+//                        userFound = true;
+//                        currentUser = user;
+//                        cardLayout.show(cards, "main");
+//                        break;
+//                    }
+//                }
+//                if (!userFound) {
+//                    noSuchUserWarning(loginPanel);
+//                }
+//            } catch (IndexOutOfBoundsException n) {
+//                noSuchUserWarning(loginPanel);
+//            }
         });
 
         //signup redirect
@@ -135,31 +155,39 @@ public class UI_new {
 
         //username field
         JTextField username = new JTextField();
-        username.setBounds(200, 100, 200, 25);
+        username.setBounds(225, 100, 200, 25);
         JLabel usernameLabel = new JLabel("Username:");
         usernameLabel.setBounds(100, 100, 100, 25);
         signupPanel.add(username);
         signupPanel.add(usernameLabel);
 
+        //account name field
+        JTextField account_name = new JTextField();
+        account_name.setBounds(225, 125, 200, 25);
+        JLabel accountLabel = new JLabel("Full Name:");
+        accountLabel.setBounds(100, 125, 200, 25);
+        signupPanel.add(account_name);
+        signupPanel.add(accountLabel);
+
         //password field
-        JLabel passwordLabel = new JLabel("Password:");
-        passwordLabel.setBounds(100, 125, 100, 25);
         JPasswordField password = new JPasswordField();
-        password.setBounds(200, 125, 200, 25);
+        password.setBounds(225, 150, 200, 25);
+        JLabel passwordLabel = new JLabel("Password:");
+        passwordLabel.setBounds(100, 150, 200, 25);
         signupPanel.add(password);
         signupPanel.add(passwordLabel);
 
         //confirm password field
-        JLabel confirmPasswordLabel = new JLabel("Confirm Password:");
-        confirmPasswordLabel.setBounds(50, 150, 150, 25);
         JPasswordField confirmPassword = new JPasswordField();
-        confirmPassword.setBounds(200, 150, 200, 25);
+        confirmPassword.setBounds(225, 175, 200, 25);
+        JLabel confirmPasswordLabel = new JLabel("Confirm Password:");
+        confirmPasswordLabel.setBounds(100, 175, 150, 25);
         signupPanel.add(confirmPassword);
         signupPanel.add(confirmPasswordLabel);
 
         //confirm button
         JButton confirmButton = new JButton("Confirm");
-        confirmButton.setBounds(310, 175, 90, 25);
+        confirmButton.setBounds(310, 200, 90, 25);
         signupPanel.add(confirmButton);
         confirmButton.addActionListener(e -> {
             String newUsername = username.getText();
@@ -168,11 +196,23 @@ public class UI_new {
 
             for (char a : newPassword) {pword.append(a);}
 
+            HashMap<String, String> params = new HashMap<>();
+            params.put("accountName", "Jay Wang");
+            params.put("login", "jccw20212");
+            params.put("email", "testEmail");
+            params.put("password", pword.toString());
+
+            JSONObject createBody = new JSONObject(params);
+
             if (Arrays.equals(newPassword, confirmPassword.getPassword())) {
-                User newUser = new User(newUsername, pword.toString(), "abr");
-                users[numUsers] = newUser;
-                numUsers++;
-                currentUser = newUser;
+                try {
+                    executePost("http://localhost:8080/User/Create", null, createBody.toString());
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+//                users[numUsers] = newUser;
+//                numUsers++;
+//                currentUser = newUser;
                 cardLayout.show(cards, "main");
             } else {
                 JLabel passwordMismatch = new JLabel("ERROR: Passwords do not match");
@@ -204,7 +244,7 @@ public class UI_new {
         JLabel header;
 
         try {
-            header = new JLabel("Welcome, " + currentUser.ACCOUNT_NAME);
+            header = new JLabel("Welcome, " + currentUser);
         } catch (NullPointerException n) {
             //in case username is not defined
             header = new JLabel("Welcome to Workr");
