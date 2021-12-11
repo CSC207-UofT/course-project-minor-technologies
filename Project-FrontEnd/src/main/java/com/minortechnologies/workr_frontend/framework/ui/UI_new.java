@@ -1,21 +1,22 @@
 package com.minortechnologies.workr_frontend.framework.ui;
 
+import com.minortechnologies.workr_frontend.entities.Entry;
+import com.minortechnologies.workr_frontend.entities.listing.JobListing;
 import com.minortechnologies.workr_frontend.entities.listing.JobType;
 import com.minortechnologies.workr_frontend.entities.user.User;
+import com.minortechnologies.workr_frontend.usecase.factories.ICreateEntry;
+import com.minortechnologies.workr_frontend.usecase.fileio.MalformedDataException;
+import org.json.JSONArray;
 import org.json.JSONObject;
-import com.minortechnologies.workr_frontend.framework.network.SendHTTP;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
+import java.util.*;
+import java.util.List;
 
 import static com.minortechnologies.workr_frontend.framework.network.SendHTTP.executeGet;
 import static com.minortechnologies.workr_frontend.framework.network.SendHTTP.executePost;
@@ -30,6 +31,8 @@ public class UI_new {
 
     private String currentUser = null;
     private Map<String, Object> currentAuth;
+    private User curr;
+    private ArrayList<JobListing> listings = new ArrayList<>();
 
     final CardLayout cardLayout;
     JPanel cards = new JPanel(new CardLayout());
@@ -280,30 +283,35 @@ public class UI_new {
         header.setBounds(150, 25, 300, 50);
         accountPanel.add(header);
 
+        //edit profile
+        JButton edit_profile = new JButton("Edit Profile");
+        edit_profile.setBounds(150, 75, 200, 50);
+        accountPanel.add(edit_profile);
+        edit_profile.addActionListener(e -> cardLayout.show(cards, "user"));
+
         //search for listings
         JButton search = new JButton("Search listings");
-        search.setBounds(150, 75, 200, 50);
+        search.setBounds(150, 125, 200, 50);
         accountPanel.add(search);
         search.addActionListener(e -> cardLayout.show(cards, "search"));
 
         //view saved listings
         JButton viewListings = new JButton("View my listings");
-        viewListings.setBounds(150, 125, 200, 50);
+        viewListings.setBounds(150, 175, 200, 50);
         accountPanel.add(viewListings);
         viewListings.addActionListener(e -> cardLayout.show(cards, "listings"));
 
         //log out
         JButton logout = new JButton("Log out");
-        logout.setBounds(150, 175, 200, 50);
+        logout.setBounds(150, 225, 200, 50);
         accountPanel.add(logout);
         logout.addActionListener(e -> cardLayout.show(cards, "login"));
 
         //quit
         JButton quit = new JButton("Quit to OS");
-        quit.setBounds(150, 225, 200, 50);
+        quit.setBounds(150, 275, 200, 50);
         accountPanel.add(quit);
         quit.addActionListener(e -> System.exit(0));
-
 
         return accountPanel;
     }
@@ -312,18 +320,130 @@ public class UI_new {
         JPanel userPanel = new JPanel();
         userPanel.setLayout(null);
 
+        try {
+            Entry user = ICreateEntry.createEntry(currentAuth);
+            curr = (User) user;
+        } catch (MalformedDataException e) {
+            e.printStackTrace();
+        }
+
+        //header
+        JLabel header = new JLabel((String) currentAuth.get("accountName"));
+        header.setFont(TITLE_FONT);
+        header.setBounds(200, 50, 200, 50);
+        userPanel.add(header);
+
         //skills
+        JTextField skills = new JTextField();
+        skills.setBounds(200, 100, 200, 25);
+        JLabel skillsLabel = new JLabel("Skills:");
+        skillsLabel.setBounds(100, 100, 100, 25);
+        userPanel.add(skills);
+        userPanel.add(skillsLabel);
+        ArrayList<String> skillsLst = (ArrayList<String>) Arrays.asList(skills.toString().split("\\s*,\\s*"));
+        curr.addData("skills", skillsLst);
+
         //Rel work exp
+        JTextField addExpButton = new JTextField();
+        addExpButton.setBounds(200, 125, 50, 25);
+        JLabel relLabel = new JLabel("Related Work Experience:");
+        relLabel.setBounds(100, 125, 100, 25);
+        userPanel.add(relLabel);
+        userPanel.add(addExpButton);
+//        ArrayList<String> relLst = (ArrayList<String>) Arrays.asList(addExpButton.toString().split("\\s*,\\s*"));
+//        Map<String, Object> relLst1;
+//        ArrayList<Experience> relLst2 = new ArrayList<>();
+//        for (String rel : relLst) {
+//            Entry exp = ICreateEntry.createEntry()
+//        }
+
+//        curr.addData("relWorkExp", relLst);
+
         //Unrel work exp
+        JTextField addExpButton1 = new JTextField();
+        addExpButton1.setBounds(200, 150, 50, 25);
+        JLabel unRelLabel = new JLabel("Unrelated Work Experience:");
+        unRelLabel.setBounds(100, 150, 100, 25);
+        userPanel.add(unRelLabel);
+        userPanel.add(addExpButton1);
+//        ArrayList<Experience> unRelLst = (ArrayList<Experience>) Arrays.asList(addExpButton1.toString().split("\\s*,\\s*"));
+//        curr.addData("urelWorkExp", unRelLst);
+
         //leadership
+        JTextField addExpButton2 = new JTextField();
+        addExpButton2.setBounds(200, 175, 50, 25);
+        JLabel ledLabel = new JLabel("Leadership:");
+        ledLabel.setBounds(100, 175, 100, 25);
+        userPanel.add(ledLabel);
+        userPanel.add(addExpButton2);
+        //updateResume.put("relWorkExp", rel_work.toString());
+//        addExpButton2.addActionListener(e -> {
+//            cardLayout.show(cards, "entry");
+//        });
+
         //location
+        JTextField location = new JTextField();
+        location.setBounds(200, 200, 200, 25);
+        JLabel locLabel = new JLabel("Location:");
+        locLabel.setBounds(100, 200, 100, 25);
+        userPanel.add(location);
+        userPanel.add(locLabel);
+
         //awards
+        JTextField addAwardsButton = new JTextField();
+        addAwardsButton.setBounds(200, 225, 50, 25);
+        JLabel awardsLabel = new JLabel("Awards:");
+        awardsLabel.setBounds(100, 225, 100, 25);
+        userPanel.add(awardsLabel);
+        userPanel.add(addAwardsButton);
+        //updateResume.put("relWorkExp", rel_work.toString());
+//        addAwardsButton.addActionListener(e -> {
+//            cardLayout.show(cards, "entry");
+//        });
+
         //incentive
+        JTextField incentiveButton = new JTextField();
+        incentiveButton.setBounds(200, 250, 50, 25);
+        JLabel incentiveLabel = new JLabel("Incentive:");
+        incentiveLabel.setBounds(100, 250, 100, 25);
+        userPanel.add(incentiveLabel);
+        userPanel.add(incentiveButton);
+        //updateResume.put("relWorkExp", rel_work.toString());
+//        addAwardsButton.addActionListener(e -> {
+//            cardLayout.show(cards, "entry");
+//        });
+
         //scores
+        JTextField scoresButton = new JTextField();
+        scoresButton.setBounds(200, 275, 50, 25);
+        JLabel scoresLabel = new JLabel("Scores:");
+        scoresLabel.setBounds(100, 275, 100, 25);
+        userPanel.add(scoresLabel);
+        userPanel.add(scoresButton);
+        //updateResume.put("relWorkExp", rel_work.toString());
+//        addAwardsButton.addActionListener(e -> {
+//            cardLayout.show(cards, "entry");
+//        });
+
         //gpa
+        JTextField gpa = new JTextField();
+        gpa.setBounds(200, 300, 200, 25);
+        JLabel gpaLabel = new JLabel("GPA:");
+        gpaLabel.setBounds(100, 300, 100, 25);
+        userPanel.add(gpa);
+        userPanel.add(gpaLabel);
+
+        //confirm button
+        JButton confirmBut = new JButton("Confirm");
+        confirmBut.setBounds(310, 350, 90, 25);
+        userPanel.add(confirmBut);
+//        confirmBut.addActionListener(e -> {
+//
+//        });
 
         return userPanel;
     }
+
 
     private JPanel searchScreen() {
         JPanel searchPanel = new JPanel();
@@ -393,7 +513,7 @@ public class UI_new {
             String jobLocation = location.getText();
 
             LocalDateTime currentTime = LocalDateTime.now();
-            LocalDateTime dateTime;
+            LocalDateTime dateTime = currentTime.minusDays(14);
             String range = dateButtons.getSelection().getActionCommand();
 
             switch (range) {
@@ -413,7 +533,7 @@ public class UI_new {
                     JOptionPane.showMessageDialog(null, "Please select a range!");
             }
 
-            JobType jobType;
+            JobType jobType = JobType.FULL_TIME;
             String selectedType = typeButtons.getSelection().getActionCommand();
 
             switch (selectedType) {
@@ -424,7 +544,41 @@ public class UI_new {
                 default:
 
             }
+
+            HashMap<String, String> params = new HashMap<>();
+            params.put("dateTime", dateTime.toString());
+            params.put("location", jobLocation);
+            params.put("jobType", jobType.toString());
+            params.put("searchTerms", terms);
+
+            try {
+                String listingData = executeGet("http://localhost:8080/JobListing/Search", params);
+                JSONArray lData = new JSONArray(listingData);
+                List<Object> dataList = lData.toList();
+
+                if (listingData.isEmpty()) {
+
+                }
+                else if (lData.isEmpty()) {
+
+                }
+                else {
+                    for (Object data : dataList) {
+                        if (data instanceof Map) {
+                            Map<String, Object> listData = (Map<String, Object>) data;
+                            Entry listingAsEntry = ICreateEntry.createEntry(listData);
+                            if (listingAsEntry instanceof JobListing) {
+                                listings.add((JobListing) listingAsEntry);
+                            }
+                        }
+                    }
+                    cardLayout.show(cards, "listingsScreen");
+                }
+            } catch (IOException | MalformedDataException ex) {
+                ex.printStackTrace();
+            }
         });
+
         //return button
         JButton goBack = new JButton("Return");
         goBack.setBounds(150, 325, 200, 50);
