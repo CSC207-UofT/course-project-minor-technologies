@@ -66,7 +66,7 @@ abstract class HandlerExtWork extends Handler{
         }
         return score;
     }
-    double give_score(ArrayList<Experience> list, double weight){
+    double giveScore(ArrayList<Experience> list, double weight){
         if(list != null){
             for(Experience lead_experience: list){
                 ArrayList<String> lead_description = (ArrayList<String>) lead_experience.getData(Experience.EXPERIENCE_DESCRPTION);
