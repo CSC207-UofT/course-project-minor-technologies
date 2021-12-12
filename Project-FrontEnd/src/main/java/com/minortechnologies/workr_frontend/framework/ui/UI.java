@@ -355,50 +355,227 @@ public class UI {
         skillsLabel.setBounds(100, 100, 100, 25);
         userPanel.add(skills);
         userPanel.add(skillsLabel);
-
         String[] skillsArray = skills.toString().split("\\s*,\\s*");
-
         ArrayList<String> skillsLst = new ArrayList<>(Arrays.asList(skillsArray));
-
         curr.addData("skills", skillsLst);
 
         //Rel work exp
-        JTextField addExpButton = new JTextField();
+        JButton addExpButton = new JButton("Add");
         addExpButton.setBounds(200, 125, 50, 25);
         JLabel relLabel = new JLabel("Related Work Experience:");
         relLabel.setBounds(100, 125, 100, 25);
         userPanel.add(relLabel);
         userPanel.add(addExpButton);
-//        ArrayList<String> relLst = (ArrayList<String>) Arrays.asList(addExpButton.toString().split("\\s*,\\s*"));
-//        Map<String, Object> relLst1;
-//        ArrayList<Experience> relLst2 = new ArrayList<>();
-//        for (String rel : relLst) {
-//            Entry exp = ICreateEntry.createEntry()
-//        }
+        addExpButton.addActionListener(e -> {
+            JFrame workExp = new JFrame("workExp");
+            workExp.setSize(500, 500);
+            workExp.setLayout(new GridLayout(0, 1));
+            workExp.setDefaultCloseOperation(workExp.DISPOSE_ON_CLOSE);
+            workExp.pack();
+            workExp.setLocationRelativeTo(null);
+            workExp.setVisible(true);
 
-//        curr.addData("relWorkExp", relLst);
+            JPanel exPane = new JPanel();
+            workExp.add(exPane);
+            HashMap<String, Object> expMap = new HashMap<>();
+
+            //Title
+            JTextField title = new JTextField();
+            title.setBounds(200, 100, 200, 25);
+            JLabel titleLabel = new JLabel("Title:");
+            titleLabel.setBounds(100, 100, 100, 25);
+            exPane.add(title);
+            exPane.add(titleLabel);
+            expMap.put("title", title.getText());
+
+            //Description
+            JTextField description = new JTextField();
+            description.setBounds(200, 125, 200, 25);
+            JLabel descriptionLabel = new JLabel("Description:");
+            descriptionLabel.setBounds(100, 125, 100, 25);
+            exPane.add(description);
+            exPane.add(descriptionLabel);
+            expMap.put("description", description.getText());
+
+            //Start time
+            JTextField start = new JTextField();
+            start.setBounds(200, 150, 200, 25);
+            JLabel startLabel = new JLabel("Start time:");
+            startLabel.setBounds(100, 150, 100, 25);
+            exPane.add(start);
+            exPane.add(startLabel);
+            expMap.put("startTime", start.getText());
+
+            //End time
+            JTextField end = new JTextField();
+            end.setBounds(200, 175, 200, 25);
+            JLabel endLabel = new JLabel("End time:");
+            endLabel.setBounds(100, 175, 100, 25);
+            exPane.add(end);
+            exPane.add(endLabel);
+            expMap.put("endTime", end.getText());
+
+            //Add button
+            JButton add = new JButton("Add");
+            add.setBounds(200, 225, 50, 25);
+            exPane.add(add);
+            add.addActionListener(a -> {
+                try {
+                    Entry exp = ICreateEntry.createEntry(expMap);
+                    HashMap<String, Object> expMap2 = exp.serialize();
+                    JSONObject expMapJSON = new JSONObject(expMap2);
+                    executePost(currentAuth.get("login").toString(), (Map<String, String>) expMapJSON, currentUser);
+                } catch (IOException | MalformedDataException ex) {
+                    ex.printStackTrace();
+                }
+            });
+        });
+
 
         //Unrel work exp
-        JTextField addExpButton1 = new JTextField();
+        JButton addExpButton1 = new JButton("Add");
         addExpButton1.setBounds(200, 150, 50, 25);
         JLabel unRelLabel = new JLabel("Unrelated Work Experience:");
         unRelLabel.setBounds(100, 150, 100, 25);
         userPanel.add(unRelLabel);
         userPanel.add(addExpButton1);
-//        ArrayList<Experience> unRelLst = (ArrayList<Experience>) Arrays.asList(addExpButton1.toString().split("\\s*,\\s*"));
-//        curr.addData("urelWorkExp", unRelLst);
+        addExpButton1.addActionListener(e -> {
+            JFrame workExp = new JFrame("workExp");
+            workExp.setSize(500, 500);
+            workExp.setLayout(new GridLayout(0, 1));
+            workExp.setDefaultCloseOperation(workExp.DISPOSE_ON_CLOSE);
+            workExp.pack();
+            workExp.setLocationRelativeTo(null);
+            workExp.setVisible(true);
+
+            JPanel exPane = new JPanel();
+            workExp.add(exPane);
+            HashMap<String, Object> expMap = new HashMap<>();
+
+            //Title
+            JTextField title = new JTextField();
+            title.setBounds(200, 100, 200, 25);
+            JLabel titleLabel = new JLabel("Title:");
+            titleLabel.setBounds(100, 100, 100, 25);
+            exPane.add(title);
+            exPane.add(titleLabel);
+            expMap.put("title", title.getText());
+
+            //Description
+            JTextField description = new JTextField();
+            description.setBounds(200, 125, 200, 25);
+            JLabel descriptionLabel = new JLabel("Description:");
+            descriptionLabel.setBounds(100, 125, 100, 25);
+            exPane.add(description);
+            exPane.add(descriptionLabel);
+            expMap.put("description", description.getText());
+
+            //Start time
+            JTextField start = new JTextField();
+            start.setBounds(200, 150, 200, 25);
+            JLabel startLabel = new JLabel("Start time:");
+            startLabel.setBounds(100, 150, 100, 25);
+            exPane.add(start);
+            exPane.add(startLabel);
+            expMap.put("startTime", start.getText());
+
+            //End time
+            JTextField end = new JTextField();
+            end.setBounds(200, 175, 200, 25);
+            JLabel endLabel = new JLabel("End time:");
+            endLabel.setBounds(100, 175, 100, 25);
+            exPane.add(end);
+            exPane.add(endLabel);
+            expMap.put("endTime", end.getText());
+
+            //Add button
+            JButton add = new JButton("Add");
+            add.setBounds(200, 225, 50, 25);
+            exPane.add(add);
+            add.addActionListener(a -> {
+                try {
+                    Entry exp = ICreateEntry.createEntry(expMap);
+                    HashMap<String, Object> expMap2 = exp.serialize();
+                    JSONObject expMapJSON = new JSONObject(expMap2);
+                    executePost(currentAuth.get("login").toString(), (Map<String, String>) expMapJSON, currentUser);
+                } catch (IOException | MalformedDataException ex) {
+                    ex.printStackTrace();
+                }
+            });
+        });
 
         //leadership
-        JTextField addExpButton2 = new JTextField();
+        JButton addExpButton2 = new JButton("Add");
         addExpButton2.setBounds(200, 175, 50, 25);
         JLabel ledLabel = new JLabel("Leadership:");
         ledLabel.setBounds(100, 175, 100, 25);
         userPanel.add(ledLabel);
         userPanel.add(addExpButton2);
-        //updateResume.put("relWorkExp", rel_work.toString());
-//        addExpButton2.addActionListener(e -> {
-//            cardLayout.show(cards, "entry");
-//        });
+        addExpButton2.addActionListener(e -> {
+            JFrame workExp = new JFrame("workExp");
+            workExp.setSize(500, 500);
+            workExp.setLayout(new GridLayout(0, 1));
+            workExp.setDefaultCloseOperation(workExp.DISPOSE_ON_CLOSE);
+            workExp.pack();
+            workExp.setLocationRelativeTo(null);
+            workExp.setVisible(true);
+
+            JPanel exPane = new JPanel();
+            workExp.add(exPane);
+            HashMap<String, Object> expMap = new HashMap<>();
+
+            //Title
+            JTextField title = new JTextField();
+            title.setBounds(200, 100, 200, 25);
+            JLabel titleLabel = new JLabel("Title:");
+            titleLabel.setBounds(100, 100, 100, 25);
+            exPane.add(title);
+            exPane.add(titleLabel);
+            expMap.put("title", title.getText());
+
+            //Description
+            JTextField description = new JTextField();
+            description.setBounds(200, 125, 200, 25);
+            JLabel descriptionLabel = new JLabel("Description:");
+            descriptionLabel.setBounds(100, 125, 100, 25);
+            exPane.add(description);
+            exPane.add(descriptionLabel);
+            expMap.put("description", description.getText());
+
+            //Start time
+            JTextField start = new JTextField();
+            start.setBounds(200, 150, 200, 25);
+            JLabel startLabel = new JLabel("Start time:");
+            startLabel.setBounds(100, 150, 100, 25);
+            exPane.add(start);
+            exPane.add(startLabel);
+            expMap.put("startTime", start.getText());
+
+            //End time
+            JTextField end = new JTextField();
+            end.setBounds(200, 175, 200, 25);
+            JLabel endLabel = new JLabel("End time:");
+            endLabel.setBounds(100, 175, 100, 25);
+            exPane.add(end);
+            exPane.add(endLabel);
+            expMap.put("endTime", end.getText());
+
+            //Add button
+            JButton add = new JButton("Add");
+            add.setBounds(200, 225, 50, 25);
+            exPane.add(add);
+            add.addActionListener(a -> {
+                try {
+                    Entry exp = ICreateEntry.createEntry(expMap);
+                    HashMap<String, Object> expMap2 = exp.serialize();
+                    String url = currentAuth.get("login").toString();
+                    JSONObject expMapJSON = new JSONObject(expMap2);
+                    executePost(currentAuth.get("login").toString(), (Map<String, String>) expMapJSON, currentUser);
+                } catch (IOException | MalformedDataException ex) {
+                    ex.printStackTrace();
+                }
+            });
+        });
 
         //location
         JTextField location = new JTextField();
@@ -407,6 +584,7 @@ public class UI {
         locLabel.setBounds(100, 200, 100, 25);
         userPanel.add(location);
         userPanel.add(locLabel);
+        curr.addData("location", location.getText());
 
         //awards
         JTextField addAwardsButton = new JTextField();
@@ -415,10 +593,9 @@ public class UI {
         awardsLabel.setBounds(100, 225, 100, 25);
         userPanel.add(awardsLabel);
         userPanel.add(addAwardsButton);
-        //updateResume.put("relWorkExp", rel_work.toString());
-//        addAwardsButton.addActionListener(e -> {
-//            cardLayout.show(cards, "entry");
-//        });
+        String[] awardsArray = addAwardsButton.toString().split("\\s*,\\s*");
+        ArrayList<String> awardsLst = new ArrayList<>(Arrays.asList(awardsArray));
+        curr.addData("awards", awardsLst);
 
         //incentive
         JTextField incentiveButton = new JTextField();
@@ -427,12 +604,11 @@ public class UI {
         incentiveLabel.setBounds(100, 250, 100, 25);
         userPanel.add(incentiveLabel);
         userPanel.add(incentiveButton);
-        //updateResume.put("relWorkExp", rel_work.toString());
-//        addAwardsButton.addActionListener(e -> {
-//            cardLayout.show(cards, "entry");
-//        });
+        String[] incentiveArray = addAwardsButton.toString().split("\\s*,\\s*");
+        ArrayList<String> incentiveLst = new ArrayList<>(Arrays.asList(incentiveArray));
+        curr.addData("incentive", incentiveLst);
 
-        //scores
+        //scores (NOT CODED)
         JTextField scoresButton = new JTextField();
         scoresButton.setBounds(200, 275, 50, 25);
         JLabel scoresLabel = new JLabel("Scores:");
@@ -451,18 +627,26 @@ public class UI {
         gpaLabel.setBounds(100, 300, 100, 25);
         userPanel.add(gpa);
         userPanel.add(gpaLabel);
+        curr.addData("gpa", gpa.getText());
 
         //confirm button
         JButton confirmBut = new JButton("Confirm");
         confirmBut.setBounds(310, 350, 90, 25);
         userPanel.add(confirmBut);
-//        confirmBut.addActionListener(e -> {
-//
-//        });
+        confirmBut.addActionListener(e -> {
+            HashMap<String, Object> currMap = curr.serialize();
+            String url = "http://localhost:8080/User/" + currentAuth.get("login").toString() + "/SetDataLarge";
+            JSONObject currMapJSON = new JSONObject(currMap);
+            try {
+                executePost(url, (Map<String, String>) currMapJSON, currentAuth.get("login").toString());
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        });
 
         //Return button
         JButton goBack = new JButton("Return");
-        goBack.setBounds(150, 325, 200, 50);
+        goBack.setBounds(25, 25, 200, 50);
         userPanel.add(goBack);
         goBack.addActionListener(e -> cardLayout.show(cards, "main"));
 
