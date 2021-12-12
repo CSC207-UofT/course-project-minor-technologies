@@ -21,19 +21,8 @@ public class HandlerLeadership extends HandlerExtWork {
 
     @Override
     public void scoreCalculate(){
-        double score = 0.0;
         ArrayList<Experience> user_leadership_exp = (ArrayList<Experience>) this.user.getData(User.LEADERSHIP);
-        if(user_leadership_exp != null){
-            for(Experience lead_experience: user_leadership_exp){
-                ArrayList<String> lead_description = (ArrayList<String>)
-                        lead_experience.getData(Experience.EXPERIENCE_DESCRPTION);
-                score += scoreTime(lead_experience) * lead_description.size();
-                score += titleScore(lead_experience);
-
-
-            }
-        }
-        this.score += score;
+        this.score = give_score(user_leadership_exp, 1);
 
     }
 
