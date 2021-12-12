@@ -3,7 +3,6 @@ package com.minortechnologies.workr_frontend.usecase.factories.userfactory;
 import com.minortechnologies.workr_frontend.entities.user.User;
 import com.minortechnologies.workr_frontend.usecase.factories.ICreateEntry;
 import com.minortechnologies.workr_frontend.usecase.fileio.MalformedDataException;
-import org.jetbrains.annotations.NotNull;
 
 
 import java.util.ArrayList;
@@ -14,8 +13,7 @@ public interface ICreateUser extends ICreateEntry {
 
     User create(String username, String login, String password);
 
-    static @NotNull
-    ArrayList<String> verifyMapIntegrityStatic(Map<String, Object> userDataMap){
+    static ArrayList<String> verifyMapIntegrityStatic(Map<String, Object> userDataMap){
         throw new UnsupportedOperationException();
     }
 
