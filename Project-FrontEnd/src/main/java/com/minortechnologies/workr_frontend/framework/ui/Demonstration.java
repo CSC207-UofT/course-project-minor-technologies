@@ -4,6 +4,6 @@ public class Demonstration {
 
     public static void main(String[] args) {
 
-        new UI_new();
+        new UI();
     }
 }

@@ -11,8 +11,6 @@ import org.json.JSONObject;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.*;
@@ -20,11 +18,12 @@ import java.util.List;
 
 import static com.minortechnologies.workr_frontend.framework.network.SendHTTP.executeGet;
 import static com.minortechnologies.workr_frontend.framework.network.SendHTTP.executePost;
+import static com.minortechnologies.workr_frontend.framework.ui.Listing.Liting;
 
-public class UI_new {
+public class UI {
 
     public static void main(String[] args) {
-        new UI_new();
+        new UI();
     }
 
     private JFrame frame;
@@ -32,7 +31,7 @@ public class UI_new {
     private String currentUser = null;
     private Map<String, Object> currentAuth;
     private User curr;
-    private ArrayList<JobListing> listings = new ArrayList<>();
+    private final ArrayList<JobListing> listings = new ArrayList<>();
 
     final CardLayout cardLayout;
     JPanel cards = new JPanel(new CardLayout());
@@ -46,21 +45,11 @@ public class UI_new {
         frame.setSize(500, 500);
     }
 
-    public UI_new() {
+    public UI() {
         setup();
         JPanel loginPanel = loginScreen();
-        JPanel signupPanel = signupScreen();
-        JPanel accountPanel = accountScreen();
-        JPanel listingsPanel = listingsScreen();
-        JPanel searchPanel = searchScreen();
-        JPanel userPanel = userScreen();
 
         cards.add(loginPanel, "login");
-        cards.add(signupPanel, "signup");
-        cards.add(accountPanel, "main");
-        cards.add(listingsPanel, "listings");
-        cards.add(searchPanel, "search");
-        cards.add(userPanel, "user");
 
         cardLayout = (CardLayout) cards.getLayout();
         frame.add(cards);
@@ -98,28 +87,36 @@ public class UI_new {
         loginButton.setBounds(325, 150, 75, 25);
         loginPanel.add(loginButton);
         loginButton.addActionListener(e -> {
-            boolean userFound = false;
             HashMap<String, String> body = new HashMap<>();
-            body.put("login", username.toString());
-            body.put("passwowrd", password.toString());
+            body.put("login", username.getText());
+            StringBuilder pass = new StringBuilder();
+            for (char a : password.getPassword()) {
+                pass.append(a);
+            }
+            body.put("password", pass.toString());
 
             try {
                 currentUser = executeGet("http://localhost:8080/User/SignIn", body);
-                if (currentUser != null) {
+                if (!currentUser.startsWith("error 0")) {
                     sendMessage(loginPanel, "Success!");
                     String urlget = "http://localhost:8080/User/" +
-                            username +
+                            username.getText() +
                             "/GetAllUserData";
                     HashMap<String, String> body2 = new HashMap<>();
                     body2.put("token", currentUser);
                     String accountData = executeGet(urlget, body2);
                     JSONObject data = new JSONObject(accountData);
                     currentAuth = data.toMap();
+                    JPanel accountPanel = accountScreen();
+                    cards.add(accountPanel, "main");
                     cardLayout.show(cards, "main");
+                }
+                else {
+                    sendMessage(loginPanel, "Error: No such user exists!");
                 }
             } catch (IOException fileNotFoundException) {
                 fileNotFoundException.printStackTrace();
-                sendMessage(loginPanel, "Error: No such user exists!");
+                sendMessage(loginPanel, "Error: try again later");
             }
 
 //            try {
@@ -146,7 +143,11 @@ public class UI_new {
         JButton signupButton = new JButton("No account? Sign up here");
         signupButton.setBounds(275, 400, 200, 25);
         loginPanel.add(signupButton);
-        signupButton.addActionListener(e -> cardLayout.show(cards, "signup"));
+        signupButton.addActionListener(e -> {
+            JPanel signupPanel = signupScreen();
+            cards.add(signupPanel, "signup");
+            cardLayout.show(cards, "signup");
+        });
 
         frame.repaint();
         frame.revalidate();
@@ -237,7 +238,11 @@ public class UI_new {
 
             if (Arrays.equals(newPassword, confirmPassword.getPassword())) {
                 try {
-                    executePost("http://localhost:8080/User/Create", null, createBody.toString());
+                    String er = executePost("http://localhost:8080/User/Create", null, createBody.toString());
+                    if (er.equals("3")) {
+                        sendMessage(signupPanel, "login already taken");
+                        frame.repaint();
+                    }
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
@@ -264,6 +269,8 @@ public class UI_new {
         //login listener
         loginButton.addActionListener(e -> cardLayout.show(cards, "login"));
 
+        frame.repaint();
+        frame.revalidate();
         return signupPanel;
     }
 
@@ -282,6 +289,11 @@ public class UI_new {
         header.setFont(TITLE_FONT);
         header.setBounds(150, 25, 300, 50);
         accountPanel.add(header);
+
+        JPanel searchPanel = searchScreen();
+        JPanel userPanel = userScreen();
+        cards.add(searchPanel, "search");
+        cards.add(userPanel, "user");
 
         //edit profile
         JButton edit_profile = new JButton("Edit Profile");
@@ -313,6 +325,8 @@ public class UI_new {
         accountPanel.add(quit);
         quit.addActionListener(e -> System.exit(0));
 
+        frame.repaint();
+        frame.revalidate();
         return accountPanel;
     }
 
@@ -321,6 +335,7 @@ public class UI_new {
         userPanel.setLayout(null);
 
         try {
+
             Entry user = ICreateEntry.createEntry(currentAuth);
             curr = (User) user;
         } catch (MalformedDataException e) {
@@ -340,7 +355,11 @@ public class UI_new {
         skillsLabel.setBounds(100, 100, 100, 25);
         userPanel.add(skills);
         userPanel.add(skillsLabel);
-        ArrayList<String> skillsLst = (ArrayList<String>) Arrays.asList(skills.toString().split("\\s*,\\s*"));
+
+        String[] skillsArray = skills.toString().split("\\s*,\\s*");
+
+        ArrayList<String> skillsLst = new ArrayList<>(Arrays.asList(skillsArray));
+
         curr.addData("skills", skillsLst);
 
         //Rel work exp
@@ -441,6 +460,12 @@ public class UI_new {
 //
 //        });
 
+        //Return button
+        JButton goBack = new JButton("Return");
+        goBack.setBounds(150, 325, 200, 50);
+        userPanel.add(goBack);
+        goBack.addActionListener(e -> cardLayout.show(cards, "main"));
+
         return userPanel;
     }
 
@@ -465,29 +490,10 @@ public class UI_new {
         location.setBounds(100, 125, 300, 25);
         searchPanel.add(location);
 
-        //radio buttons to choose dates
-        ButtonGroup dateButtons = new ButtonGroup();
-
-        JRadioButton oneDay = new JRadioButton("1 Day Old");
-        JRadioButton threeDay = new JRadioButton(("3 Days Old"));
-        JRadioButton sevenDay = new JRadioButton(("7 Days Old"));
-        JRadioButton fourteenDay = new JRadioButton(("14 Days Old"));
-
-        dateButtons.add(oneDay);
-        dateButtons.add(threeDay);
-        dateButtons.add(sevenDay);
-        dateButtons.add(fourteenDay);
-
-        oneDay.setBounds(50, 175, 100, 25);
-        threeDay.setBounds(150, 175, 100, 25);
-        sevenDay.setBounds(250, 175, 100, 25);
-        fourteenDay.setBounds(350, 175, 100, 25);
-
-        searchPanel.add(oneDay);
-        searchPanel.add(threeDay);
-        searchPanel.add(sevenDay);
-        searchPanel.add(fourteenDay);
-
+        //dates field
+        JTextField date = new JTextField("dates");
+        date.setBounds(100, 150, 300, 25);
+        searchPanel.add(date);
 
         //radio buttons to choose fulltime/parttime
         ButtonGroup typeButtons = new ButtonGroup();
@@ -498,8 +504,8 @@ public class UI_new {
         typeButtons.add(partTime);
         typeButtons.add(fullTime);
 
-        partTime.setBounds(150, 200, 100, 25);
-        fullTime.setBounds(250, 200, 100, 25);
+        partTime.setBounds(150, 175, 100, 25);
+        fullTime.setBounds(250, 175, 100, 25);
 
         searchPanel.add(partTime);
         searchPanel.add(fullTime);
@@ -513,36 +519,17 @@ public class UI_new {
             String jobLocation = location.getText();
 
             LocalDateTime currentTime = LocalDateTime.now();
-            LocalDateTime dateTime = currentTime.minusDays(14);
-            String range = dateButtons.getSelection().getActionCommand();
-
-            switch (range) {
-                case "1 Day Old":
-                    dateTime = currentTime.minusDays(1);
-                    break;
-                case "3 Days Old":
-                    dateTime = currentTime.minusDays(3);
-                    break;
-                case "7 Days Old":
-                    dateTime = currentTime.minusDays(7);
-                    break;
-                case "14 Days Old":
-                    dateTime = currentTime.minusDays(14);
-                    break;
-                default:
-                    JOptionPane.showMessageDialog(null, "Please select a range!");
+            // LocalDateTime dateTime = currentTime.minusDays(Integer.parseInt(date.getText()));
+            LocalDateTime dateTime = currentTime.minusDays(200);
+            JobType jobType;
+            if (partTime.isSelected()) {
+                jobType = JobType.PART_TIME;
             }
-
-            JobType jobType = JobType.FULL_TIME;
-            String selectedType = typeButtons.getSelection().getActionCommand();
-
-            switch (selectedType) {
-                case "Full time":
-                    jobType = JobType.FULL_TIME;
-                case "Part time":
-                    jobType = JobType.PART_TIME;
-                default:
-
+            else if (fullTime.isSelected()) {
+                jobType = JobType.FULL_TIME;
+            }
+            else {
+                jobType = JobType.FULL_TIME;
             }
 
             HashMap<String, String> params = new HashMap<>();
@@ -555,12 +542,12 @@ public class UI_new {
                 String listingData = executeGet("http://localhost:8080/JobListing/Search", params);
                 JSONArray lData = new JSONArray(listingData);
                 List<Object> dataList = lData.toList();
-
+                listings.clear();
                 if (listingData.isEmpty()) {
-
+                    sendMessage(searchPanel, "Error: fatal error!");
                 }
                 else if (lData.isEmpty()) {
-
+                    sendMessage(searchPanel, "Error: no search found!");
                 }
                 else {
                     for (Object data : dataList) {
@@ -572,7 +559,11 @@ public class UI_new {
                             }
                         }
                     }
-                    cardLayout.show(cards, "listingsScreen");
+                    JPanel listingsPanel = listingsScreen();
+                    frame.repaint();
+                    frame.revalidate();
+                    cards.add(listingsPanel, "listings");
+                    cardLayout.show(cards, "listings");
                 }
             } catch (IOException | MalformedDataException ex) {
                 ex.printStackTrace();
@@ -583,12 +574,10 @@ public class UI_new {
         JButton goBack = new JButton("Return");
         goBack.setBounds(150, 325, 200, 50);
         searchPanel.add(goBack);
-        goBack.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                cardLayout.show(cards, "main");
-            }
-        });
+        goBack.addActionListener(e -> cardLayout.show(cards, "main"));
 
+        frame.repaint();
+        frame.revalidate();
         return searchPanel;
     }
 
@@ -600,41 +589,71 @@ public class UI_new {
         JLabel header = new JLabel("View your listings");
         header.setFont(TITLE_FONT);
         header.setBounds(150, 25, 300, 50);
+        listingsPanel.add(header);
 
-//        //listings table
-//        DefaultListModel demoList = new DefaultListModel();
-//        JList list;
-//        JLabel noDataWarning;
-//
-//        try {
-//            String[] listingHeaders;
-//
-//            HashSet<JobListing> set = currentUser.getWatchedListings();
-//
-//            ArrayList<JobListing> listings = new ArrayList<>(set);
-//            demoList.addElement(listings);
-//            list = new JList(demoList);
-//        } catch (NullPointerException n) {
-//            list = new JList();
-//            noDataWarning = new JLabel("You don't have any saved listings!");
-//            noDataWarning.setBounds(50, 225, 400, 50);
-//            listingsPanel.add(noDataWarning);
-//        }
-//
-//        list.setBounds(50, 25, 400, 250);
-//        listingsPanel.add(list);
-//
-//        //return button
-//        JButton goBack = new JButton("Return");
-//        goBack.setBounds(150, 325, 200, 50);
-//        listingsPanel.add(goBack);
-//        goBack.addActionListener(new ActionListener() {
-//            public void actionPerformed(ActionEvent e) {
-//                cardLayout.show(cards, "main");
+        //Return
+        JButton returnBtn = new JButton("Return");
+        returnBtn.setBounds(150, 150, 100, 50);
+        listingsPanel.add(returnBtn);
+        returnBtn.addActionListener(e -> cardLayout.show(cards, "main"));
+
+        //Score calculator
+        String url = "http://localhost:8080/JobListing/Score/" + currentAuth.get("login");
+        ArrayList<String> uuids = new ArrayList<>();
+        for (JobListing a: listings) {
+            uuids.add(a.getUUID());
+        }
+        HashMap<String, String> token = new HashMap<>();
+        token.put("token", currentUser);
+        JSONArray uuidsJArray = new JSONArray(uuids);
+        try {
+            String scoreData = executePost(url, token, uuidsJArray.toString());
+            JSONArray sData = new JSONArray(scoreData);
+            List<Object> sList = sData.toList();
+
+            //listings screen
+            JPanel listingsP = new JPanel();
+            int rows = listings.size();
+            listingsP.setLayout(new GridLayout(rows, 1));
+            HashMap<JobListing, Float> jobListingWithScoresMap = new HashMap<>();
+
+            //Score calculator
+//            for (Object scoreUUIDPair:
+//                 sList) {
+//                if (scoreUUIDPair instanceof Map){
+//                    String score = ((Map<String, String>) scoreUUIDPair).get("score");
+//                    float scoreFloat = Float.parseFloat(score);
+//                    for (JobListing listing:
+//                         listings) {
+//                        if (((Map<String, String>) scoreUUIDPair).get("uuid").equals(listing.getUUID())){
+//                            jobListingWithScoresMap.put(listing, scoreFloat);
+//                        }
+//                    }
+//                }
 //            }
-//        });
 
+//            for (JobListing listing:
+//                 jobListingWithScoresMap.keySet()) {
+//                float listingScore = jobListingWithScoresMap.get(listing);
+//                listingsP.add(Liting(listing, listingScore));
+//            }
 
+            for (JobListing listing: listings) {
+                listingsP.add(Liting(listing));
+            }
+
+            JFrame frame1 = new JFrame("Test");
+            frame1.setDefaultCloseOperation(frame1.DISPOSE_ON_CLOSE);
+            frame1.add(listingsP);
+            frame1.pack();
+            frame1.setLocationRelativeTo(null);
+            frame1.setVisible(true);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        frame.repaint();
+        frame.revalidate();
         return listingsPanel;
     }
 
