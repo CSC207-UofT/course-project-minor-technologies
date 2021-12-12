@@ -23,7 +23,7 @@ public class HandlerRelatedWork extends HandlerExtWork{
     @Override
     public void scoreCalculate() {
         ArrayList<Experience> user_experiences = (ArrayList<Experience>) this.user.getData(User.REL_WORK_EXP);
-        this.score = give_score(user_experiences, 1);
+        this.score = giveScore(user_experiences, 1);
     }
 
 }
