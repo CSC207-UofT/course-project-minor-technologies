@@ -22,7 +22,7 @@ public class HandlerLeadership extends HandlerExtWork {
     @Override
     public void scoreCalculate(){
         ArrayList<Experience> user_leadership_exp = (ArrayList<Experience>) this.user.getData(User.LEADERSHIP);
-        this.score = give_score(user_leadership_exp, 1);
+        this.score = giveScore(user_leadership_exp, 1);
 
     }
 
