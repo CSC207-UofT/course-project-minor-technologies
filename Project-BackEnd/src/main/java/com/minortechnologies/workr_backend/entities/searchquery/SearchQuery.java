@@ -73,9 +73,12 @@ public class SearchQuery extends Entry {
     }
 
     @Override
-    public synchronized void deserialize(Map<String, Object> entryDataMap) {
+    public synchronized void deserialize(Map<String, Object> entryDataMap) throws MalformedDataException {
         for (String key:
              KEYS) {
+            if (!entryDataMap.containsKey(key)){
+                throw new MalformedDataException(Entry.MALFORMED_EXCEPTION_MSG);
+            }
             Object data = entryDataMap.get(key);
             switch (key){
                 case DATE_TIME:

@@ -22,17 +22,8 @@ public class HandlerRelatedWork extends HandlerExtWork{
     /** Calculates a score given to user based on the user's related work experiences.*/
     @Override
     public void scoreCalculate() {
-        double score = 0.0;
         ArrayList<Experience> user_experiences = (ArrayList<Experience>) this.user.getData(User.REL_WORK_EXP);
-        if(user_experiences != null){
-            for(Experience experience : user_experiences) {
-                ArrayList<String> description = (ArrayList<String>) experience.getData(Experience.EXPERIENCE_DESCRPTION);
-                score += scoreTime(experience) * description.size();
-                score += titleScore(experience);
-            }
-        }
-
-        this.score += score;
+        this.score = give_score(user_experiences, 1);
     }
 
 }

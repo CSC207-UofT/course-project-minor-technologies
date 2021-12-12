@@ -115,10 +115,10 @@ public class Security {
     }
 
     public static String generateNewToken() {
-        SecureRandom srand = new SecureRandom();
+        SecureRandom secureRand = new SecureRandom();
         Base64.Encoder base64Encoder = Base64.getUrlEncoder();
         byte[] randomBytes = new byte[24];
-        srand.nextBytes(randomBytes);
+        secureRand.nextBytes(randomBytes);
         return base64Encoder.encodeToString(randomBytes);
     }
 }

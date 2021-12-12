@@ -150,8 +150,8 @@ public class ListingRequestHandler {
                 Score score = new Score();
                 HandlerMain scoreCalc = new HandlerMain(user, listing);
                 scoreCalc.generateScore();
-                double scoredouble = scoreCalc.getScore();
-                score.addData(Score.SCORE, scoredouble);
+                double scoreDouble = scoreCalc.getScore();
+                score.addData(Score.SCORE, scoreDouble);
                 score.addData(Score.UID, uuid);
                 uuids.add(Score.UID);
                 newScores.add(score);

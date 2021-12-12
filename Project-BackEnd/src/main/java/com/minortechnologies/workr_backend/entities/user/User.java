@@ -54,7 +54,7 @@ public class User extends Entry {
      * @param accountName An account name for the new user
      * @param login A login for the new user
      * @param passwordHash The password hashed.
-     * @param salt The salt to be used, the salt must be in hexidecimal form
+     * @param salt The salt to be used, the salt must be in hexadecimal form
      */
     public User(String accountName, String login, String email, String passwordHash, String salt){
         super();
@@ -172,8 +172,7 @@ public class User extends Entry {
         Object data = getData(WATCHED_SEARCH_QUERIES);
         if (data instanceof ArrayList){
             ArrayList<Entry> oldData = (ArrayList<Entry>) data;
-            HashSet<Entry> castedData = new HashSet<>(oldData);
-            data = castedData;
+            data = new HashSet<>(oldData);
         }
 
         return getNestedSerializationData((HashSet<Entry>) data);

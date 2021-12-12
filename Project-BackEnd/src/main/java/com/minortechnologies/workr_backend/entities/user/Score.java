@@ -28,6 +28,9 @@ public class Score extends Entry {
     public synchronized void deserialize(Map<String, Object> entryDataMap) throws MalformedDataException {
         for (String key:
                 KEYS) {
+            if (!entryDataMap.containsKey(key)){
+                throw new MalformedDataException(Entry.MALFORMED_EXCEPTION_MSG);
+            }
             Object data = entryDataMap.get(key);
             addData(key, data);
         }

@@ -5,12 +5,12 @@
     <content url="file://$MODULE_DIR$" />
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" exported="" name="stanford-corenlp-4.3.1-models-english" level="project" />
+    <orderEntry type="library" name="stanford-corenlp-4.3.1-models-english" level="project" />
     <orderEntry type="library" exported="" name="json-202103071" level="project" />
-    <orderEntry type="library" name="SpringLibs" level="project" />
-    <orderEntry type="library" name="lib" level="project" />
-    <orderEntry type="library" name="stanford-parser-full-2020-11-17" level="project" />
-    <orderEntry type="module-library">
+    <orderEntry type="library" exported="" name="SpringLibs" level="project" />
+    <orderEntry type="library" exported="" name="lib" level="project" />
+    <orderEntry type="library" exported="" name="stanford-parser-full-2020-11-17" level="project" />
+    <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
           <root url="jar://$MAVEN_REPOSITORY$/junit/junit/4.13.1/junit-4.13.1.jar!/" />
@@ -20,6 +20,6 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="json-20210307" level="project" />
+    <orderEntry type="library" exported="" name="json-20210307" level="project" />
   </component>
 </module>

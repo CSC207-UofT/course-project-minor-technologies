@@ -6,6 +6,7 @@ import com.minortechnologies.workr_backend.entities.user.User;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.ArrayList;
 
 abstract class HandlerExtWork extends Handler{
     public HandlerExtWork(User user_input, JobListing job_input) {
@@ -61,6 +62,16 @@ abstract class HandlerExtWork extends Handler{
                 else if (!this.job.getData(JobListing.DESCRIPTION).equals("") &&
                         this.job.getData(JobListing.DESCRIPTION).toString().toLowerCase().contains(word.toLowerCase()))
                     score = 20;
+            }
+        }
+        return score;
+    }
+    double give_score(ArrayList<Experience> list, double weight){
+        if(list != null){
+            for(Experience lead_experience: list){
+                ArrayList<String> lead_description = (ArrayList<String>) lead_experience.getData(Experience.EXPERIENCE_DESCRPTION);
+                score += scoreTime(lead_experience) * lead_description.size() * weight;
+                score += titleScore(lead_experience);
             }
         }
         return score;

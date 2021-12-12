@@ -62,8 +62,8 @@ public abstract class ListingsProcessor {
         }
         // combines all Predicates into a single composite Predicate
         Predicate<JobListing> filter = filters.get(0);
-        for(int i = 0; i < filters.size(); i++){
-            filter = filter.and(filters.get(i));
+        for (Predicate<JobListing> jobListingPredicate : filters) {
+            filter = filter.and(jobListingPredicate);
         }
         ArrayList<JobListing> toFilter = new ArrayList<>(listings);
         // filters listings by the composite predicate and returns a List containing those which pass

@@ -77,8 +77,15 @@ public class EntryDataMapTypeCaster {
                 data = toHashSet(key, data2);
             }
             else if (Arrays.asList(DOUBLES).contains(key)){
-                if (data instanceof Float){
-                    data = (double) data;
+                if (!(data instanceof Float)){
+                    if (data instanceof Integer){
+                        int dataInt = (int) data;
+                        float dataFloat = (float) dataInt;
+                        data = dataFloat;
+                    }
+                    else{
+                        data = 0.0d;
+                    }
                 }
             }
             dataMap.replace(key, data);
