@@ -32,6 +32,5 @@ public class UserCreationTests {
 
         assertEquals(user.getData(User.ACCOUNT_NAME), demoName);
         assertEquals(user.getData(User.LOGIN), demoLogin);
-        assertEquals(user.getData(User.TOKEN), demoToken);
     }
 }

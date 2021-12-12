@@ -35,12 +35,12 @@ public class User extends Entry {
     public static final String LOCATION = "location"; // String
     public static final String AWARDS = "awards"; // ArrayList<String>
     public static final String INCENTIVE = "incentive"; // ArrayList<String>
-    public static final String TOKEN = "token"; // String
     public static final String SCORES = "scores";
+    public static final String EMAIL = "email";
     public static final String GPA = "gpa"; // double
     public static final String[] KEYS = new String[] {ACCOUNT_NAME, WATCHED_JOB_LISTINGS, LOGIN,
             WATCHED_SEARCH_QUERIES, SKILL_SET, REL_WORK_EXP, UREL_WORK_EXP, LEADERSHIP, LOCATION, AWARDS,
-            INCENTIVE, SCORES, GPA};
+            INCENTIVE, SCORES, GPA, EMAIL};
 
     /**
      * Creates a User entry with no data for Deserialization or for UnitTests.
@@ -70,7 +70,6 @@ public class User extends Entry {
         addData(LOGIN, null);
         addData(AWARDS, null);
         addData(INCENTIVE, null);
-        addData(TOKEN, token);
         addData(SCORES, new ArrayList<Score>());
         addData(GPA, 0.0d);
     }
@@ -144,6 +143,8 @@ public class User extends Entry {
 
     @Override
     public synchronized void deserialize(Map<String, Object> entryDataMap) throws MalformedDataException {
+        entryDataMap.remove("hashedPassword");
+        entryDataMap.remove("salt");
 
         if (entryDataMap.keySet().size() != KEYS.length){
             throw new MalformedDataException(MALFORMED_EXCEPTION_MSG);

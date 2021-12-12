@@ -96,6 +96,9 @@ public class EntryDataMapTypeCaster {
     }
 
     private Object enumParse(String key, Object value){
+        if (value instanceof JobType || value instanceof JobListing){
+            return value;
+        }
         switch (key){
             case JobListing.JOB_TYPE:
                 return JobType.valueOf((String) value);
