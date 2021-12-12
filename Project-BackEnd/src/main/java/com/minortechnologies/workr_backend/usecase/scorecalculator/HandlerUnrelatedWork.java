@@ -4,7 +4,6 @@ import com.minortechnologies.workr_backend.entities.listing.JobListing;
 import com.minortechnologies.workr_backend.entities.user.User;
 import com.minortechnologies.workr_backend.entities.user.Experience;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class HandlerUnrelatedWork extends HandlerExtWork{
