@@ -31,7 +31,7 @@ public class UI {
     private String currentUser = null;
     private Map<String, Object> currentAuth;
     private static User curr;
-    public User getCurrentUser(){
+    public static User getCurrentUser(){
         return curr;
     }
     private final ArrayList<JobListing> listings = new ArrayList<>();

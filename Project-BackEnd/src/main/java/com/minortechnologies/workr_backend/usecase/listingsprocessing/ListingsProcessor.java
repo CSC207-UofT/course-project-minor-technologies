@@ -29,7 +29,7 @@ public abstract class ListingsProcessor {
      */
     public final List<JobListing> processList(List<JobListing> listings, List<Predicate<JobListing>> filters) {
         List<JobListing> filteredListings = filter(listings, filters);
-        return sort(filteredListings, "TITLE");
+        return sort(filteredListings, "SCORE");
     }
     /**
      * default method when no filters are provided
@@ -45,7 +45,7 @@ public abstract class ListingsProcessor {
     public final List<JobListing> processList(List<JobListing> listings) {
         List<Predicate<JobListing>> emptyList = Collections.emptyList();
         List<JobListing> filteredListings = filter(listings, emptyList);
-        return sort(filteredListings, "TITLE");
+        return sort(filteredListings, "SCORE");
     }
     /**
      * Creates a new List containing only listings that meet the criteria given by filters
