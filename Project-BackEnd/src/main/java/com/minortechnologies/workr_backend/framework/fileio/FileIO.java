@@ -92,9 +92,11 @@ public class FileIO {
         assert folder != null;
         ArrayList<String> fileNames = new ArrayList<>();
 
-        for (File file : folder) {
-            if (file.isFile() && file.getName().endsWith(extension)) {
-                fileNames.add(file.getName());
+        if (!(folder == null)){
+            for (File file : folder) {
+                if (file.isFile() && file.getName().endsWith(extension)) {
+                    fileNames.add(file.getName());
+                }
             }
         }
         return fileNames;
