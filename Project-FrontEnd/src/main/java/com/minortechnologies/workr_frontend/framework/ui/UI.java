@@ -30,7 +30,10 @@ public class UI {
 
     private String currentUser = null;
     private Map<String, Object> currentAuth;
-    private User curr;
+    private static User curr;
+    public User getCurrentUser(){
+        return curr;
+    }
     private final ArrayList<JobListing> listings = new ArrayList<>();
 
     final CardLayout cardLayout;
@@ -790,18 +793,17 @@ public class UI {
         HashMap<String, String> token = new HashMap<>();
         token.put("token", currentUser);
         JSONArray uuidsJArray = new JSONArray(uuids);
-        try {
-            String scoreData = executePost(url, token, uuidsJArray.toString());
-            JSONArray sData = new JSONArray(scoreData);
-            List<Object> sList = sData.toList();
+        //String scoreData = executePost(url, token, uuidsJArray.toString());
+        //JSONArray sData = new JSONArray(scoreData);
+        //List<Object> sList = sData.toList();
 
-            //listings screen
-            JPanel listingsP = new JPanel();
-            int rows = listings.size();
-            listingsP.setLayout(new GridLayout(rows, 1));
-            HashMap<JobListing, Float> jobListingWithScoresMap = new HashMap<>();
+        //listings screen
+        JPanel listingsP = new JPanel();
+        int rows = listings.size();
+        listingsP.setLayout(new GridLayout(rows, 1));
+        //HashMap<JobListing, Float> jobListingWithScoresMap = new HashMap<>();
 
-            //Score calculator
+        //Score calculator
 //            for (Object scoreUUIDPair:
 //                 sList) {
 //                if (scoreUUIDPair instanceof Map){
@@ -822,19 +824,17 @@ public class UI {
 //                listingsP.add(Liting(listing, listingScore));
 //            }
 
-            for (JobListing listing: listings) {
-                listingsP.add(Liting(listing));
-            }
-
-            JFrame frame1 = new JFrame("Test");
-            frame1.setDefaultCloseOperation(frame1.DISPOSE_ON_CLOSE);
-            frame1.add(listingsP);
-            frame1.pack();
-            frame1.setLocationRelativeTo(null);
-            frame1.setVisible(true);
-        } catch (IOException e) {
-            e.printStackTrace();
+        for (JobListing listing: listings) {
+            listingsP.add(Liting(listing));
         }
+
+        JFrame frame1 = new JFrame("Test");
+        frame1.setDefaultCloseOperation(frame1.DISPOSE_ON_CLOSE);
+        frame1.add(listingsP);
+        frame1.pack();
+        frame1.setLocationRelativeTo(null);
+        frame1.setVisible(true);
+
 
         frame.repaint();
         frame.revalidate();
