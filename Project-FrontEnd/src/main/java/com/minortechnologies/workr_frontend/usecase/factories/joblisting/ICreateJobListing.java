@@ -4,7 +4,6 @@ import com.minortechnologies.workr_frontend.entities.listing.JobListing;
 import com.minortechnologies.workr_frontend.entities.listing.ListingType;
 import com.minortechnologies.workr_frontend.usecase.factories.ICreateEntry;
 import com.minortechnologies.workr_frontend.usecase.fileio.MalformedDataException;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -59,7 +58,7 @@ public interface ICreateJobListing extends ICreateEntry {
      * @param listingDataMap the map containing the Data for the Listing
      * @return An Arraylist containing any keys missing from the Map. This list is empty if there are no missing keys.
      */
-    static @NotNull ArrayList<String> verifyMapIntegrityStatic(Map<String, Object> listingDataMap) {
+    static ArrayList<String> verifyMapIntegrityStatic(Map<String, Object> listingDataMap) {
         String[] integrity = ("uuid listingType title location pay jobType qualifications requirements " +
                 "applicationReq description listingDate crossPlatformDuplicates").split(" ");
         Set<String> keys = listingDataMap.keySet();

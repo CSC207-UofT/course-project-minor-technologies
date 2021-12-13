@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Project-BackEnd/Project-Backend.iml" filepath="$PROJECT_DIR$/Project-BackEnd/Project-Backend.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Project-BackEnd/Project-BackEnd.iml" filepath="$PROJECT_DIR$/Project-BackEnd/Project-BackEnd.iml" />
       <module fileurl="file://$PROJECT_DIR$/Project-FrontEnd/Project-FrontEnd.iml" filepath="$PROJECT_DIR$/Project-FrontEnd/Project-FrontEnd.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../../Surface Pro Desktop/Essential/School/Year 2/Sem1/CSC207/course-project-minor-technologies/Project-BackEnd/SpringAdventures (2).iml" filepath="$PROJECT_DIR$/../../../Surface Pro Desktop/Essential/School/Year 2/Sem1/CSC207/course-project-minor-technologies/Project-BackEnd/SpringAdventures (2).iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/course-project-minor-technologies.iml" filepath="$PROJECT_DIR$/.idea/course-project-minor-technologies.iml" />
     </modules>
   </component>
