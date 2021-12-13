@@ -1,3 +1,11 @@
+To run our program, both frontend and backend need to be running.
+
+To run the backend, go to Project-Backend > src > main > java > com.minortechnologies.workr_backend.framework.networkhandler
+and run Application.java.
+
+Then run front end, go to Project-Backend > src > main > java > com.minortechnologies.workr_frontend.main
+and run Main.java
+
 Here are info to test the program and other HTTP related stuff
 
 Existing Account login info
