@@ -4,7 +4,6 @@ import com.minortechnologies.workr_backend.entities.listing.JobListing;
 import com.minortechnologies.workr_backend.entities.user.User;
 import com.minortechnologies.workr_backend.entities.user.Experience;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class HandlerUnrelatedWork extends HandlerExtWork{
@@ -23,18 +22,8 @@ public class HandlerUnrelatedWork extends HandlerExtWork{
 
     @Override
     public void scoreCalculate() {
-        double score = 0.0;
         ArrayList<Experience> user_experiences = (ArrayList<Experience>) this.user.getData(User.UREL_WORK_EXP);
-        if(user_experiences != null){
-            for(Experience experience : user_experiences) {
-                ArrayList<String> description = (ArrayList<String>) experience.getData(Experience.EXPERIENCE_DESCRPTION);
-                score += scoreTime(experience) * description.size() * 0.5;
-                score += titleScore(experience);
-            }
-        }
-
-
-        this.score += score;
+        this.score = giveScore(user_experiences, 0.5);
     }
 
 }
