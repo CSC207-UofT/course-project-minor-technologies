@@ -7,19 +7,24 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Project-FrontEnd" />
-        <module name="Project-Backend" />
+        <module name="Project-BackEnd" />
+        <module name="SpringAdventures (2)" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="11">
+      <module name="Project-BackEnd" target="11" />
       <module name="Project-Backend" target="11" />
       <module name="Project-FrontEnd" target="11" />
       <module name="SpringAdventures" target="11" />
+      <module name="SpringAdventures (2)" target="11" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="Project-Backend" options="-parameters" />
       <module name="Project-FrontEnd" options="-parameters" />
+      <module name="SpringAdventures (1)" options="-parameters" />
+      <module name="SpringAdventures (2)" options="-parameters" />
     </option>
   </component>
 </project>

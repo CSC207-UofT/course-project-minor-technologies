@@ -41,9 +41,11 @@ public class ListingsProcessingTest {
     }
 
     @Test
-    public void testNoFilterNoComparator() {
+    //This test previous tested if there was no filter and no comparator. The default comparator was changed to compare
+    //by score rather than alphabetically, so this test has changed. I assure that the test passed without a comparator.
+    public void testNoFilterAlphabetical() {
         ListingsProcessor processor = new DefaultProcessor();
-        List<JobListing> processed = processor.processList(listings);
+        List<JobListing> processed = processor.processList(listings, "TITLE");
         List<JobListing> expected = new ArrayList<>();
         expected.add(l4);
         expected.add(l2);
@@ -81,7 +83,7 @@ public class ListingsProcessingTest {
         filters.add(isFullTime);
 
         ListingsProcessor processor = new DefaultProcessor();
-        List<JobListing> processed = processor.processList(listings, filters);
+        List<JobListing> processed = processor.processList(listings, filters, "TITLE");
         List<JobListing> expected = new ArrayList<>();
         expected.add(l2);
         expected.add(l8);

@@ -82,8 +82,10 @@ public class SearchQuery extends Entry {
                     data = ICreateEntry.parseDateTime(data);
                     break;
                 case JOB_TYPE:
+                    if (!(data instanceof JobType)){
                     assert data instanceof String;
                     data = JobType.valueOf((String) data);
+                    }
                     break;
             }
             addData(key, data);

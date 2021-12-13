@@ -4,12 +4,6 @@ Existing Account login info
 
 login: sbills33
 password: Password
-existing tokens: gJg9osAd6q41cv10xD0mEPgNjk8l-cfh
 
 login: wcjay20
 password: Password1
-existing tokens: WBwstO6rMoOYziIAD_ZqGRddsZFTM7fu
-
-User.REL_WORK_EXP
-User.UREL_WORK_EXP
-User.LEADERSHIP

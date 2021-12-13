@@ -58,7 +58,7 @@ public class UserRequestReceiver {
         return UserRequestHandler.setUserData(login, token, payload);
     }
 
-    @PostMapping("/User/{login}/GetAllUserData")
+    @GetMapping("/User/{login}/GetAllUserData")
     public HashMap<String, Object> getAllUserData(@PathVariable String login, @RequestParam String token){
         return UserRequestHandler.getAccountData(login, token);
     }

@@ -1,0 +1,6 @@
+Currently, the Frontend consists of only a few functional parts:
+
+Creating a new User, Signing In, and Searching for Job Listings.
+
+Note: When creating a new user, you are not automatically signed in, you will still need to sign in after creating
+the user.

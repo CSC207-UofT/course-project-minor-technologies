@@ -1,18 +1,20 @@
+### To use these HTTP Requests, there is a file in Scratches and Consoles (which is local to device, independent of VCS),
+### called "generated-requests.http".
+### If there is no generated-request.http file (or any other similar files to run http requests,) you can go to
+### ProjectBackend > main > java > com.minortechnologies.workr_backend.framework.networkhandler,
+### go to any of the receiver classes, and then click on the "bean" to the left of any of the methods.
+### It should then create that scratch file. Delete the generated request and past the contents of this file to it.
+
 ### Get All Account Data
 GET http://localhost:8080/Admin/GetAllAccounts
-
-### Get All Listings Data
-
-
 
 ### Starting and Suspending Serialization
 GET http://localhost:8080/Admin/SuspendSerialization
 
-
-###
+### Serializes all current Data
 GET http://localhost:8080/Admin/SerializeAllData
 
-###
+### Resumes serialization (if it was previously suspended)
 GET http://localhost:8080/Admin/ResumeSerialization
 
 
@@ -21,17 +23,22 @@ POST http://localhost:8080/User/Create
 Content-Type: application/json
 
 {
-  "accountName": "Jay Wang",
-  "login": "jccw2021",
-  "email": "jccw2021@mail.minortechnologies.ca",
-  "password": "Password1"
+  "accountName": "Demo Account",
+  "login": "LoginTest",
+  "email": "TestEmail@email.com",
+  "password": "Password"
 }
 
-### Sign In
-GET http://localhost:8080/User/SignIn?login=jccw2021&password=Password1
+
+### Logging In
+### Use the same login and password from the above call
+GET http://localhost:8080/User/SignIn?login=LoginTest&password=Password
+### Copy the return for this. This token is needed for many calls ahead.
+
 
 ### Add a chunk of Data
-POST http://localhost:8080/User/jccw2021/SetDataLarge?token=sNCWUrATbDdnkCf_IKYoro7PPcg6kEB1
+### This chunk of data is used to demo a score calulation System
+POST http://localhost:8080/User/jccw20211/SetDataLarge?token=TOKEN
 Content-Type: application/json
 
 {
@@ -72,7 +79,7 @@ Content-Type: application/json
     "R",
     "MS Excel"
   ],
-  "accountName":"Jay Wang",
+  "accountName":"Demo Account",
   "scores":[
 
   ],
@@ -97,17 +104,23 @@ Content-Type: application/json
 
 
 ### Performing Searches
-###
+### Search Term contains "Zara"
 GET http://localhost:8080/JobListing/Search?dateTime=2021-01-01&location=Toronto&jobType=FULL_TIME&searchTerms=Zara
 
-###
+### Search Term contains "Demo"
 GET http://localhost:8080/JobListing/Search?dateTime=2021-01-01&location=Toronto&jobType=FULL_TIME&searchTerms=Demo
 
-### Should now have no entires
-POST http://localhost:8080/User/jccw2021/GetWatchedListings?token=sNCWUrATbDdnkCf_IKYoro7PPcg6kEB1
+### Get watched listings
+POST http://localhost:8080/User/jccw20211/GetWatchedListings?token=LD7zUYWgbZPaZRz6qAr2LjXcvmEWUvTO
 
-###
-POST http://localhost:8080/User/jccw2021/AddToWatched?token=sNCWUrATbDdnkCf_IKYoro7PPcg6kEB1
+
+### This is adding a listing to "watched listings" for that user.
+### This specific listing is equivalent to the Zara one above (uuid might not be the same, but that does not affect
+### behaviour)
+### The response of this request would be the uuid of the listing added to the watch, essentially for if this listing
+### already exists in the backend, so it does not generate duplicate listings.
+### You can keep track of the response to get that specific listing.
+POST http://localhost:8080/User/jccw20211/AddToWatched?token=LD7zUYWgbZPaZRz6qAr2LjXcvmEWUvTO
 Content-Type: application/json
 
 {
@@ -119,7 +132,7 @@ Content-Type: application/json
   "description": "Zara offers the latest fashion trends for women, men and children. An international brand with stores in the main cities of the world and online. Our business model is centered in our customers, constantly adapting to their needs. We love what we do. Teamwork, passion, curiosity, diversity, sustainability, creativity and humility are our daily motivation. Does it sound like you? Maybe you are a Zara person.\n\nHow we imagine you\n\nYou are passionate, curious, motivated and dynamic, with something different to contribute? You are a multitasker, creative, unstoppable and proactive? Do you love fashion and celebrate self-expression? You will shine in a fast-paced environment, where you can be yourself around talented people like you! Having previous retail experience is a plus, but what we care most about is that you want to learn and grow with us. At Zara you will find more than a job.\n\nWhat we expect from you\n\nFrom day one you will belong to a team in which each voice counts. You will develop your skills and be given responsibilities. You will have all the tools at your fingertips to make a difference. As a Sales Assistant, part of your responsibilities will be:\n\nDeliver a high level of customer service\nSupport the cash desk and delivery teams\nUnderstand and be passionate about the latest fashion trends\nReplenish the shop floor\nAdhere to all the Health & Safety procedures\nSupport other store functions when needed\nFlexible availabilities (day, evening, weekend and holiday)\nWhat we offer\nIn addition to a competitive salary, you will also be entitled to an employee discount to buy the latest trends in any of our brands, Zara, Massimo Dutti and ZaraHome.\n\nOur internal talent is our greatest asset and we are proud of offering internal promotion programs where you will find opportunities to grow, eLearning and training programs- we never stop learning!, Social projects to get involved and contribute to a better society, and much more!\n\nZara Canada provides equal access to employment and will offer reasonable accommodations upon request, for job applicants with disabilities during its recruitment process.\n\nJob Types: Full-time, Part-time",
   "jobField": "service",
   "title": "Sales Associate, Zara Toronto",
-  "uuid": "66caf423-f714-49c7-89b2-9edeb7bc4d54",
+  "uuid": "36d4ca21-1906-499e-99e6-cca064cfeec3",
   "qualifications": "Demo",
   "demoSourceID": "-1287241166",
   "location": "Toronto",
@@ -127,12 +140,15 @@ Content-Type: application/json
   "jobType": "FULL_TIME"
 }
 
-### added as fb56b33a-f223-47e6-a8c4-c58ec9a5ba5f
+### Replace "{uuid}" with the return of the previous example to view it, or any other uuids if you know them.
+### this will get that specific listing.
+POST http://localhost:8080/JobListing/Get/{uuid}
 
-### Should now have 1 entry
+### Should now have 1 entry, the one added previously.
 POST http://localhost:8080/User/jccw2021/GetWatchedListings?token=sNCWUrATbDdnkCf_IKYoro7PPcg6kEB1
 
 ### Creates a custom listing
+### It will return a uuid for that custom listing.
 POST http://localhost:8080/JobListing/jccw2021/CreateCustom?token=sNCWUrATbDdnkCf_IKYoro7PPcg6kEB1
 Content-Type: application/json
 
@@ -155,8 +171,11 @@ Content-Type: application/json
 
 
 ### Calculates a Score for the above Custom Listing
-GET http://localhost:8080/JobListing/Score/jccw2021/?token=sNCWUrATbDdnkCf_IKYoro7PPcg6kEB1
+### In the array for the request body, paste the uuid of that custom listing in.
+POST http://localhost:8080/JobListing/Score/jccw2021/?token=sNCWUrATbDdnkCf_IKYoro7PPcg6kEB1
 Content-Type: application/json
 
 []
 
+
+### Other http requests not demonstrated could be found here: https://docs.google.com/document/d/1PlpB4f4CSYEf37CMdXyTAccuCM-OjOrzASszVG0AMtk/edit?usp=sharing
